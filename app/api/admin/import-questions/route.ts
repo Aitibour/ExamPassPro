@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     domain: q.domain ?? '',
   }))
 
-  const { error, count } = await supabase.from('questions').insert(rows).select('id', { count: 'exact', head: true })
+  const { error } = await supabase.from('questions').insert(rows)
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 

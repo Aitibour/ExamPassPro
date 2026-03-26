@@ -1,13 +1,16 @@
 import { createClient } from '@/lib/supabase/server'
 import { BulkImportWidget } from '@/components/admin/BulkImportWidget'
+import type { QuestionWithCourse } from '@/lib/supabase/database.types'
 
 export default async function AdminQuestionsPage() {
   const supabase = await createClient()
 
-  const [{ data: questions }, { data: courses }] = await Promise.all([
+  const [{ data: questionsRaw }, { data: courses }] = await Promise.all([
     supabase.from('questions').select('*, courses(title)').order('created_at', { ascending: false }).limit(50),
     supabase.from('courses').select('id, title').order('title'),
   ])
+
+  const questions = questionsRaw as unknown as QuestionWithCourse[] | null
 
   return (
     <div>
@@ -42,7 +45,7 @@ export default async function AdminQuestionsPage() {
             {questions?.map(q => (
               <tr key={q.id} className="hover:bg-slate-50">
                 <td className="px-5 py-3.5 text-sm text-slate-700 max-w-xs truncate">{q.body}</td>
-                <td className="px-5 py-3.5 text-sm text-slate-500">{(q.courses as any)?.title ?? '—'}</td>
+                <td className="px-5 py-3.5 text-sm text-slate-500">{q.courses?.title ?? '—'}</td>
                 <td className="px-5 py-3.5 text-xs text-slate-500">{q.domain || '—'}</td>
                 <td className="px-5 py-3.5 text-sm font-mono font-bold text-sky-600">{q.correct}</td>
               </tr>

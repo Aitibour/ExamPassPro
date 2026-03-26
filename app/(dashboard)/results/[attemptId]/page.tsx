@@ -2,10 +2,14 @@ import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { AIChatWidget } from '@/components/chat/AIChatWidget'
-import type { Question } from '@/lib/supabase/database.types'
+import type { ExamAttempt, Question, ExamSet } from '@/lib/supabase/database.types'
 
 interface PageProps {
   params: Promise<{ attemptId: string }>
+}
+
+interface AttemptWithSet extends ExamAttempt {
+  exam_sets: (ExamSet & { courses: { title: string } | null }) | null
 }
 
 export default async function ResultsPage({ params }: PageProps) {
@@ -15,16 +19,17 @@ export default async function ResultsPage({ params }: PageProps) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  const { data: attempt } = await supabase
+  const { data: attemptRaw } = await supabase
     .from('exam_attempts')
     .select('*, exam_sets(title, course_id, courses(title))')
     .eq('id', attemptId)
     .eq('user_id', user.id)
     .single()
 
-  if (!attempt) notFound()
+  if (!attemptRaw) notFound()
+  const attempt = attemptRaw as unknown as AttemptWithSet
 
-  const examSet = attempt.exam_sets as any
+  const examSet = attempt.exam_sets
   const course = examSet?.courses
 
   // Fetch questions for this attempt
@@ -34,17 +39,19 @@ export default async function ResultsPage({ params }: PageProps) {
     .eq('id', attempt.exam_set_id)
     .single()
 
-  const { data: questions } = await supabase
+  const { data: questionsRaw } = await supabase
     .from('questions')
     .select('*')
-    .in('id', examSetData?.question_ids ?? [])
+    .in('id', (examSetData as ExamSet | null)?.question_ids ?? [])
 
-  const questionMap = new Map((questions ?? []).map(q => [q.id, q]))
+  const questions = (questionsRaw as Question[] | null) ?? []
+
+  const questionMap = new Map(questions.map(q => [q.id, q]))
   const answers = attempt.answers as Record<string, string>
 
   // Domain breakdown
   const domainStats: Record<string, { correct: number; total: number }> = {}
-  ;(questions ?? []).forEach((q: Question) => {
+  questions.forEach(q => {
     if (!domainStats[q.domain]) domainStats[q.domain] = { correct: 0, total: 0 }
     domainStats[q.domain].total++
     if (answers[q.id] === q.correct) domainStats[q.domain].correct++
@@ -54,13 +61,13 @@ export default async function ResultsPage({ params }: PageProps) {
     .filter(([, s]) => s.total > 0 && s.correct / s.total < 0.7)
     .map(([d]) => d)
 
-  const wrongQuestions = (questions ?? []).filter((q: Question) => answers[q.id] !== q.correct)
-  const wrongDomains = [...new Set(wrongQuestions.map((q: Question) => q.domain).filter(Boolean))]
+  const wrongQuestions = questions.filter(q => answers[q.id] !== q.correct)
+  const wrongDomains = [...new Set(wrongQuestions.map(q => q.domain).filter(Boolean))]
 
   const score = attempt.score_pct ?? 0
   const passed = attempt.passed ?? false
 
-  const initialMessage = `I've analyzed your exam results for ${examSet?.title ?? 'this exam'}.
+  const initialMessage = `I've analyzed your exam results for **${examSet?.title ?? 'this exam'}**.
 
 **Score: ${Math.round(score)}% — ${passed ? 'PASSED ✓' : 'FAILED ✗'}**
 
@@ -69,7 +76,7 @@ ${weakDomains.length > 0
   : 'Great performance across all domains!'
 }
 
-You got **${wrongQuestions.length} questions wrong** out of ${questions?.length ?? 0}. Ask me to explain any concept or wrong answer and I'll help you understand it!`
+You got **${wrongQuestions.length} questions wrong** out of ${questions.length}. Ask me to explain any concept and I'll help you understand it!`
 
   return (
     <div>
@@ -84,7 +91,7 @@ You got **${wrongQuestions.length} questions wrong** out of ${questions?.length 
           <h1 className="text-2xl font-black text-slate-900">{examSet?.title ?? 'Exam Results'}</h1>
           <p className="text-slate-500 text-sm mt-1">{course?.title ?? ''}</p>
         </div>
-        <div className={`text-right`}>
+        <div className="text-right">
           <div className={`text-5xl font-black ${passed ? 'text-green-600' : 'text-red-500'}`}>
             {Math.round(score)}%
           </div>
@@ -101,7 +108,7 @@ You got **${wrongQuestions.length} questions wrong** out of ${questions?.length 
           <div className="grid grid-cols-3 gap-4">
             {[
               { label: 'Score', value: `${Math.round(score)}%` },
-              { label: 'Correct', value: `${(questions?.length ?? 0) - wrongQuestions.length}/${questions?.length ?? 0}` },
+              { label: 'Correct', value: `${questions.length - wrongQuestions.length}/${questions.length}` },
               { label: 'Wrong', value: wrongQuestions.length },
             ].map(({ label, value }) => (
               <div key={label} className="bg-white border border-slate-200 rounded-xl p-5 text-center">
@@ -145,7 +152,7 @@ You got **${wrongQuestions.length} questions wrong** out of ${questions?.length 
               <h2 className="font-black text-slate-900">Answer Review</h2>
             </div>
             <div className="divide-y divide-slate-50">
-              {(examSetData?.question_ids as string[] ?? []).slice(0, 20).map((qId, i) => {
+              {((examSetData as ExamSet | null)?.question_ids ?? []).slice(0, 20).map((qId, i) => {
                 const q = questionMap.get(qId)
                 if (!q) return null
                 const userAnswer = answers[qId]
@@ -163,7 +170,9 @@ You got **${wrongQuestions.length} questions wrong** out of ${questions?.length 
                         {!isCorrect && (
                           <div className="text-xs space-y-1">
                             <span className="text-red-500">Your answer: {userAnswer ?? 'Not answered'}</span>
-                            <span className="text-green-600 block">Correct: {q.correct}. {q.options[q.correct as keyof typeof q.options]}</span>
+                            <span className="text-green-600 block">
+                              Correct: {q.correct}. {q.options[q.correct as keyof typeof q.options]}
+                            </span>
                           </div>
                         )}
                         {q.explanation && !isCorrect && (

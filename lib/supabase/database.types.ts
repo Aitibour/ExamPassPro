@@ -101,3 +101,9 @@ export type ExamSet = Database['public']['Tables']['exam_sets']['Row']
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type Purchase = Database['public']['Tables']['purchases']['Row']
 export type ExamAttempt = Database['public']['Tables']['exam_attempts']['Row']
+
+// Extended types for join queries
+export type PurchaseWithCourse = Purchase & { courses: Course }
+export type ExamAttemptWithSet = ExamAttempt & { exam_sets: Pick<ExamSet, 'title'> | null }
+export type QuestionWithCourse = Question & { courses: Pick<Course, 'title'> | null }
+export type ExamSetWithCourse = ExamSet & { courses: Pick<Course, 'title'> | null }

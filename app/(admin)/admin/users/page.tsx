@@ -1,12 +1,15 @@
 import { createClient } from '@/lib/supabase/server'
+import type { Profile } from '@/lib/supabase/database.types'
 
 export default async function AdminUsersPage() {
   const supabase = await createClient()
-  const { data: profiles } = await supabase
+  const { data: profilesRaw } = await supabase
     .from('profiles')
     .select('*, purchases(count)')
     .order('created_at', { ascending: false })
     .limit(100)
+
+  const profiles = profilesRaw as unknown as Profile[] | null
 
   return (
     <div>

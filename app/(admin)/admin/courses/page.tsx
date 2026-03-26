@@ -1,12 +1,15 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import type { Course } from '@/lib/supabase/database.types'
 
 export default async function AdminCoursesPage() {
   const supabase = await createClient()
-  const { data: courses } = await supabase
+  const { data: coursesRaw } = await supabase
     .from('courses')
     .select('*')
     .order('created_at', { ascending: false })
+
+  const courses = coursesRaw as Course[] | null
 
   return (
     <div>
@@ -56,12 +59,10 @@ export default async function AdminCoursesPage() {
                   </span>
                 </td>
                 <td className="px-5 py-3.5">
-                  <div className="flex gap-2">
-                    <Link href={`/admin/courses/${c.id}/edit`}
-                      className="text-xs bg-sky-50 text-sky-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-sky-100 transition-colors">
-                      Edit
-                    </Link>
-                  </div>
+                  <Link href={`/admin/courses/${c.id}/edit`}
+                    className="text-xs bg-sky-50 text-sky-600 font-semibold px-3 py-1.5 rounded-lg hover:bg-sky-100 transition-colors">
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}

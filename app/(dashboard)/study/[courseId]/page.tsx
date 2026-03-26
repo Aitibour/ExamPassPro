@@ -1,6 +1,7 @@
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { StudyMode } from '@/components/exam/StudyMode'
+import type { ExamSet, Question } from '@/lib/supabase/database.types'
 
 interface PageProps {
   params: Promise<{ courseId: string }>
@@ -38,22 +39,24 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
 
   if (!examSetId) notFound()
 
-  const { data: examSet } = await supabase
+  const { data: examSetRaw } = await supabase
     .from('exam_sets')
     .select('*')
     .eq('id', examSetId)
     .single()
 
+  const examSet = examSetRaw as ExamSet | null
   if (!examSet) notFound()
 
-  const { data: questions } = await supabase
+  const { data: questionsRaw } = await supabase
     .from('questions')
     .select('*')
     .in('id', examSet.question_ids)
 
-  const orderedQuestions = (examSet.question_ids as string[])
+  const questions = questionsRaw as Question[] | null
+  const orderedQuestions = examSet.question_ids
     .map(id => questions?.find(q => q.id === id))
-    .filter(Boolean) as any[]
+    .filter((q): q is Question => q != null)
 
   return (
     <div className="max-w-3xl mx-auto">

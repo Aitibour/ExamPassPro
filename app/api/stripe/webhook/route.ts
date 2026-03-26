@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       })
 
       // Increment enrolled count
-      await supabase.rpc('increment_enrolled_count' as any, { course_id_param: course_id })
+      await (supabase as any).rpc('increment_enrolled_count', { course_id_param: course_id })
     }
   }
 

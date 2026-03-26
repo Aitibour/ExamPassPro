@@ -1,12 +1,15 @@
 import { createClient } from '@/lib/supabase/server'
+import type { ExamSetWithCourse } from '@/lib/supabase/database.types'
 
 export default async function AdminExamSetsPage() {
   const supabase = await createClient()
 
-  const [{ data: examSets }, { data: courses }] = await Promise.all([
+  const [{ data: examSetsRaw }] = await Promise.all([
     supabase.from('exam_sets').select('*, courses(title)').order('title'),
     supabase.from('courses').select('id, title').order('title'),
   ])
+
+  const examSets = examSetsRaw as unknown as ExamSetWithCourse[] | null
 
   return (
     <div>
@@ -31,7 +34,7 @@ export default async function AdminExamSetsPage() {
             {examSets?.map(s => (
               <tr key={s.id} className="hover:bg-slate-50">
                 <td className="px-5 py-3.5 font-semibold text-sm text-slate-900">{s.title}</td>
-                <td className="px-5 py-3.5 text-sm text-slate-500">{(s.courses as any)?.title ?? '—'}</td>
+                <td className="px-5 py-3.5 text-sm text-slate-500">{s.courses?.title ?? '—'}</td>
                 <td className="px-5 py-3.5 text-sm text-slate-700">{s.question_ids.length}</td>
                 <td className="px-5 py-3.5 text-sm text-slate-700">{s.duration_mins} min</td>
               </tr>

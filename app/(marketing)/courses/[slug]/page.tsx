@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { CourseLogo } from '@/components/courses/CourseLogo'
+import type { Course } from '@/lib/supabase/database.types'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -18,13 +19,14 @@ export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
   const supabase = await createClient()
 
-  const { data: course } = await supabase
+  const { data: courseRaw } = await supabase
     .from('courses')
     .select('*')
     .eq('slug', slug)
     .eq('is_published', true)
     .single()
 
+  const course = courseRaw as Course | null
   if (!course) notFound()
 
   return (

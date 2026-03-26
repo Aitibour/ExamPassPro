@@ -72,13 +72,14 @@ const PRICING_PLANS = [
 
 export default async function HomePage() {
   const supabase = await createClient()
-  const { data: courses } = await supabase
+  const { data: coursesRaw } = await supabase
     .from('courses')
     .select('*')
     .eq('is_published', true)
     .order('enrolled_count', { ascending: false })
     .limit(10)
 
+  const courses = coursesRaw as Course[] | null
   const displayCourses = courses && courses.length > 0 ? courses : FALLBACK_COURSES
 
   return (

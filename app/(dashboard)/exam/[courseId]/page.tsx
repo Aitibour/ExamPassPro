@@ -2,6 +2,7 @@ import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { PLAN_EXAM_LIMITS } from '@/lib/stripe'
+import type { Course, Purchase, ExamSet } from '@/lib/supabase/database.types'
 
 interface PageProps {
   params: Promise<{ courseId: string }>
@@ -14,11 +15,15 @@ export default async function ExamSelectPage({ params }: PageProps) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  const [{ data: course }, { data: purchase }, { data: examSets }] = await Promise.all([
+  const [courseRes, purchaseRes, examSetsRes] = await Promise.all([
     supabase.from('courses').select('*').eq('id', courseId).single(),
     supabase.from('purchases').select('*').eq('user_id', user.id).eq('course_id', courseId).single(),
     supabase.from('exam_sets').select('*').eq('course_id', courseId).order('title'),
   ])
+
+  const course = courseRes.data as Course | null
+  const purchase = purchaseRes.data as Purchase | null
+  const examSets = examSetsRes.data as ExamSet[] | null
 
   if (!course) notFound()
   if (!purchase) redirect('/dashboard')

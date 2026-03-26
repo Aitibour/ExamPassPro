@@ -1,13 +1,14 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import type { Profile, PurchaseWithCourse, ExamAttemptWithSet } from '@/lib/supabase/database.types'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  const [{ data: profile }, { data: purchases }, { data: attempts }] = await Promise.all([
+  const [profileRes, purchasesRes, attemptsRes] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', user.id).single(),
     supabase.from('purchases').select('*, courses(*)').eq('user_id', user.id),
     supabase
@@ -18,6 +19,10 @@ export default async function DashboardPage() {
       .order('started_at', { ascending: false })
       .limit(5),
   ])
+
+  const profile = profileRes.data as Profile | null
+  const purchases = purchasesRes.data as PurchaseWithCourse[] | null
+  const attempts = attemptsRes.data as ExamAttemptWithSet[] | null
 
   const avgScore = attempts?.length
     ? Math.round(attempts.reduce((s, a) => s + (a.score_pct ?? 0), 0) / attempts.length)
@@ -53,39 +58,36 @@ export default async function DashboardPage() {
       <h2 className="text-base font-black text-slate-900 mb-3">My Courses</h2>
       {purchases && purchases.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {purchases.map(p => {
-            const course = p.courses as any
-            return (
-              <div key={p.id} className="bg-white border border-slate-200 rounded-xl p-5">
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-black flex-shrink-0"
-                    style={{ background: course?.brand_color ?? '#0ea5e9' }}
-                  >
-                    {(course?.title ?? '??').slice(0, 2)}
-                  </div>
-                  <div>
-                    <div className="font-black text-sm text-slate-900">{course?.title ?? 'Unknown'}</div>
-                    <div className="text-xs text-slate-500 capitalize">{p.plan} plan</div>
-                  </div>
+          {purchases.map(p => (
+            <div key={p.id} className="bg-white border border-slate-200 rounded-xl p-5">
+              <div className="flex items-center gap-3 mb-4">
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xs font-black flex-shrink-0"
+                  style={{ background: p.courses?.brand_color ?? '#0ea5e9' }}
+                >
+                  {(p.courses?.title ?? '??').slice(0, 2)}
                 </div>
-                <div className="flex gap-2">
-                  <Link
-                    href={`/exam/${course?.id}`}
-                    className="flex-1 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors"
-                  >
-                    Take Exam
-                  </Link>
-                  <Link
-                    href={`/study/${course?.id}`}
-                    className="flex-1 border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-bold py-2 rounded-lg text-center transition-colors"
-                  >
-                    Study
-                  </Link>
+                <div>
+                  <div className="font-black text-sm text-slate-900">{p.courses?.title ?? 'Unknown'}</div>
+                  <div className="text-xs text-slate-500 capitalize">{p.plan} plan</div>
                 </div>
               </div>
-            )
-          })}
+              <div className="flex gap-2">
+                <Link
+                  href={`/exam/${p.course_id}`}
+                  className="flex-1 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2 rounded-lg text-center transition-colors"
+                >
+                  Take Exam
+                </Link>
+                <Link
+                  href={`/study/${p.course_id}`}
+                  className="flex-1 border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-bold py-2 rounded-lg text-center transition-colors"
+                >
+                  Study
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl p-10 text-center mb-8">
@@ -108,7 +110,7 @@ export default async function DashboardPage() {
                 {a.score_pct != null ? `${Math.round(a.score_pct)}%` : '—'}
               </span>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-bold text-slate-900 truncate">{(a.exam_sets as any)?.title ?? 'Unknown Exam'}</div>
+                <div className="text-sm font-bold text-slate-900 truncate">{a.exam_sets?.title ?? 'Unknown Exam'}</div>
                 <div className="text-xs text-slate-400">{a.passed ? 'Passed' : 'Failed'} · {a.mode} mode</div>
               </div>
               <Link href={`/results/${a.id}`} className="text-xs text-sky-500 font-semibold flex-shrink-0">
