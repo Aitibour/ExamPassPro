@@ -10,8 +10,8 @@ interface PageProps {
 
 const PLAN_FEATURES = {
   starter: ['1 Mock exam (100% real questions)', '+30 extra questions', 'Score tracking & history', 'Study mode with explanations', 'Level 1 Support'],
-  pro: ['2 Mock exams', '+60 extra questions', 'Gemini AI Chat', 'Public community access', 'Level 1 Support'],
-  platinum: ['5 Mock exams', '+150 extra questions', 'Unlimited AI Chat', 'Private community', '30-min coaching', 'Level 2 + Priority Support'],
+  pro: ['3 Mock exams', '+60 extra questions', 'Study mode with explanations', 'Gemini AI Chat', 'Public community access', 'Level 1 Support'],
+  platinum: ['5 Mock exams', '+150 extra questions', 'Unlimited AI Chat', 'Private community', '1-to-1 coaching session', 'Level 2 + Priority Support'],
   all_access: ['10 Mock exams', '+300 extra questions', 'Unlimited AI Chat forever', 'Private community', '1-hour coaching', 'Level 3 + Priority Support', 'Lifetime access'],
 }
 

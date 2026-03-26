@@ -31,14 +31,14 @@ const TESTIMONIALS = [
 ]
 
 const PARTNERS = [
-  { name: 'ServiceNow', abbr: 'NOW', color: '#3d9b3d' },
-  { name: 'AWS', abbr: 'aws', color: '#FF9900' },
-  { name: 'Microsoft', abbr: 'MS', color: '#00a4ef' },
-  { name: 'Google', abbr: 'GCP', color: '#4285F4' },
-  { name: 'VMware', abbr: 'VMw', color: '#607078' },
-  { name: 'Cisco', abbr: 'CSC', color: '#1ba0d7' },
-  { name: 'CompTIA', abbr: 'CT+', color: '#c0392b' },
-  { name: 'HashiCorp', abbr: 'HCO', color: '#7B42BC' },
+  { name: 'ServiceNow', slug: 'servicenow' },
+  { name: 'Amazon AWS', slug: 'amazonaws' },
+  { name: 'Microsoft Azure', slug: 'microsoftazure' },
+  { name: 'Google Cloud', slug: 'googlecloud' },
+  { name: 'VMware', slug: 'vmware' },
+  { name: 'Cisco', slug: 'cisco' },
+  { name: 'CompTIA', slug: 'comptia' },
+  { name: 'HashiCorp', slug: 'hashicorp' },
 ]
 
 const PRICING_PLANS = [
@@ -50,13 +50,13 @@ const PRICING_PLANS = [
   },
   {
     key: 'pro', name: 'Pro', price: 49, period: '/mo',
-    features: ['2 Mock exams', '+60 extra questions', 'Gemini AI Chat assistant', 'Public community access', 'Level 1 Support'],
+    features: ['3 Mock exams', '+60 extra questions', 'Study mode with explanations', 'Gemini AI Chat assistant', 'Public community access', 'Level 1 Support'],
     cta: 'Get Pro',
     highlight: false,
   },
   {
     key: 'platinum', name: 'Platinum', price: 99, period: '/mo',
-    features: ['5 Mock exams', '+150 extra questions', 'Gemini AI Chat (unlimited)', 'Private community access', '30-min coaching session', 'Level 2 + Priority Support'],
+    features: ['5 Mock exams', '+150 extra questions', 'Gemini AI Chat (unlimited)', 'Private community access', '1-to-1 coaching session', 'Level 2 + Priority Support'],
     cta: 'Get Platinum',
     highlight: true,
     badge: 'Most Popular',
@@ -97,17 +97,20 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-slate-900/75" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              98.2% Pass Rate — 12,400+ Certified Professionals
+            <div className="flex flex-wrap gap-2 mb-7">
+              <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-bold px-3 py-1.5 rounded-full">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                98.2% Pass Rate
+              </div>
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/80 text-xs font-bold px-3 py-1.5 rounded-full">
+                12,400+ Certified Professionals
+              </div>
             </div>
             <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight mb-6">
-              Pass Your IT Certification{' '}
-              <span className="text-sky-400">First Try</span>
+              Pass Your IT Certification <span className="text-sky-400">First Try</span>
             </h1>
             <p className="text-lg text-slate-300 leading-relaxed mb-8">
-              Real exam-style questions, timed mock exams, Gemini AI assistant, and a{' '}
-              <strong className="text-white">100% Pass or 100% Refund</strong> guarantee.
+              Real exam-style questions, timed mock exams, Gemini AI assistant, and a <strong className="text-white">100% Pass or 100% Refund</strong> guarantee.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/register"
@@ -208,26 +211,25 @@ export default async function HomePage() {
       </section>
 
       {/* Technology Partners */}
-      <section className="bg-slate-900 py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <p className="text-center text-slate-500 text-xs font-bold uppercase tracking-widest mb-8">
-            Official Technology Partner &amp; Content Aligned With
+      <section className="bg-white py-14 border-y border-slate-100">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12">
+          <p className="text-center text-slate-400 text-xs font-bold uppercase tracking-widest mb-10">
+            Content Aligned With Official Certification Bodies
           </p>
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-6 items-end">
             {PARTNERS.map(p => (
-              <div
-                key={p.name}
-                className="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-sky-500/50 hover:bg-slate-750 transition-all cursor-pointer group"
-              >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-black"
-                  style={{ background: p.color + '22', color: p.color }}
-                >
-                  {p.abbr}
+              <div key={p.name} className="flex flex-col items-center gap-2.5 group">
+                <div className="w-16 h-16 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center p-3 shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://cdn.simpleicons.org/${p.slug}`}
+                    alt={p.name}
+                    width={36}
+                    height={36}
+                    style={{ objectFit: 'contain' }}
+                  />
                 </div>
-                <span className="text-slate-400 text-[10px] font-semibold text-center group-hover:text-white transition-colors">
-                  {p.name}
-                </span>
+                <span className="text-slate-500 text-[10px] font-semibold text-center leading-tight">{p.name}</span>
               </div>
             ))}
           </div>

@@ -27,7 +27,7 @@ export const PLAN_LABELS: Record<string, string> = {
 
 export const PLAN_EXAM_LIMITS: Record<string, number> = {
   starter: 1,
-  pro: 2,
+  pro: 3,
   platinum: 5,
   all_access: 10,
 }

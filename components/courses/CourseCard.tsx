@@ -12,9 +12,9 @@ export function CourseCard({ course, rank }: { course: Course; rank: number }) {
       {/* Brand color background */}
       <div className="absolute inset-0" style={{ background: course.brand_color }} />
 
-      {/* Tech logo centered */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <CourseLogo slug={course.slug} size={64} />
+      {/* Tech logo — fills card */}
+      <div className="absolute inset-0 flex items-center justify-center p-8">
+        <CourseLogo slug={course.slug} fill />
       </div>
 
       {/* Rank badge */}
