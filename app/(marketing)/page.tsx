@@ -31,8 +31,8 @@ const TESTIMONIALS = [
 ]
 
 const PARTNERS = [
-  { name: 'ServiceNow', slug: 'servicenow' },
-  { name: 'Amazon AWS', slug: 'amazonaws' },
+  { name: 'ServiceNow', slug: null },          // not in Simple Icons — inline SVG below
+  { name: 'Amazon AWS', slug: 'amazonwebservices' },
   { name: 'Microsoft Azure', slug: 'microsoftazure' },
   { name: 'Google Cloud', slug: 'googlecloud' },
   { name: 'VMware', slug: 'vmware' },
@@ -40,6 +40,16 @@ const PARTNERS = [
   { name: 'CompTIA', slug: 'comptia' },
   { name: 'HashiCorp', slug: 'hashicorp' },
 ]
+
+// ServiceNow "N" mark in brand green (for partners section)
+function ServiceNowPartnerLogo() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="21" stroke="#62B947" strokeWidth="3" />
+      <path d="M14 33 L14 15 L34 33 L34 15" stroke="#62B947" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
 
 const PRICING_PLANS = [
   {
@@ -220,14 +230,18 @@ export default async function HomePage() {
             {PARTNERS.map(p => (
               <div key={p.name} className="flex flex-col items-center gap-2.5 group">
                 <div className="w-16 h-16 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center p-3 shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`https://cdn.simpleicons.org/${p.slug}`}
-                    alt={p.name}
-                    width={36}
-                    height={36}
-                    style={{ objectFit: 'contain' }}
-                  />
+                  {p.slug === null ? (
+                    <ServiceNowPartnerLogo />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={`https://cdn.simpleicons.org/${p.slug}`}
+                      alt={p.name}
+                      width={36}
+                      height={36}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  )}
                 </div>
                 <span className="text-slate-500 text-[10px] font-semibold text-center leading-tight">{p.name}</span>
               </div>
