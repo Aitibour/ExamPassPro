@@ -52,6 +52,7 @@ const PRICING_PLANS = [
       'Score report & corrections',
     ],
     cta: 'Get Starter',
+    href: '/checkout?plan=starter',
     highlight: false,
   },
   {
@@ -64,6 +65,7 @@ const PRICING_PLANS = [
       'Performance analytics',
     ],
     cta: 'Get Pro',
+    href: '/checkout?plan=pro',
     highlight: true,
     badge: 'Most Popular',
   },
@@ -79,6 +81,7 @@ const PRICING_PLANS = [
       '100% Pass Guarantee',
     ],
     cta: 'Get All-Access',
+    href: '/checkout?plan=all_access',
     highlight: false,
     badge: 'Best Value',
   },
@@ -244,7 +247,7 @@ export default async function HomePage() {
                   ))}
                 </ul>
                 <Link
-                  href={'href' in plan ? plan.href : `/checkout?plan=${plan.key}`}
+                  href={plan.href}
                   className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
                     plan.highlight
                       ? 'bg-sky-500 hover:bg-sky-600 text-white'

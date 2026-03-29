@@ -21,7 +21,7 @@ const PUBLISHER_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? ''
 const IS_DEV       = process.env.NODE_ENV !== 'production'
 
 export function AdBanner({ slot, size = 'leaderboard', className = '' }: AdBannerProps) {
-  const insRef    = useRef<HTMLInsElement>(null)
+  const insRef    = useRef<HTMLModElement>(null)
   const pushedRef = useRef(false)
   const { width, height, label } = SIZE_MAP[size]
 

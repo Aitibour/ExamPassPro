@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createClient as createUserClient } from '@/lib/supabase/server'
-import type { Database } from '@/lib/supabase/database.types'
-import type { Profile } from '@/lib/supabase/database.types'
+import type { Database, Link, Profile } from '@/lib/supabase/database.types'
 
 function serviceClient() {
   return createClient<Database>(
@@ -33,8 +32,9 @@ export async function GET() {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
   // Fetch click counts for each link (match on code, no FK needed)
+  const typedLinks = (links ?? []) as Link[]
   const withCounts = await Promise.all(
-    (links ?? []).map(async link => {
+    typedLinks.map(async (link: Link) => {
       const { count } = await supabase
         .from('link_clicks')
         .select('*', { count: 'exact', head: true })

@@ -1,7 +1,7 @@
 'use server'
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@supabase/supabase-js'
-import type { Database, LinkWithClicks } from '@/lib/supabase/database.types'
+import type { Database, Link, LinkWithClicks } from '@/lib/supabase/database.types'
 
 // ── Service client (bypasses RLS) ─────────────────────────────────────────
 function serviceClient() {
@@ -54,8 +54,9 @@ export default async function AdminLinksPage() {
     .order('created_at', { ascending: false })
 
   // Fetch click counts per link (match on code directly)
+  const typedLinks = (links ?? []) as Link[]
   const withCounts: LinkWithClicks[] = await Promise.all(
-    (links ?? []).map(async link => {
+    typedLinks.map(async (link): Promise<LinkWithClicks> => {
       const { count } = await supabase
         .from('link_clicks')
         .select('*', { count: 'exact', head: true })
