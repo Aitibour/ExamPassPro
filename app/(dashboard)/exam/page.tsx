@@ -25,7 +25,7 @@ export default async function ExamIndexPage() {
     <div>
       <div className="mb-7">
         <h1 className="text-xl font-black text-slate-900">Take Exam</h1>
-        <p className="text-slate-500 text-sm mt-1">Select a course to start a mock exam</p>
+        <p className="text-slate-500 text-sm mt-1">Select a dump to start a mock exam</p>
       </div>
 
       {purchases && purchases.length > 0 ? (
@@ -60,13 +60,13 @@ export default async function ExamIndexPage() {
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
           <div className="text-4xl mb-4">📝</div>
-          <p className="text-slate-600 font-semibold mb-2">No courses enrolled</p>
-          <p className="text-slate-400 text-sm mb-6">Purchase a course to access mock exams.</p>
+          <p className="text-slate-600 font-semibold mb-2">No dumps enrolled</p>
+          <p className="text-slate-400 text-sm mb-6">Purchase a dump to access mock exams.</p>
           <Link
             href="/courses"
             className="bg-sky-500 text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-sky-600 transition-colors"
           >
-            Browse Courses
+            Browse Dumps
           </Link>
         </div>
       )}

@@ -78,7 +78,7 @@ export function NavUserMenu({ displayName, initials, planLabel }: NavUserMenuPro
               className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
             >
               <span className="text-base">📚</span>
-              <span>My Courses</span>
+              <span>My Dumps</span>
             </Link>
             <Link
               href="/dashboard/settings"

@@ -26,9 +26,9 @@ export default async function MyCoursesPage() {
   return (
     <div>
       <div className="mb-7">
-        <h1 className="text-xl font-black text-slate-900">My Courses</h1>
+        <h1 className="text-xl font-black text-slate-900">My Dumps</h1>
         <p className="text-slate-500 text-sm mt-1">
-          {purchases?.length ?? 0} enrolled course{(purchases?.length ?? 0) !== 1 ? 's' : ''}
+          {purchases?.length ?? 0} enrolled dump{(purchases?.length ?? 0) !== 1 ? 's' : ''}
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default async function MyCoursesPage() {
                       className="flex flex-col items-center gap-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 text-slate-700 py-3 rounded-xl text-center transition-all group"
                     >
                       <span className="text-lg">📖</span>
-                      <span className="text-[11px] font-bold">Take Course</span>
+                      <span className="text-[11px] font-bold">Take Dump</span>
                       <span className="text-[9px] text-slate-400">Study Mode</span>
                     </Link>
                     <Link
@@ -91,13 +91,13 @@ export default async function MyCoursesPage() {
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
           <div className="text-4xl mb-4">📚</div>
-          <p className="text-slate-600 font-semibold mb-2">No courses yet</p>
-          <p className="text-slate-400 text-sm mb-6">Purchase a course to start your exam prep journey.</p>
+          <p className="text-slate-600 font-semibold mb-2">No dumps yet</p>
+          <p className="text-slate-400 text-sm mb-6">Purchase a dump to start your exam prep journey.</p>
           <Link
             href="/courses"
             className="bg-sky-500 text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-sky-600 transition-colors"
           >
-            Browse Courses
+            Browse Dumps
           </Link>
         </div>
       )}

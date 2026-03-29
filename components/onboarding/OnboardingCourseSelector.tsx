@@ -81,10 +81,10 @@ export function OnboardingCourseSelector({ courses, plan, firstName }: Props) {
       <div className="text-center mb-8 max-w-lg">
         <h1 className="text-2xl lg:text-3xl font-black text-white mb-3">
           Welcome, {firstName}! 🎉<br />
-          <span className="text-sky-400">Choose your first course</span>
+          <span className="text-sky-400">Choose your first dump</span>
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed">
-          You can enroll in <strong className="text-white">1 course</strong> with your plan.
+          You can enroll in <strong className="text-white">1 dump</strong> with your plan.
           Pick the certification you want to crush first.
         </p>
 
@@ -100,7 +100,7 @@ export function OnboardingCourseSelector({ courses, plan, firstName }: Props) {
       {/* ── Course grid ── */}
       {courses.length === 0 ? (
         <div className="text-slate-400 text-sm text-center py-12">
-          No courses available yet. Check back soon!
+          No dumps available yet. Check back soon!
         </div>
       ) : (
         <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -181,7 +181,7 @@ export function OnboardingCourseSelector({ courses, plan, firstName }: Props) {
 
       <p className="text-slate-600 text-xs mt-6">
         Want to explore first?{' '}
-        <Link href="/courses" className="text-sky-500 hover:underline">Browse all courses</Link>
+        <Link href="/courses" className="text-sky-500 hover:underline">Browse all dumps</Link>
       </p>
     </div>
   )

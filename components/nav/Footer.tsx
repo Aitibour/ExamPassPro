@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* Courses */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-4">Courses</h4>
+            <h4 className="text-white font-bold text-sm mb-4">Dumps</h4>
             <ul className="space-y-2 text-sm">
               {['ServiceNow CSA', 'AWS SAA-C03', 'Azure AZ-900', 'Google Cloud ACE', 'CompTIA Security+'].map(c => (
                 <li key={c}><Link href="/#courses" className="hover:text-white transition-colors">{c}</Link></li>

@@ -62,8 +62,8 @@ export function CourseGrid({ courses }: { courses: Course[] }) {
 
       {/* ── Section navigation ── */}
       <div className="mb-8">
-        <h2 className="text-2xl font-black text-slate-900 mb-1">All Certification Courses</h2>
-        <p className="text-slate-500 text-sm mb-5">Browse by certification brand — {courses.length} courses total</p>
+        <h2 className="text-2xl font-black text-slate-900 mb-1">All Certification Dumps</h2>
+        <p className="text-slate-500 text-sm mb-5">Browse by certification brand — {courses.length} dumps total</p>
 
         {/* Number tabs row */}
         <div className="flex items-center gap-1 flex-wrap">
@@ -137,7 +137,7 @@ export function CourseGrid({ courses }: { courses: Course[] }) {
       {/* ── Course cards ── */}
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-slate-400 text-sm">
-          No courses yet in this section.
+          No dumps yet in this section.
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">

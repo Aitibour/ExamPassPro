@@ -24,11 +24,11 @@ export default async function CoursesPage() {
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
             <Link href="/" className="hover:text-slate-200 transition-colors">Home</Link>
             <span>›</span>
-            <span className="text-slate-200">Courses</span>
+            <span className="text-slate-200">Dumps</span>
           </div>
-          <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">All Certification Courses</h1>
+          <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">All Certification Dumps</h1>
           <p className="text-slate-400 text-base max-w-2xl">
-            {displayCourses.length} IT certification courses with real exam-style questions, mock exams, and AI-powered study assistance.
+            {displayCourses.length} IT certification dumps with real exam-style questions, mock exams, and AI-powered study assistance.
           </p>
         </div>
       </section>

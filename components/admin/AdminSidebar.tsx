@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 
 const NAV_ITEMS = [
   { href: '/admin', icon: '▦', label: 'Overview' },
-  { href: '/admin/courses', icon: '📚', label: 'Courses' },
+  { href: '/admin/courses', icon: '📚', label: 'Dumps' },
   { href: '/admin/questions', icon: '❓', label: 'Questions' },
   { href: '/admin/exam-sets', icon: '📝', label: 'Exam Sets' },
 ]

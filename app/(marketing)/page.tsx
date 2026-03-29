@@ -140,7 +140,7 @@ export default async function HomePage() {
               </Link>
               <Link href="#courses"
                 className="border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl text-base transition-colors">
-                Browse Courses
+                Browse Dumps
               </Link>
             </div>
           </div>
@@ -169,11 +169,11 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-black text-slate-900">Top Certification Courses</h2>
+              <h2 className="text-2xl font-black text-slate-900">Top Certification Dumps</h2>
               <p className="text-slate-500 text-sm mt-1">Industry-leading practice exams and real exam-style questions</p>
             </div>
             <Link href="/courses" className="text-sky-600 hover:text-sky-700 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
-              View all {TOTAL_COURSES} courses →
+              View all {TOTAL_COURSES} dumps →
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -186,7 +186,7 @@ export default async function HomePage() {
               href="/courses"
               className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
             >
-              Browse All {TOTAL_COURSES} Courses
+              Browse All {TOTAL_COURSES} Dumps
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>

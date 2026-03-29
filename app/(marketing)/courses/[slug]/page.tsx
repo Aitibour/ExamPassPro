@@ -47,7 +47,7 @@ export default async function CoursePage({ params }: PageProps) {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12 py-16">
           <div className="flex items-center gap-2 text-xs text-white/60 mb-6">
-            <Link href="/courses" className="hover:text-white/90 transition-colors">Courses</Link>
+            <Link href="/courses" className="hover:text-white/90 transition-colors">Dumps</Link>
             <span>›</span>
             <span className="text-white/90">{course.title}</span>
           </div>

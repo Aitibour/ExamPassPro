@@ -15,8 +15,8 @@ export default async function AdminCoursesPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-black text-slate-100">Courses</h1>
-          <p className="text-slate-500 text-sm mt-1">{courses?.length ?? 0} courses total</p>
+          <h1 className="text-xl font-black text-slate-100">Dumps</h1>
+          <p className="text-slate-500 text-sm mt-1">{courses?.length ?? 0} dumps total</p>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export default async function AdminCoursesPage() {
         <table className="w-full">
           <thead className="bg-slate-800">
             <tr>
-              <th className="text-left px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Course</th>
+              <th className="text-left px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Dump</th>
               <th className="text-left px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Slug</th>
               <th className="text-left px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Price</th>
               <th className="text-left px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-wide">Enrolled</th>
@@ -56,7 +56,7 @@ export default async function AdminCoursesPage() {
             {(!courses || courses.length === 0) && (
               <tr>
                 <td colSpan={5} className="px-5 py-10 text-center text-slate-500 text-sm">
-                  No courses yet.
+                  No dumps yet.
                 </td>
               </tr>
             )}

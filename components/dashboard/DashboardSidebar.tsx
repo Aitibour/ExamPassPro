@@ -14,7 +14,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', icon: '▦', label: 'Dashboard' },
-  { href: '/dashboard/courses', icon: '📚', label: 'My Courses' },
+  { href: '/dashboard/courses', icon: '📚', label: 'My Dumps' },
   { href: '/exam', icon: '📝', label: 'Take Exam' },
   { href: '/study', icon: '📖', label: 'Study Mode' },
   { href: '/dashboard/results', icon: '📊', label: 'My Results' },

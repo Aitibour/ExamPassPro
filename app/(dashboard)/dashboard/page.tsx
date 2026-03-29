@@ -161,7 +161,7 @@ export default async function DashboardPage() {
           { label: 'Exams Taken', value: attempts?.length ?? 0, icon: '📝' },
           { label: 'Avg Score',   value: attempts?.length ? `${avgScore}%` : '—', icon: '📊' },
           { label: 'Pass Rate',   value: attempts?.length ? `${passRate}%` : '—', icon: '✅' },
-          { label: 'Courses',     value: purchases?.length ?? 0, icon: '📚' },
+          { label: 'Dumps',       value: purchases?.length ?? 0, icon: '📚' },
         ].map(({ label, value, icon }) => (
           <div key={label} className="bg-white border border-slate-200 rounded-xl p-5">
             <div className="flex items-center gap-1.5 mb-2">
@@ -255,10 +255,10 @@ export default async function DashboardPage() {
         {/* Left: Courses + Results */}
         <div className={plan.aiChat ? 'xl:col-span-2 space-y-8' : 'space-y-8'}>
 
-          {/* My Courses */}
+          {/* My Dumps */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-base font-black text-slate-900">My Courses</h2>
+              <h2 className="text-base font-black text-slate-900">My Dumps</h2>
               <Link href="/dashboard/courses" className="text-xs text-sky-500 font-semibold hover:text-sky-700">
                 View all →
               </Link>
@@ -289,7 +289,7 @@ export default async function DashboardPage() {
                         <div className="grid grid-cols-2 gap-2">
                           <Link href={`/study/${p.course_id}`}
                             className="flex items-center justify-center gap-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            <span>📖</span> Take Course
+                            <span>📖</span> Take Dump
                           </Link>
                           <Link href={`/exam/${p.course_id}`}
                             className="flex items-center justify-center gap-1.5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
@@ -303,9 +303,9 @@ export default async function DashboardPage() {
               </div>
             ) : (
               <div className="bg-white border border-slate-200 rounded-xl p-10 text-center">
-                <p className="text-slate-400 text-sm mb-4">No courses yet. Purchase a course to get started.</p>
+                <p className="text-slate-400 text-sm mb-4">No dumps yet. Purchase a dump to get started.</p>
                 <Link href="/#pricing" className="bg-sky-500 text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:bg-sky-600 transition-colors">
-                  Browse Courses
+                  Browse Dumps
                 </Link>
               </div>
             )}
