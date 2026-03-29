@@ -473,7 +473,7 @@ BEGIN
   -- ══════════════════════════════════════════════════════════════════════════════
   -- Create new Practice Exam 1 using only Q61–Q120
   -- ══════════════════════════════════════════════════════════════════════════════
-  INSERT INTO exam_sets (course_id, title, question_ids, duration_minutes)
+  INSERT INTO exam_sets (course_id, title, question_ids, duration_mins)
   VALUES (v_course_id, 'CSA Practice Exam 1', p, 120);
 
   RAISE NOTICE 'Practice Exam 1 created with % new questions (Q61–Q120). No question is shared with Mock Exam 1.', array_length(p,1);
