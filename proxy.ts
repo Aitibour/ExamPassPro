@@ -130,12 +130,13 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Dashboard / exam / study / results guard
+  // Dashboard / exam / study / results / onboarding guard
   if (
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/exam') ||
     pathname.startsWith('/study') ||
-    pathname.startsWith('/results')
+    pathname.startsWith('/results') ||
+    pathname.startsWith('/onboarding')
   ) {
     if (!user) return NextResponse.redirect(new URL('/login', request.url))
   }
@@ -156,6 +157,8 @@ export const config = {
     '/exam/:path*',
     '/study/:path*',
     '/results/:path*',
+    '/onboarding/:path*',
+    '/onboarding',
     '/login',
     '/register',
   ],
