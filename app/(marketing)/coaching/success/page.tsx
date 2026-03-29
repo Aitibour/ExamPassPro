@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 export default function CoachingSuccessPage() {
   return (
     <div className="bg-slate-50 min-h-screen flex items-center justify-center px-6">
