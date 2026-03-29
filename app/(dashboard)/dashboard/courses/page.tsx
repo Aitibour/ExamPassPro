@@ -4,10 +4,11 @@ import { createClient } from '@/lib/supabase/server'
 import type { PurchaseWithCourse } from '@/lib/supabase/database.types'
 
 const PLAN_BADGE: Record<string, { label: string; cls: string; desc: string }> = {
-  starter:    { label: 'Starter',    cls: 'bg-slate-100 text-slate-600',    desc: '1 mock exam' },
-  pro:        { label: 'Pro',        cls: 'bg-sky-100 text-sky-700',        desc: '3 mock exams + Study Mode' },
-  platinum:   { label: 'Platinum',   cls: 'bg-violet-100 text-violet-700',  desc: '5 exams + AI Chat + Coaching' },
-  all_access: { label: 'All-Access', cls: 'bg-amber-100 text-amber-700',    desc: '10 exams + full access' },
+  free:       { label: 'Free',  cls: 'bg-slate-100 text-slate-500',    desc: '1 mock exam · 30Q' },
+  starter:    { label: 'Core',  cls: 'bg-slate-100 text-slate-600',    desc: '2 mock exams + 2 practice' },
+  pro:        { label: 'Pro',   cls: 'bg-sky-100 text-sky-700',        desc: '4 mock exams + 60-min coaching' },
+  platinum:   { label: 'Pro',   cls: 'bg-sky-100 text-sky-700',        desc: '4 mock exams + 60-min coaching' },
+  all_access: { label: 'Elite', cls: 'bg-amber-100 text-amber-700',    desc: '10 exams + 90-min coaching' },
 }
 
 export default async function MyCoursesPage() {

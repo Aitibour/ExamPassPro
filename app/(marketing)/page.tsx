@@ -34,53 +34,58 @@ const PARTNERS = [
 const PRICING_PLANS = [
   {
     key: 'free', name: 'Free', price: 0, period: ' forever',
+    subline: 'Try before you buy',
     features: [
-      '10 quiz questions',
-      '1 practice exam (10 questions)',
-      'Instant answer explanations',
+      '🎯  1 mock exam — 30 questions',
+      '📖  1 practice exam — 30 questions',
+      '💡  Instant answer explanations',
     ],
-    cta: 'Start Free',
+    cta: 'Start Free — No Card',
     href: '/register',
     highlight: false,
   },
   {
-    key: 'starter', name: 'Starter', price: 19, period: ' one-time',
+    key: 'starter', name: 'Core', price: 39, period: ' one-time',
+    subline: 'Pass your first cert',
     features: [
-      '1 mock exam — 60 questions (2026)',
-      '1 practice exam',
-      'Timed exam simulation',
-      'Score report & corrections',
+      '🧪  2 mock exams — 60Q each · timed',
+      '📖  2 practice exams with explanations',
+      '🤖  Gemini AI study assistant',
+      '📊  Score report & domain breakdown',
+      '✅  Instant corrections',
     ],
-    cta: 'Get Starter',
+    cta: 'Get Core — $39',
     href: '/checkout?plan=starter',
     highlight: false,
   },
   {
-    key: 'pro', name: 'Pro', price: 49, period: ' one-time',
+    key: 'pro', name: 'Pro', price: 99, period: ' one-time',
+    subline: 'Exam-ready in weeks',
     features: [
-      '3 mock exams — 180 questions (2026)',
-      '3 practice exams',
-      'Timed exam simulation',
-      'Gemini AI study assistant',
-      'Performance analytics',
+      '🧪  4 mock exams — 60Q each · timed',
+      '📖  4 practice exams with explanations',
+      '🎓  1× 60-min 1:1 coaching (worth $99)',
+      '🤖  Unlimited Gemini AI assistant',
+      '📊  Performance analytics',
+      '🏆  Priority support',
     ],
-    cta: 'Get Pro',
+    cta: 'Get Pro — $99',
     href: '/checkout?plan=pro',
     highlight: true,
     badge: 'Most Popular',
   },
   {
-    key: 'all_access', name: 'All-Access', price: 199, period: ' one-time',
+    key: 'all_access', name: 'Elite', price: 199, period: ' one-time',
+    subline: '100% Pass Guarantee',
     features: [
-      '10 mock exams',
-      '400-question full bank',
-      '10 practice exams',
-      '30 min live coaching session',
-      'Gemini AI study assistant',
-      'Performance analytics',
-      '100% Pass Guarantee',
+      '🧪  10 mock exams — full question bank',
+      '📖  10 practice exams with explanations',
+      '🎓  1× 90-min 1:1 coaching (worth $149)',
+      '🤖  Unlimited Gemini AI assistant',
+      '📊  Full performance analytics',
+      '🛡️  100% Pass Guarantee or full refund',
     ],
-    cta: 'Get All-Access',
+    cta: 'Get Elite — $199',
     href: '/checkout?plan=all_access',
     highlight: false,
     badge: 'Best Value',
@@ -222,7 +227,8 @@ export default async function HomePage() {
                   </div>
                 )}
                 <div className="mb-5">
-                  <h3 className="font-black text-slate-900 text-lg mb-1">{plan.name}</h3>
+                  <h3 className="font-black text-slate-900 text-xl mb-0.5">{plan.name}</h3>
+                  <p className="text-xs text-slate-400 mb-3">{(plan as any).subline}</p>
                   <div className="flex items-baseline gap-1">
                     <span className={`text-4xl font-black ${plan.key === 'free' ? 'text-slate-400' : 'text-slate-900'}`}>
                       {plan.key === 'free' ? 'Free' : `$${plan.price}`}
@@ -234,23 +240,16 @@ export default async function HomePage() {
                 </div>
                 <ul className="space-y-2.5 mb-7 flex-1">
                   {plan.features.map(f => (
-                    <li key={f} className="flex items-start gap-2.5">
-                      <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                        plan.key === 'free' ? 'bg-slate-400' : 'bg-green-500'
-                      }`}>
-                        <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-                          <polyline points="1,5 4,8 9,2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      <span className="text-sm text-slate-600">{f}</span>
-                    </li>
+                    <li key={f} className="text-sm text-slate-600 leading-snug">{f}</li>
                   ))}
                 </ul>
                 <Link
                   href={plan.href}
                   className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
                     plan.highlight
-                      ? 'bg-sky-500 hover:bg-sky-600 text-white'
+                      ? 'bg-sky-500 hover:bg-sky-600 text-white shadow-md shadow-sky-100'
+                      : plan.key === 'all_access'
+                      ? 'bg-slate-900 hover:bg-slate-800 text-white'
                       : plan.key === 'free'
                       ? 'border border-slate-300 hover:bg-slate-100 text-slate-600'
                       : 'border border-slate-200 hover:bg-slate-50 text-slate-800'
@@ -262,7 +261,7 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="text-center text-slate-400 text-sm mt-8">
-            All-Access includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
+            Elite includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund. Coaching sessions worth up to <strong className="text-slate-600">$149</strong> included in Pro & Elite.
           </p>
         </div>
       </section>

@@ -7,10 +7,10 @@ import Link from 'next/link'
 // ── Plan display config ───────────────────────────────────────────────────────
 
 const PLAN_META: Record<string, { label: string; icon: string; color: string; note: string }> = {
-  free:       { label: 'Free',       icon: '🎯', color: 'text-slate-300',  note: '1 mock exam (30Q) + 1 practice exam (30Q)' },
-  starter:    { label: 'Starter',    icon: '🚀', color: 'text-sky-400',    note: '1 mock exam (60Q) + 1 practice exam' },
-  pro:        { label: 'Pro',        icon: '⚡', color: 'text-violet-400', note: '3 mock exams (180Q) + 3 practice exams + AI chat' },
-  all_access: { label: 'All-Access', icon: '👑', color: 'text-amber-400',  note: '10 mock exams + 10 practice exams + 30-min coaching' },
+  free:       { label: 'Free',  icon: '🎯', color: 'text-slate-300',  note: '1 mock exam (30Q) + 1 practice exam (30Q)' },
+  starter:    { label: 'Core',  icon: '🚀', color: 'text-sky-400',    note: '2 mock exams + 2 practice exams · AI included' },
+  pro:        { label: 'Pro',   icon: '⚡', color: 'text-violet-400', note: '4 mock exams + 4 practice + 60-min coaching' },
+  all_access: { label: 'Elite', icon: '👑', color: 'text-amber-400',  note: '10 mock exams + 10 practice + 90-min coaching' },
 }
 
 interface Course {
