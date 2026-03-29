@@ -18,7 +18,7 @@ export default async function ExamPage({ params }: PageProps) {
   const [purchaseRes, examSetRes, allSetsRes] = await Promise.all([
     supabase.from('purchases').select('*').eq('user_id', user.id).eq('course_id', courseId).single(),
     supabase.from('exam_sets').select('*').eq('id', setId).single(),
-    supabase.from('exam_sets').select('id').eq('course_id', courseId).order('title'),
+    supabase.from('exam_sets').select('id').eq('course_id', courseId).eq('type', 'mock').order('title'),
   ])
 
   const purchase = purchaseRes.data as Purchase | null

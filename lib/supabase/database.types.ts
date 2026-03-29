@@ -42,6 +42,7 @@ export type Database = {
           title: string
           question_ids: string[]
           duration_mins: number
+          type: string          // 'mock' | 'practice'  (added in migration 0008)
         }
         Insert: Omit<Database['public']['Tables']['exam_sets']['Row'], 'id'>
         Update: Partial<Database['public']['Tables']['exam_sets']['Insert']>

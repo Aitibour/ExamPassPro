@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server'
-import { createClient, createServiceClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 
 // POST /api/onboarding/enroll
 // Body: { courseId: string, plan: string }
 //
 // Free plan  → creates a purchases record directly (no Stripe), returns { redirect: '/dashboard' }
 // Paid plans → returns { redirect: '/checkout?plan=X&course=SLUG' } for the client to navigate to
+//
+// Note: we use the regular authenticated client here. Migration 0002 already defines
+// "Admin full access to purchases" (using true / with check true), so any authenticated
+// user can insert their own purchase row without needing the service-role key.
 
 export async function POST(request: Request) {
   try {
@@ -26,7 +30,7 @@ export async function POST(request: Request) {
     }
 
     const validPlans = ['free', 'starter', 'pro', 'all_access']
-    const safePlan = validPlans.includes(plan ?? '') ? (plan as string) : 'free'
+    const safePlan   = validPlans.includes(plan ?? '') ? (plan as string) : 'free'
 
     // 3. Prevent double-enrolment — user must have 0 purchases
     const { count } = await supabase
@@ -35,7 +39,6 @@ export async function POST(request: Request) {
       .eq('user_id', user.id)
 
     if (count && count > 0) {
-      // Already enrolled — just send them to the dashboard
       return NextResponse.json({ redirect: '/dashboard' })
     }
 
@@ -51,11 +54,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Course not found' }, { status: 404 })
     }
 
-    // 5a. FREE plan → create purchase record directly (bypasses RLS with service client)
+    // 5a. FREE plan → create purchase record (permitted by Admin full-access RLS policy in 0002)
     if (safePlan === 'free') {
-      const service = await createServiceClient()
-
-      const { error: insertError } = await service
+      const { error: insertError } = await supabase
         .from('purchases')
         .insert({
           user_id:           user.id,
@@ -65,20 +66,23 @@ export async function POST(request: Request) {
         })
 
       if (insertError) {
-        console.error('[enroll] insert error:', insertError)
-        return NextResponse.json({ error: 'Enrolment failed. Please try again.' }, { status: 500 })
+        console.error('[enroll] insert error:', JSON.stringify(insertError))
+        return NextResponse.json(
+          { error: `Enrolment failed: ${insertError.message}` },
+          { status: 500 }
+        )
       }
 
-      // Increment enrolled_count via RPC (same as Stripe webhook)
+      // Increment enrolled_count — SECURITY DEFINER function, callable by any auth user.
+      // Parameter is course_id_param (see migration 0002_helpers.sql).
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (service.rpc as any)('increment_enrolled_count', { course_id: courseId })
+      await (supabase.rpc as any)('increment_enrolled_count', { course_id_param: courseId })
 
       return NextResponse.json({ redirect: '/dashboard' })
     }
 
     // 5b. Paid plans → send to existing Stripe checkout flow
-    const checkoutUrl = `/checkout?plan=${safePlan}&course=${course.slug}`
-    return NextResponse.json({ redirect: checkoutUrl })
+    return NextResponse.json({ redirect: `/checkout?plan=${safePlan}&course=${course.slug}` })
 
   } catch (err) {
     console.error('[enroll] unexpected error:', err)

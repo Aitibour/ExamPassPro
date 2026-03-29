@@ -18,7 +18,7 @@ export default async function ExamSelectPage({ params }: PageProps) {
   const [courseRes, purchaseRes, examSetsRes, attemptsRes] = await Promise.all([
     supabase.from('courses').select('*').eq('id', courseId).single(),
     supabase.from('purchases').select('*').eq('user_id', user.id).eq('course_id', courseId).single(),
-    supabase.from('exam_sets').select('*').eq('course_id', courseId).order('title'),
+    supabase.from('exam_sets').select('*').eq('course_id', courseId).eq('type', 'mock').order('title'),
     supabase
       .from('exam_attempts')
       .select('exam_set_id, score_pct, passed, completed_at')
@@ -148,10 +148,10 @@ export default async function ExamSelectPage({ params }: PageProps) {
                     {best ? '🔄 Retry Exam' : '▶ Start Exam'}
                   </Link>
                   <Link
-                    href={`/study/${courseId}?setId=${set.id}`}
+                    href={`/study/${courseId}`}
                     className="w-full block border border-slate-200 hover:bg-slate-50 text-slate-600 text-sm font-bold py-2.5 rounded-lg text-center transition-colors"
                   >
-                    📖 Study This Set
+                    📖 Practice Mode
                   </Link>
                 </div>
               )}

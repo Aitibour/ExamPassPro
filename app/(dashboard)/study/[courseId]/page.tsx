@@ -32,11 +32,12 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
   const practiceLimit    = PLAN_PRACTICE_LIMITS[plan] ?? 1
   const questionLimit    = PLAN_QUESTION_LIMITS[plan] ?? 60
 
-  // All exam sets for this course (ordered) — needed to enforce practice limit
+  // Practice exam sets only — mock sets are never shown in study mode
   const { data: allSetsRaw } = await supabase
     .from('exam_sets')
     .select('id, title')
     .eq('course_id', courseId)
+    .eq('type', 'practice')
     .order('title')
 
   const allSets = (allSetsRaw ?? []) as { id: string; title: string }[]
