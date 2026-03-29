@@ -23,9 +23,9 @@ export async function Navbar() {
   const planRaw: string = user?.user_metadata?.plan ?? 'free'
   const PLAN_LABELS: Record<string, string> = {
     free:       'Free',
-    starter:    'Starter',
+    starter:    'Core',
     pro:        'Pro',
-    all_access: 'All-Access',
+    all_access: 'Elite',
   }
   const planLabel = PLAN_LABELS[planRaw] ?? 'Free'
 

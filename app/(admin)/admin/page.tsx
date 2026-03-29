@@ -3,17 +3,17 @@ import { createClient } from '@/lib/supabase/server'
 
 // Plan prices in cents (matches lib/stripe.ts)
 const PLAN_PRICE: Record<string, number> = {
-  starter:    1900,
-  pro:        4900,
+  starter:    3900,
+  pro:        9900,
   platinum:   9900,
   all_access: 19900,
 }
 
 const PLAN_META: Record<string, { label: string; cls: string; bar: string }> = {
-  starter:    { label: 'Starter',    cls: 'bg-slate-700 text-slate-300',    bar: 'bg-slate-500' },
-  pro:        { label: 'Pro',        cls: 'bg-sky-900 text-sky-300',        bar: 'bg-sky-500' },
-  platinum:   { label: 'Platinum',   cls: 'bg-violet-900 text-violet-300',  bar: 'bg-violet-500' },
-  all_access: { label: 'All-Access', cls: 'bg-amber-900 text-amber-300',    bar: 'bg-amber-500' },
+  starter:    { label: 'Core',     cls: 'bg-slate-700 text-slate-300',    bar: 'bg-slate-500' },
+  pro:        { label: 'Pro',      cls: 'bg-sky-900 text-sky-300',        bar: 'bg-sky-500' },
+  platinum:   { label: 'Pro',      cls: 'bg-violet-900 text-violet-300',  bar: 'bg-violet-500' },
+  all_access: { label: 'Elite',    cls: 'bg-amber-900 text-amber-300',    bar: 'bg-amber-500' },
 }
 
 export default async function AdminOverviewPage() {

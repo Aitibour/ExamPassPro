@@ -11,10 +11,10 @@ interface PageProps {
 }
 
 const COURSE_PLANS = [
-  { key: 'free',       label: 'Free',       highlight: false, badge: null,           cta: 'Try Free',       href: (id: string) => '/register' },
-  { key: 'starter',    label: 'Starter',    highlight: false, badge: null,           cta: 'Get Starter',    href: (id: string) => `/checkout?plan=starter&course=${id}` },
-  { key: 'pro',        label: 'Pro',        highlight: true,  badge: 'Most Popular', cta: 'Get Pro',        href: (id: string) => `/checkout?plan=pro&course=${id}` },
-  { key: 'all_access', label: 'All-Access', highlight: false, badge: 'Best Value',   cta: 'Get All-Access', href: (id: string) => `/checkout?plan=all_access&course=${id}` },
+  { key: 'free',       label: 'Free',  highlight: false, badge: null,           cta: 'Try Free',    href: (id: string) => '/register' },
+  { key: 'starter',    label: 'Core',  highlight: false, badge: null,           cta: 'Get Core',    href: (id: string) => `/checkout?plan=starter&course=${id}` },
+  { key: 'pro',        label: 'Pro',   highlight: true,  badge: 'Most Popular', cta: 'Get Pro',     href: (id: string) => `/checkout?plan=pro&course=${id}` },
+  { key: 'all_access', label: 'Elite', highlight: false, badge: 'Best Value',   cta: 'Get Elite',   href: (id: string) => `/checkout?plan=all_access&course=${id}` },
 ]
 
 const WHAT_YOU_GET = [
@@ -156,7 +156,7 @@ export default async function CoursePage({ params }: PageProps) {
             })}
           </div>
           <p className="text-center text-slate-400 text-sm mt-6">
-            All-Access includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
+            Elite includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
           </p>
         </div>
       </section>

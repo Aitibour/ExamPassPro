@@ -221,17 +221,17 @@ export default async function DashboardPage() {
           <div className={`rounded-xl p-3 ${plan.coaching ? 'bg-violet-50' : 'bg-slate-50 opacity-60'}`}>
             <div className="text-xl mb-1">{plan.coaching ? '🎓' : '🔒'}</div>
             <div className={`font-black text-sm ${plan.coaching ? 'text-violet-700' : 'text-slate-400'}`}>
-              {plan.coaching === '30-min' ? '30-Min Coaching'
-               : plan.coaching === '60-min' ? '1-Hour Coaching'
+              {plan.coaching === '60-min' ? '60-Min Coaching'
+               : plan.coaching === '90-min' ? '90-Min Coaching'
                : '1-to-1 Coaching'}
             </div>
             {plan.coaching ? (
-              <Link href="/coaching/book?package=quick-session" className="text-[10px] text-violet-500 mt-0.5 hover:text-violet-700 transition-colors block">
+              <Link href="/coaching/book?package=focus-session" className="text-[10px] text-violet-500 mt-0.5 hover:text-violet-700 transition-colors block">
                 Book session →
               </Link>
             ) : (
               <div className="text-[10px] text-slate-400 mt-0.5">
-                <Link href="/#pricing" className="hover:text-sky-500 transition-colors">Upgrade to Platinum →</Link>
+                <Link href="/#pricing" className="hover:text-sky-500 transition-colors">Upgrade to Pro →</Link>
               </div>
             )}
           </div>
@@ -351,7 +351,7 @@ export default async function DashboardPage() {
 
         </div>
 
-        {/* Right: AI Chat (Pro/Platinum/All-Access) */}
+        {/* Right: AI Chat (Core/Pro/Elite) */}
         {plan.aiChat ? (
           <div className="xl:col-span-1">
             <div className="flex items-center gap-2 mb-3">
@@ -365,7 +365,7 @@ export default async function DashboardPage() {
             />
           </div>
         ) : (
-          /* Starter: locked AI chat teaser */
+          /* Free: locked AI chat teaser */
           <div className="xl:col-span-1">
             <h2 className="text-base font-black text-slate-900 mb-3">AI Study Assistant</h2>
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
@@ -415,7 +415,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="text-xs text-slate-500">
                     {plan.community === 'private'
-                      ? 'Exclusive access for Platinum & All-Access members'
+                      ? 'Exclusive access for Elite members'
                       : 'Join the Pro members community'}
                   </div>
                 </div>
@@ -441,17 +441,17 @@ export default async function DashboardPage() {
                 <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center text-xl">🎓</div>
                 <div>
                   <div className="font-black text-slate-900 text-sm">
-                    1-to-1 Coaching — {plan.coaching === '30-min' ? '30 minutes' : '1 hour'}
+                    1-to-1 Coaching — {plan.coaching === '60-min' ? '60 minutes' : '90 minutes'}
                   </div>
                   <div className="text-xs text-slate-500">
                     {plan.coaching === '60-min'
-                      ? 'Full 1-hour deep dive session included'
-                      : '30-min quick session with an expert coach'}
+                      ? 'Focus session included with Pro plan'
+                      : 'Deep dive session included with Elite plan'}
                   </div>
                 </div>
               </div>
               <Link
-                href={`/coaching/book?package=${plan.coaching === '60-min' ? 'deep-dive' : 'quick-session'}`}
+                href={`/coaching/book?package=${plan.coaching === '60-min' ? 'focus-session' : 'deep-dive'}`}
                 className="inline-flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800 transition-colors"
               >
                 Book your session →

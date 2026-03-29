@@ -3,9 +3,9 @@ import { createClient } from '@/lib/supabase/server'
 import { BookingCalendar } from '@/components/coaching/BookingCalendar'
 
 const PACKAGES: Record<string, { name: string; price: string; duration: string }> = {
-  'quick-session': { name: '30-Min Quick Session', price: '$49', duration: '30 minutes' },
-  'deep-dive':     { name: '1-to-1 Deep Dive Session', price: '$89', duration: '60 minutes' },
-  'sprint-pack':   { name: 'Exam Sprint Pack (3 sessions)', price: '$229', duration: '3 × 60 min' },
+  'focus-session': { name: 'Focus Session', price: '$99', duration: '60 minutes' },
+  'deep-dive':     { name: 'Deep Dive Session', price: '$149', duration: '90 minutes' },
+  'sprint-pack':   { name: 'Exam Sprint Pack (3 sessions)', price: '$399', duration: '3 × 90 min' },
 }
 
 interface PageProps {

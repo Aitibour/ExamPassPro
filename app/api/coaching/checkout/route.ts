@@ -3,15 +3,15 @@ import { getStripe } from '@/lib/stripe'
 import { createClient } from '@/lib/supabase/server'
 
 const COACHING_PRICES: Record<string, number> = {
-  'quick-session': 4900,   // $49
-  'deep-dive':     8900,   // $89
-  'sprint-pack':   22900,  // $229
+  'focus-session': 9900,   // $99
+  'deep-dive':     14900,  // $149
+  'sprint-pack':   39900,  // $399
 }
 
 const COACHING_NAMES: Record<string, string> = {
-  'quick-session': '30-Min Quick Session',
-  'deep-dive':     '1-to-1 Deep Dive Session',
-  'sprint-pack':   'Exam Sprint Pack (3 sessions)',
+  'focus-session': 'Focus Session (60 min)',
+  'deep-dive':     'Deep Dive Session (90 min)',
+  'sprint-pack':   'Exam Sprint Pack (3 × 90 min)',
 }
 
 export async function POST(req: Request) {
