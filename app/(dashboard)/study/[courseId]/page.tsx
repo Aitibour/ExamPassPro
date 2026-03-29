@@ -33,14 +33,25 @@ export default async function StudyPage({ params, searchParams }: PageProps) {
   const questionLimit    = PLAN_QUESTION_LIMITS[plan] ?? 60
 
   // Practice exam sets only — mock sets are never shown in study mode
-  const { data: allSetsRaw } = await supabase
+  // Fallback: if the type column hasn't been migrated yet, load all sets
+  const { data: practiceSetsRaw } = await supabase
     .from('exam_sets')
     .select('id, title')
     .eq('course_id', courseId)
     .eq('type', 'practice')
     .order('title')
 
-  const allSets = (allSetsRaw ?? []) as { id: string; title: string }[]
+  let allSets = (practiceSetsRaw ?? []) as { id: string; title: string }[]
+
+  // If no practice sets found (e.g. type column not yet migrated), fall back to all sets
+  if (allSets.length === 0) {
+    const { data: fallbackRaw } = await supabase
+      .from('exam_sets')
+      .select('id, title')
+      .eq('course_id', courseId)
+      .order('title')
+    allSets = (fallbackRaw ?? []) as { id: string; title: string }[]
+  }
 
   // Resolve which set to show
   let targetSetId = setId ?? allSets[0]?.id

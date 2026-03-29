@@ -27,20 +27,20 @@ export const PLAN_LABELS: Record<string, string> = {
 
 // ── Question & exam constants ─────────────────────────────────────────────
 
-/** Every timed mock exam is always exactly 60 questions */
+/** Every timed mock exam is always exactly 60 questions (for paid plans) */
 export const EXAM_QUESTION_COUNT = 60
 
-/** Free tier: max questions visible in practice/quiz mode */
-export const FREE_QUESTION_LIMIT = 10
+/** Free tier: max questions visible in mock exam AND practice/study mode */
+export const FREE_QUESTION_LIMIT = 30
 
 // ── Per-plan limits ───────────────────────────────────────────────────────
 
 /**
- * Timed Mock Exams (60 Q each, last updated 2026)
- * free → 0 | starter → 1 | pro → 3 | all_access → 10
+ * Timed Mock Exams accessible
+ * free → 1 (30 Q) | starter → 1 (60 Q) | pro → 3 (60 Q each) | all_access → 10
  */
 export const PLAN_MOCK_LIMITS: Record<string, number> = {
-  free:       0,
+  free:       1,
   starter:    1,
   pro:        3,
   all_access: 10,
@@ -48,7 +48,7 @@ export const PLAN_MOCK_LIMITS: Record<string, number> = {
 
 /**
  * Practice Exams (untimed, with explanations)
- * free → 1 (10 Q only) | starter → 1 | pro → 3 | all_access → 10
+ * free → 1 (30 Q only) | starter → 1 | pro → 3 | all_access → 10
  */
 export const PLAN_PRACTICE_LIMITS: Record<string, number> = {
   free:       1,
@@ -58,11 +58,11 @@ export const PLAN_PRACTICE_LIMITS: Record<string, number> = {
 }
 
 /**
- * Total questions accessible in practice/study mode
- * free → 10 | starter → 60 | pro → 180 | all_access → 400
+ * Max questions accessible per exam/study session
+ * free → 30 | starter → 60 | pro → 180 | all_access → 400
  */
 export const PLAN_QUESTION_LIMITS: Record<string, number> = {
-  free:       10,
+  free:       30,
   starter:    60,
   pro:        180,
   all_access: 400,
@@ -82,8 +82,8 @@ export const PLAN_COACHING_MINS: Record<string, number> = {
 // ── Human-readable feature list per plan (for pricing page / UI) ──────────
 export const PLAN_FEATURES: Record<string, string[]> = {
   free: [
-    '10 quiz questions',
-    '1 practice exam (10 questions)',
+    '1 mock exam — 30 questions',
+    '1 practice exam — 30 questions',
     'Instant answer explanations',
   ],
   starter: [

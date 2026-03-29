@@ -7,7 +7,7 @@ import Link from 'next/link'
 // ── Plan display config ───────────────────────────────────────────────────────
 
 const PLAN_META: Record<string, { label: string; icon: string; color: string; note: string }> = {
-  free:       { label: 'Free',       icon: '🎯', color: 'text-slate-300',  note: '10 quiz questions + 1 practice exam' },
+  free:       { label: 'Free',       icon: '🎯', color: 'text-slate-300',  note: '1 mock exam (30Q) + 1 practice exam (30Q)' },
   starter:    { label: 'Starter',    icon: '🚀', color: 'text-sky-400',    note: '1 mock exam (60Q) + 1 practice exam' },
   pro:        { label: 'Pro',        icon: '⚡', color: 'text-violet-400', note: '3 mock exams (180Q) + 3 practice exams + AI chat' },
   all_access: { label: 'All-Access', icon: '👑', color: 'text-amber-400',  note: '10 mock exams + 10 practice exams + 30-min coaching' },
@@ -133,7 +133,7 @@ export function OnboardingCourseSelector({ courses, plan, firstName }: Props) {
                   </p>
                 )}
                 <p className="text-[11px] text-slate-500 mt-2">
-                  {course.enrolled_count.toLocaleString()} enrolled
+                  {course.enrolled_count.toLocaleString('en-US')} enrolled
                 </p>
 
                 {/* Selected checkmark */}

@@ -1,7 +1,7 @@
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { PLAN_MOCK_LIMITS, EXAM_QUESTION_COUNT } from '@/lib/stripe'
+import { PLAN_MOCK_LIMITS, EXAM_QUESTION_COUNT, PLAN_QUESTION_LIMITS } from '@/lib/stripe'
 import type { Course, Purchase, ExamSet } from '@/lib/supabase/database.types'
 
 interface PageProps {
@@ -38,6 +38,7 @@ export default async function ExamSelectPage({ params }: PageProps) {
   if (!purchase) redirect('/dashboard')
 
   const limit = PLAN_MOCK_LIMITS[purchase.plan] ?? 1
+  const questionCount = Math.min(EXAM_QUESTION_COUNT, PLAN_QUESTION_LIMITS[purchase.plan] ?? EXAM_QUESTION_COUNT)
 
   // Best score per set
   const bestScores: Record<string, { score_pct: number; passed: boolean }> = {}
@@ -66,7 +67,7 @@ export default async function ExamSelectPage({ params }: PageProps) {
         <h1 className="text-2xl font-black text-slate-900">Mock Exam — {course.title}</h1>
         <div className="flex items-center gap-4 mt-2">
           <p className="text-slate-500 text-sm capitalize">
-            {purchase.plan} plan · {limit} exam{limit !== 1 ? 's' : ''} available · {EXAM_QUESTION_COUNT} questions each
+            {purchase.plan} plan · {limit} exam{limit !== 1 ? 's' : ''} available · {questionCount} questions each
           </p>
           <div className="flex items-center gap-3 text-xs text-slate-400">
             <span>⏱ Timed</span>
@@ -99,7 +100,7 @@ export default async function ExamSelectPage({ params }: PageProps) {
                 <div>
                   <h3 className="font-black text-slate-900">{set.title}</h3>
                   <p className="text-xs text-slate-500 mt-1">
-                    {EXAM_QUESTION_COUNT} questions · {set.duration_mins} min
+                    {questionCount} questions · {Math.round(set.duration_mins * questionCount / EXAM_QUESTION_COUNT)} min
                   </p>
                 </div>
                 {isLocked ? (

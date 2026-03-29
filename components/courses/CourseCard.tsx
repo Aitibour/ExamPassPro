@@ -27,7 +27,7 @@ export function CourseCard({ course, rank }: { course: Course; rank: number }) {
         <div className="text-white font-black text-sm leading-tight">{course.title}</div>
         <div className="flex justify-end items-center mt-1">
           <span className="text-white/75 text-[10px] font-semibold">
-            {course.enrolled_count.toLocaleString()} enrolled
+            {course.enrolled_count.toLocaleString('en-US')} enrolled
           </span>
         </div>
       </div>
