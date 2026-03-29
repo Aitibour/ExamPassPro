@@ -17,7 +17,7 @@ const PLANS: Record<string, {
   aiChat: boolean
   aiChatLabel: string
   community: 'none' | 'public' | 'private'
-  coaching: null | '30-min' | '60-min'
+  coaching: null | '60-min' | '90-min'
   supportLevel: string
   lifetime: boolean
   upgradeTo: string | null

@@ -24,7 +24,6 @@ const PACKAGES = [
     name: 'Deep Dive',
     duration: '90 minutes',
     price: '$149',
-    badge: 'Best Value',
     subline: 'Included in Elite plan',
     features: [
       'Everything in Focus Session',
