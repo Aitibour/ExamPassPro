@@ -74,6 +74,50 @@ function ScrumMark({ s, fill }: { s: number; fill: boolean }) {
   )
 }
 
+function Prince2Mark({ s, fill }: { s: number; fill: boolean }) {
+  const style = fill ? { width: '100%', height: '100%' } : { width: s, height: s }
+  return (
+    <svg viewBox="0 0 80 52" fill="none" style={style}>
+      <rect x="2" y="2" width="76" height="48" rx="6" fill="rgba(255,255,255,0.12)" stroke="white" strokeWidth="2" />
+      <text x="40" y="22" textAnchor="middle" fontSize="13" fontWeight="900" fill="white" fontFamily="Arial,sans-serif" letterSpacing="1">PRINCE2</text>
+      <text x="40" y="38" textAnchor="middle" fontSize="10" fontWeight="700" fill="rgba(255,255,255,0.85)" fontFamily="Arial,sans-serif" letterSpacing="1">Foundation</text>
+    </svg>
+  )
+}
+
+function MicrosoftMark({ s, fill }: { s: number; fill: boolean }) {
+  const style = fill ? { width: '100%', height: '100%' } : { width: s, height: s }
+  return (
+    <svg viewBox="0 0 48 48" fill="none" style={style}>
+      <rect x="4"  y="4"  width="18" height="18" fill="#F25022" />
+      <rect x="26" y="4"  width="18" height="18" fill="#7FBA00" />
+      <rect x="4"  y="26" width="18" height="18" fill="#00A4EF" />
+      <rect x="26" y="26" width="18" height="18" fill="#FFB900" />
+    </svg>
+  )
+}
+
+function RedHatMark({ s, fill }: { s: number; fill: boolean }) {
+  const style = fill ? { width: '100%', height: '100%' } : { width: s, height: s }
+  return (
+    <svg viewBox="0 0 80 52" fill="none" style={style}>
+      <ellipse cx="40" cy="22" rx="22" ry="14" fill="#CC0000" />
+      <path d="M18 30 Q30 44 52 38 Q42 50 22 46 Z" fill="#CC0000" />
+      <text x="40" y="26" textAnchor="middle" fontSize="11" fontWeight="900" fill="white" fontFamily="Arial,sans-serif" letterSpacing="1">RED HAT</text>
+    </svg>
+  )
+}
+
+function SplunkMark({ s, fill }: { s: number; fill: boolean }) {
+  const style = fill ? { width: '100%', height: '100%' } : { width: s, height: s }
+  return (
+    <svg viewBox="0 0 80 52" fill="none" style={style}>
+      <text x="40" y="32" textAnchor="middle" fontSize="22" fontWeight="900" fill="white" fontFamily="'Arial Black',Arial,sans-serif">&gt;_</text>
+      <text x="40" y="48" textAnchor="middle" fontSize="9" fontWeight="700" fill="rgba(255,255,255,0.75)" fontFamily="Arial,sans-serif" letterSpacing="2">SPLUNK</text>
+    </svg>
+  )
+}
+
 function KanbanMark({ s, fill }: { s: number; fill: boolean }) {
   const style = fill ? { width: '100%', height: '100%' } : { width: s, height: s }
   return (
@@ -104,6 +148,12 @@ function getLogoRenderer(slug: string): { type: 'inline'; fn: (p: { s: number; f
   if (slug.startsWith('scrum-') || slug.includes('scrum')) return { type: 'inline', fn: ScrumMark }
   // Kanban family
   if (slug.startsWith('kanban-') || slug.includes('kanban')) return { type: 'inline', fn: KanbanMark }
+
+  // Inline marks
+  if (slug.startsWith('prince2-') || slug.includes('prince2')) return { type: 'inline', fn: Prince2Mark }
+  if (slug.startsWith('microsoft-'))  return { type: 'inline', fn: MicrosoftMark }
+  if (slug.startsWith('redhat-'))     return { type: 'inline', fn: RedHatMark }
+  if (slug.startsWith('splunk-'))     return { type: 'inline', fn: SplunkMark }
 
   // CDN slugs by prefix / exact match
   if (slug.startsWith('kubernetes-')) return { type: 'cdn', icon: 'kubernetes' }

@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-eval' 'unsafe-inline' js.stripe.com",
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: images.unsplash.com *.supabase.co *.vercel-storage.com",
+              "img-src 'self' data: blob: images.unsplash.com *.supabase.co *.vercel-storage.com cdn.simpleicons.org",
               "connect-src 'self' *.supabase.co wss://*.supabase.co https://api.stripe.com https://generativelanguage.googleapis.com",
               "media-src 'self' *.public.blob.vercel-storage.com",
               "frame-src js.stripe.com hooks.stripe.com",
