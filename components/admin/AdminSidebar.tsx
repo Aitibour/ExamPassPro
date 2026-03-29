@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { clsx } from 'clsx'
+import { createClient } from '@/lib/supabase/client'
 
 const NAV_ITEMS = [
   { href: '/admin', icon: '▦', label: 'Overview' },
@@ -13,10 +14,17 @@ const NAV_ITEMS = [
 const SYSTEM_ITEMS = [
   { href: '/admin/users', icon: '👥', label: 'Users' },
   { href: '/admin/purchases', icon: '💳', label: 'Purchases' },
+  { href: '/admin/links', icon: '🔗', label: 'Link Analytics' },
 ]
 
 export function AdminSidebar() {
   const pathname = usePathname()
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    window.location.href = '/'
+  }
 
   return (
     <aside className="fixed inset-y-0 left-0 w-60 bg-slate-900 flex flex-col z-40">
@@ -72,7 +80,7 @@ export function AdminSidebar() {
         </div>
       </nav>
 
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-slate-800 space-y-2">
         <Link
           href="/"
           className="flex items-center gap-2 text-sky-400 text-sm font-medium hover:text-sky-300 transition-colors"
@@ -80,6 +88,12 @@ export function AdminSidebar() {
           <span>↗</span>
           View Public Website
         </Link>
+        <button
+          onClick={handleSignOut}
+          className="w-full text-left text-xs text-slate-500 hover:text-slate-300 transition-colors"
+        >
+          Sign out
+        </button>
       </div>
     </aside>
   )

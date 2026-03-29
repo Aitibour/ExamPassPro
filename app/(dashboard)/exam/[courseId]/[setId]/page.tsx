@@ -1,7 +1,7 @@
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { ExamEngine } from '@/components/exam/ExamEngine'
-import { PLAN_EXAM_LIMITS } from '@/lib/stripe'
+import { PLAN_MOCK_LIMITS, EXAM_QUESTION_COUNT } from '@/lib/stripe'
 import type { Purchase, ExamSet, Question } from '@/lib/supabase/database.types'
 
 interface PageProps {
@@ -29,7 +29,7 @@ export default async function ExamPage({ params }: PageProps) {
   if (!examSet) notFound()
 
   // Enforce plan limit
-  const limit = PLAN_EXAM_LIMITS[purchase.plan] ?? 1
+  const limit = PLAN_MOCK_LIMITS[purchase.plan] ?? 1
   const setIndex = (allSets ?? []).findIndex(s => s.id === setId)
   if (setIndex >= limit) redirect(`/exam/${courseId}`)
 
@@ -41,9 +41,11 @@ export default async function ExamPage({ params }: PageProps) {
 
   const questions = questionsRaw as Question[] | null
 
+  // Always exactly 60 questions per exam — slice to enforce the cap
   const orderedQuestions = examSet.question_ids
     .map(id => questions?.find(q => q.id === id))
     .filter((q): q is Question => q != null)
+    .slice(0, EXAM_QUESTION_COUNT)
 
   return (
     <div className="max-w-6xl mx-auto">

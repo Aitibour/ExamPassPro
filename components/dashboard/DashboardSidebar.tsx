@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { clsx } from 'clsx'
 import { Logo } from '@/components/ui/Logo'
 import { createClient } from '@/lib/supabase/client'
@@ -30,13 +30,11 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ profile }: DashboardSidebarProps) {
   const pathname = usePathname()
-  const router = useRouter()
 
   async function handleSignOut() {
     const supabase = createClient()
     await supabase.auth.signOut()
-    router.push('/')
-    router.refresh()
+    window.location.href = '/'
   }
 
   return (

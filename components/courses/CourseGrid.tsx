@@ -23,7 +23,7 @@ export function CourseGrid({ courses: initial }: { courses: Course[] }) {
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
-          <h2 className="text-2xl font-black text-slate-900">Top 10 Certification Courses</h2>
+          <h2 className="text-2xl font-black text-slate-900">Top Certification Courses</h2>
           <p className="text-slate-500 text-sm mt-1">Industry-leading practice exams, real exam-style questions</p>
         </div>
         <div className="flex gap-2.5 items-center">

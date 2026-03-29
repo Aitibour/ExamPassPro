@@ -1,9 +1,14 @@
 export default function ContactPage() {
   return (
     <div className="bg-white">
-      <section className="bg-slate-900 py-20 px-6 text-center">
-        <h1 className="text-4xl font-black text-white mb-4">Contact Us</h1>
-        <p className="text-slate-400 text-lg">We usually respond within a few hours on business days.</p>
+      <section className="bg-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16">
+        <div>
+          <div className="inline-flex items-center gap-2 bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-bold px-3 py-1.5 rounded-full mb-5">
+            Support · Billing · Coaching
+          </div>
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">Contact Us</h1>
+          <p className="text-slate-400 text-lg">We usually respond within a few hours on business days.</p>
+        </div>
       </section>
 
       <section className="max-w-3xl mx-auto px-6 py-20">

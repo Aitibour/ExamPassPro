@@ -1,11 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
+import { safeRedirectPath } from '@/lib/security'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -18,8 +17,11 @@ export default function LoginPage() {
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError(error.message); setLoading(false); return }
-    router.push('/dashboard')
-    router.refresh()
+    const next = safeRedirectPath(
+      new URLSearchParams(window.location.search).get('next'),
+      '/dashboard'
+    )
+    window.location.href = next
   }
 
   return (
@@ -115,7 +117,8 @@ export default function LoginPage() {
             <button
               onClick={async () => {
                 const supabase = createClient()
-                await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${window.location.origin}/auth/callback` } })
+                const next = new URLSearchParams(window.location.search).get('next') ?? '/dashboard'
+                await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` } })
               }}
               className="w-full border border-slate-200 rounded-lg py-2.5 text-sm font-semibold text-slate-700 flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
             >

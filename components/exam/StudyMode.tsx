@@ -6,9 +6,14 @@ import { clsx } from 'clsx'
 interface StudyModeProps {
   examSet: ExamSet
   questions: Question[]
+  /** Max questions allowed by the user's plan (used for upgrade nudge) */
+  questionLimit?: number
+  /** Total questions in this set before plan slicing */
+  totalInSet?: number
 }
 
-export function StudyMode({ examSet, questions }: StudyModeProps) {
+export function StudyMode({ examSet, questions, questionLimit, totalInSet }: StudyModeProps) {
+  const isLimited = totalInSet != null && questionLimit != null && questions.length < totalInSet
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selected, setSelected] = useState<string | null>(null)
   const [correct, setCorrect] = useState(0)
@@ -73,10 +78,22 @@ export function StudyMode({ examSet, questions }: StudyModeProps) {
 
   return (
     <div>
+      {/* Plan limit notice */}
+      {isLimited && (
+        <div className="mb-4 flex items-center justify-between bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm">
+          <span className="text-amber-800">
+            ⚡ Showing <strong>{questions.length}</strong> of <strong>{totalInSet}</strong> questions on your current plan.
+          </span>
+          <a href="/courses" className="text-amber-700 font-bold hover:text-amber-900 underline underline-offset-2 whitespace-nowrap ml-4">
+            Upgrade →
+          </a>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-black text-slate-900">{examSet.title} — Study Mode</h1>
+          <h1 className="font-black text-slate-900">{examSet.title} — Practice Exam</h1>
           <p className="text-xs text-slate-500 mt-1">Question {currentIndex + 1} of {questions.length}</p>
         </div>
         <div className="flex gap-4 text-sm">

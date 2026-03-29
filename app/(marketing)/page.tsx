@@ -1,21 +1,11 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { CourseGrid } from '@/components/courses/CourseGrid'
+import { CourseCard } from '@/components/courses/CourseCard'
+import { PartnerLogo } from '@/components/courses/CourseLogo'
+import { FALLBACK_COURSES } from '@/lib/courses-data'
 import type { Course } from '@/lib/supabase/database.types'
 
-// Fallback courses for when DB is not connected
-const FALLBACK_COURSES: Course[] = [
-  { id: '1', slug: 'servicenow-csa', title: 'ServiceNow CSA', description: 'Certified System Administrator', icon_url: null, brand_color: '#3d9b3d', price_cents: 1900, enrolled_count: 4210, is_published: true, created_at: '2026-01-01' },
-  { id: '2', slug: 'aws-saa-c03', title: 'AWS SAA-C03', description: 'Solutions Architect Associate', icon_url: null, brand_color: '#232f3e', price_cents: 1900, enrolled_count: 3840, is_published: true, created_at: '2026-01-02' },
-  { id: '3', slug: 'azure-az-900', title: 'Azure AZ-900', description: 'Fundamentals Certification', icon_url: null, brand_color: '#0078d4', price_cents: 1900, enrolled_count: 3110, is_published: true, created_at: '2026-01-03' },
-  { id: '4', slug: 'google-cloud-ace', title: 'Google Cloud ACE', description: 'Associate Cloud Engineer', icon_url: null, brand_color: '#1a73e8', price_cents: 1900, enrolled_count: 2700, is_published: true, created_at: '2026-01-04' },
-  { id: '5', slug: 'comptia-security-plus', title: 'CompTIA Security+', description: 'SY0-701 Certification', icon_url: null, brand_color: '#c0392b', price_cents: 1900, enrolled_count: 2400, is_published: true, created_at: '2026-01-05' },
-  { id: '6', slug: 'vmware-vcp-dcv', title: 'VMware VCP-DCV', description: 'Data Center Virtualization', icon_url: null, brand_color: '#607078', price_cents: 1900, enrolled_count: 1900, is_published: true, created_at: '2026-01-06' },
-  { id: '7', slug: 'cisco-ccna', title: 'Cisco CCNA 200-301', description: 'Network Associate', icon_url: null, brand_color: '#1ba0d7', price_cents: 1900, enrolled_count: 1750, is_published: true, created_at: '2026-01-07' },
-  { id: '8', slug: 'kubernetes-cka', title: 'Kubernetes CKA', description: 'Certified Kubernetes Admin', icon_url: null, brand_color: '#326ce5', price_cents: 1900, enrolled_count: 1600, is_published: true, created_at: '2026-01-08' },
-  { id: '9', slug: 'hashicorp-terraform', title: 'HashiCorp Terraform', description: 'Infrastructure as Code', icon_url: null, brand_color: '#7B42BC', price_cents: 1900, enrolled_count: 1400, is_published: true, created_at: '2026-01-09' },
-  { id: '10', slug: 'itil-4-foundation', title: 'ITIL 4 Foundation', description: 'IT Service Management', icon_url: null, brand_color: '#8b2fc9', price_cents: 1900, enrolled_count: 1200, is_published: true, created_at: '2026-01-10' },
-]
+const TOTAL_COURSES = 40
 
 const TESTIMONIALS = [
   { name: 'Marcus Rivera', role: 'Cloud Engineer', text: 'Passed AWS SAA on the first attempt! The mock exams are incredibly realistic.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=80' },
@@ -31,49 +21,63 @@ const TESTIMONIALS = [
 ]
 
 const PARTNERS = [
-  { name: 'ServiceNow', slug: null },          // not in Simple Icons — inline SVG below
-  { name: 'Amazon AWS', slug: 'amazonwebservices' },
-  { name: 'Microsoft Azure', slug: 'microsoftazure' },
-  { name: 'Google Cloud', slug: 'googlecloud' },
-  { name: 'VMware', slug: 'vmware' },
-  { name: 'Cisco', slug: 'cisco' },
-  { name: 'CompTIA', slug: 'comptia' },
-  { name: 'HashiCorp', slug: 'hashicorp' },
+  { name: 'ServiceNow', logoSlug: 'servicenow' },
+  { name: 'Amazon AWS', logoSlug: 'aws' },
+  { name: 'Microsoft Azure', logoSlug: 'azure' },
+  { name: 'Google Cloud', logoSlug: 'googlecloud' },
+  { name: 'VMware', logoSlug: 'vmware' },
+  { name: 'Cisco', logoSlug: 'cisco' },
+  { name: 'CompTIA', logoSlug: 'comptia' },
+  { name: 'HashiCorp', logoSlug: 'hashicorp' },
 ]
-
-// ServiceNow "N" mark in brand green (for partners section)
-function ServiceNowPartnerLogo() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="21" stroke="#62B947" strokeWidth="3" />
-      <path d="M14 33 L14 15 L34 33 L34 15" stroke="#62B947" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
 
 const PRICING_PLANS = [
   {
-    key: 'starter', name: 'Starter', price: 19, period: '/mo',
-    features: ['1 Mock exam (100% real exam questions)', '+30 extra questions', 'Score tracking & history', 'Study mode with explanations', 'Level 1 Support'],
+    key: 'free', name: 'Free', price: 0, period: ' forever',
+    features: [
+      '10 quiz questions',
+      '1 practice exam (10 questions)',
+      'Instant answer explanations',
+    ],
+    cta: 'Start Free',
+    href: '/register',
+    highlight: false,
+  },
+  {
+    key: 'starter', name: 'Starter', price: 19, period: ' one-time',
+    features: [
+      '1 mock exam — 60 questions (2026)',
+      '1 practice exam',
+      'Timed exam simulation',
+      'Score report & corrections',
+    ],
     cta: 'Get Starter',
     highlight: false,
   },
   {
-    key: 'pro', name: 'Pro', price: 49, period: '/mo',
-    features: ['3 Mock exams', '+60 extra questions', 'Study mode with explanations', 'Gemini AI Chat assistant', 'Public community access', 'Level 1 Support'],
+    key: 'pro', name: 'Pro', price: 49, period: ' one-time',
+    features: [
+      '3 mock exams — 180 questions (2026)',
+      '3 practice exams',
+      'Timed exam simulation',
+      'Gemini AI study assistant',
+      'Performance analytics',
+    ],
     cta: 'Get Pro',
-    highlight: false,
-  },
-  {
-    key: 'platinum', name: 'Platinum', price: 99, period: '/mo',
-    features: ['5 Mock exams', '+150 extra questions', 'Gemini AI Chat (unlimited)', 'Private community access', '1-to-1 coaching session', 'Level 2 + Priority Support'],
-    cta: 'Get Platinum',
     highlight: true,
     badge: 'Most Popular',
   },
   {
-    key: 'all_access', name: 'All-Access Bundle', price: 199, period: ' one-time',
-    features: ['10 Mock exams', '+300 extra questions', 'Unlimited AI Chat forever', 'Private community access', '1-hour coaching session', 'Level 3 + Priority Support', 'Lifetime access'],
+    key: 'all_access', name: 'All-Access', price: 199, period: ' one-time',
+    features: [
+      '10 mock exams',
+      '400-question full bank',
+      '10 practice exams',
+      '30 min live coaching session',
+      'Gemini AI study assistant',
+      'Performance analytics',
+      '100% Pass Guarantee',
+    ],
     cta: 'Get All-Access',
     highlight: false,
     badge: 'Best Value',
@@ -90,22 +94,26 @@ export default async function HomePage() {
     .limit(10)
 
   const courses = coursesRaw as Course[] | null
-  const displayCourses = courses && courses.length > 0 ? courses : FALLBACK_COURSES
+  const displayCourses = FALLBACK_COURSES.slice(0, 10)
 
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[600px] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1523289333742-be1143f6b766?w=1600&q=70')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+      <section className="relative min-h-[420px] flex items-center overflow-hidden">
+        {/* Video background */}
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          src="https://eahvn7qpmxkqatpm.public.blob.vercel-storage.com/Homepage_Video_-_New_Year_2026_-_Final_-_NoCTA_-_wHeader_-_noCC.mp4"
+          style={{ objectFit: 'cover' }}
         />
-        <div className="absolute inset-0 bg-slate-900/75" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20">
+        {/* Dark overlay so text stays readable */}
+        <div className="absolute inset-0 bg-slate-900/70" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-8">
           <div className="max-w-2xl">
             <div className="flex flex-wrap gap-2 mb-7">
               <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-bold px-3 py-1.5 rounded-full">
@@ -123,11 +131,11 @@ export default async function HomePage() {
               Real exam-style questions, timed mock exams, Gemini AI assistant, and a <strong className="text-white">100% Pass or 100% Refund</strong> guarantee.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/register"
+              <Link href="/#pricing"
                 className="bg-sky-500 hover:bg-sky-600 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors shadow-lg">
-                Get Started Free →
+                Get Started →
               </Link>
-              <Link href="/#courses"
+              <Link href="#courses"
                 className="border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl text-base transition-colors">
                 Browse Courses
               </Link>
@@ -153,9 +161,35 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* Courses */}
-      <div className="bg-slate-50 py-16">
-        <CourseGrid courses={displayCourses} />
+      {/* Courses — featured 10 */}
+      <div id="courses" className="bg-slate-50 py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-black text-slate-900">Top Certification Courses</h2>
+              <p className="text-slate-500 text-sm mt-1">Industry-leading practice exams and real exam-style questions</p>
+            </div>
+            <Link href="/courses" className="text-sky-600 hover:text-sky-700 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
+              View all {TOTAL_COURSES} courses →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {displayCourses.map((course, i) => (
+              <CourseCard key={course.id} course={course} rank={i + 1} />
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/courses"
+              className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
+            >
+              Browse All {TOTAL_COURSES} Courses
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Pricing */}
@@ -163,7 +197,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-black text-slate-900 mb-3">Simple, Transparent Pricing</h2>
-            <p className="text-slate-500 text-base">Choose a plan for one course. Upgrade anytime.</p>
+            <p className="text-slate-500 text-base">One-time payment per course. No subscription, no recurring fees.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {PRICING_PLANS.map(plan => (
@@ -172,6 +206,8 @@ export default async function HomePage() {
                 className={`relative rounded-2xl p-7 flex flex-col border ${
                   plan.highlight
                     ? 'border-sky-500 bg-sky-50 shadow-lg shadow-sky-100'
+                    : plan.key === 'free'
+                    ? 'border-slate-200 bg-slate-50'
                     : 'border-slate-200 bg-white'
                 }`}
               >
@@ -185,14 +221,20 @@ export default async function HomePage() {
                 <div className="mb-5">
                   <h3 className="font-black text-slate-900 text-lg mb-1">{plan.name}</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-black text-slate-900">${plan.price}</span>
-                    <span className="text-slate-500 text-sm">{plan.period}</span>
+                    <span className={`text-4xl font-black ${plan.key === 'free' ? 'text-slate-400' : 'text-slate-900'}`}>
+                      {plan.key === 'free' ? 'Free' : `$${plan.price}`}
+                    </span>
+                    {plan.key !== 'free' && (
+                      <span className="text-slate-500 text-sm">{plan.period}</span>
+                    )}
                   </div>
                 </div>
                 <ul className="space-y-2.5 mb-7 flex-1">
                   {plan.features.map(f => (
                     <li key={f} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                        plan.key === 'free' ? 'bg-slate-400' : 'bg-green-500'
+                      }`}>
                         <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
                           <polyline points="1,5 4,8 9,2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -202,10 +244,12 @@ export default async function HomePage() {
                   ))}
                 </ul>
                 <Link
-                  href={`/register?plan=${plan.key}`}
+                  href={'href' in plan ? plan.href : `/checkout?plan=${plan.key}`}
                   className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
                     plan.highlight
                       ? 'bg-sky-500 hover:bg-sky-600 text-white'
+                      : plan.key === 'free'
+                      ? 'border border-slate-300 hover:bg-slate-100 text-slate-600'
                       : 'border border-slate-200 hover:bg-slate-50 text-slate-800'
                   }`}
                 >
@@ -215,35 +259,24 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="text-center text-slate-400 text-sm mt-8">
-            All plans include a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
+            All-Access includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
           </p>
         </div>
       </section>
 
       {/* Technology Partners */}
-      <section className="bg-white py-14 border-y border-slate-100">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <p className="text-center text-slate-400 text-xs font-bold uppercase tracking-widest mb-10">
+      <section className="bg-slate-50 py-14 border-y border-slate-200">
+        <div className="max-w-6xl mx-auto px-6 lg:px-12">
+          <p className="text-center text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-10">
             Content Aligned With Official Certification Bodies
           </p>
-          <div className="grid grid-cols-4 md:grid-cols-8 gap-6 items-end">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-16">
             {PARTNERS.map(p => (
-              <div key={p.name} className="flex flex-col items-center gap-2.5 group">
-                <div className="w-16 h-16 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center p-3 shadow-sm group-hover:shadow-md group-hover:border-slate-300 transition-all">
-                  {p.slug === null ? (
-                    <ServiceNowPartnerLogo />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={`https://cdn.simpleicons.org/${p.slug}`}
-                      alt={p.name}
-                      width={36}
-                      height={36}
-                      style={{ objectFit: 'contain' }}
-                    />
-                  )}
+              <div key={p.name} className="flex flex-col items-center gap-2 group cursor-default">
+                <div className="h-10 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-200">
+                  <PartnerLogo slug={p.logoSlug} size={44} />
                 </div>
-                <span className="text-slate-500 text-[10px] font-semibold text-center leading-tight">{p.name}</span>
+                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider group-hover:text-slate-600 transition-colors">{p.name}</span>
               </div>
             ))}
           </div>
@@ -264,6 +297,7 @@ export default async function HomePage() {
                 className="bg-white border border-slate-200 rounded-2xl p-6 w-80 flex-shrink-0 shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
                   <div>
                     <div className="font-bold text-sm text-slate-900">{t.name}</div>

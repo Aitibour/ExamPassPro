@@ -68,7 +68,7 @@ export default function RegisterPage() {
           {[
             'Free to sign up — no credit card required',
             'Instant access to course previews',
-            'Flexible plans starting at $19/mo',
+            'One-time plans starting at $19',
             '100% Pass Guarantee or full refund',
           ].map(f => (
             <div key={f} className="flex items-center gap-3 mb-3">
@@ -141,7 +141,13 @@ export default function RegisterPage() {
             <button
               onClick={async () => {
                 const supabase = createClient()
-                await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${window.location.origin}/auth/callback` } })
+                const params = new URLSearchParams(window.location.search)
+                const plan = params.get('plan')
+                const course = params.get('course')
+                const next = plan
+                  ? `/checkout?plan=${plan}${course ? `&course=${course}` : ''}`
+                  : '/dashboard'
+                await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` } })
               }}
               className="w-full border border-slate-200 rounded-lg py-2.5 text-sm font-semibold text-slate-700 flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
             >

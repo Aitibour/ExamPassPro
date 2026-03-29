@@ -2,18 +2,29 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { CourseLogo } from '@/components/courses/CourseLogo'
+import { FALLBACK_COURSES } from '@/lib/courses-data'
+import { PLAN_FEATURES, PLAN_PRICES } from '@/lib/stripe'
 import type { Course } from '@/lib/supabase/database.types'
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-const PLAN_FEATURES = {
-  starter: ['1 Mock exam (100% real questions)', '+30 extra questions', 'Score tracking & history', 'Study mode with explanations', 'Level 1 Support'],
-  pro: ['3 Mock exams', '+60 extra questions', 'Study mode with explanations', 'Gemini AI Chat', 'Public community access', 'Level 1 Support'],
-  platinum: ['5 Mock exams', '+150 extra questions', 'Unlimited AI Chat', 'Private community', '1-to-1 coaching session', 'Level 2 + Priority Support'],
-  all_access: ['10 Mock exams', '+300 extra questions', 'Unlimited AI Chat forever', 'Private community', '1-hour coaching', 'Level 3 + Priority Support', 'Lifetime access'],
-}
+const COURSE_PLANS = [
+  { key: 'free',       label: 'Free',       highlight: false, badge: null,           cta: 'Try Free',       href: (id: string) => '/register' },
+  { key: 'starter',    label: 'Starter',    highlight: false, badge: null,           cta: 'Get Starter',    href: (id: string) => `/checkout?plan=starter&course=${id}` },
+  { key: 'pro',        label: 'Pro',        highlight: true,  badge: 'Most Popular', cta: 'Get Pro',        href: (id: string) => `/checkout?plan=pro&course=${id}` },
+  { key: 'all_access', label: 'All-Access', highlight: false, badge: 'Best Value',   cta: 'Get All-Access', href: (id: string) => `/checkout?plan=all_access&course=${id}` },
+]
+
+const WHAT_YOU_GET = [
+  { icon: '🧪', title: 'Mock Exams', desc: 'Full-length timed exams that mirror the real test format and difficulty.' },
+  { icon: '📖', title: 'Study Mode', desc: 'Practice question-by-question with instant AI-powered explanations.' },
+  { icon: '🤖', title: 'AI Tutor', desc: 'Ask Gemini AI anything about the exam — available 24/7.' },
+  { icon: '📊', title: 'Domain Tracking', desc: 'See exactly which domains you need to focus on with score breakdowns.' },
+  { icon: '🎯', title: 'Pass Guarantee', desc: 'Pass your exam or get a full refund — no questions asked.' },
+  { icon: '📹', title: 'Session Recording', desc: 'All coaching sessions are recorded and sent to you after.' },
+]
 
 export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
@@ -26,76 +37,145 @@ export default async function CoursePage({ params }: PageProps) {
     .eq('is_published', true)
     .single()
 
-  const course = courseRaw as Course | null
+  const course = (courseRaw as Course | null) ?? FALLBACK_COURSES.find(c => c.slug === slug) ?? null
   if (!course) notFound()
 
   return (
-    <div className="max-w-5xl mx-auto px-6 lg:px-12 py-16">
-      {/* Header */}
-      <div className="flex items-start gap-8 mb-12">
-        <div
-          className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0"
-          style={{ background: course.brand_color }}
-        >
-          <CourseLogo slug={course.slug} size={48} />
-        </div>
-        <div className="flex-1">
-          <h1 className="text-3xl font-black text-slate-900 mb-2">{course.title}</h1>
-          <p className="text-slate-500 text-base leading-relaxed mb-4">{course.description}</p>
-          <div className="flex gap-4 text-sm">
-            <span className="text-slate-600"><strong className="text-slate-900">{course.enrolled_count.toLocaleString()}</strong> enrolled</span>
-            <span className="text-slate-600"><strong className="text-slate-900">850+</strong> questions</span>
-            <span className="text-slate-600"><strong className="text-slate-900">5</strong> mock exams</span>
+    <div className="bg-white">
+      {/* Hero */}
+      <section className="relative overflow-hidden" style={{ background: course.brand_color }}>
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12 py-16">
+          <div className="flex items-center gap-2 text-xs text-white/60 mb-6">
+            <Link href="/courses" className="hover:text-white/90 transition-colors">Courses</Link>
+            <span>›</span>
+            <span className="text-white/90">{course.title}</span>
+          </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div className="w-24 h-24 rounded-2xl flex items-center justify-center flex-shrink-0 bg-white/15 backdrop-blur-sm p-4">
+              <CourseLogo slug={course.slug} fill />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl lg:text-4xl font-black text-white mb-2">{course.title}</h1>
+              <p className="text-white/80 text-lg mb-5">{course.description}</p>
+              <div className="flex flex-wrap gap-4 text-sm">
+                <span className="bg-white/15 text-white px-3 py-1.5 rounded-lg font-semibold">
+                  {course.enrolled_count.toLocaleString()}+ enrolled
+                </span>
+                <span className="bg-white/15 text-white px-3 py-1.5 rounded-lg font-semibold">60 questions / exam</span>
+                <span className="bg-white/15 text-white px-3 py-1.5 rounded-lg font-semibold">Up to 10 mock exams</span>
+                <span className="bg-green-500/30 border border-green-400/40 text-green-200 px-3 py-1.5 rounded-lg font-semibold">
+                  ✓ Pass Guarantee
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* What you get */}
+      <section className="max-w-5xl mx-auto px-6 lg:px-12 py-14">
+        <h2 className="text-2xl font-black text-slate-900 mb-8">What&apos;s Included</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {WHAT_YOU_GET.map(item => (
+            <div key={item.title} className="flex items-start gap-4 p-5 rounded-xl border border-slate-100 bg-slate-50">
+              <div className="text-2xl flex-shrink-0">{item.icon}</div>
+              <div>
+                <div className="font-bold text-slate-900 text-sm mb-1">{item.title}</div>
+                <div className="text-slate-500 text-xs leading-relaxed">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Plans */}
-      <h2 className="text-xl font-black text-slate-900 mb-6">Choose Your Plan</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {(Object.entries(PLAN_FEATURES) as [keyof typeof PLAN_FEATURES, string[]][]).map(([key, features], i) => {
-          const prices = { starter: 19, pro: 49, platinum: 99, all_access: 199 }
-          const labels = { starter: 'Starter', pro: 'Pro', platinum: 'Platinum', all_access: 'All-Access' }
-          const periods = { starter: '/mo', pro: '/mo', platinum: '/mo', all_access: ' one-time' }
-          const isPlatinum = key === 'platinum'
-
-          return (
-            <div key={key} className={`rounded-2xl p-6 border flex flex-col ${isPlatinum ? 'border-sky-500 bg-sky-50 shadow-md' : 'border-slate-200 bg-white'}`}>
-              {isPlatinum && (
-                <div className="text-[10px] font-bold text-sky-600 uppercase tracking-wider mb-3">Most Popular</div>
-              )}
-              <div className="mb-4">
-                <div className="font-black text-slate-900">{labels[key]}</div>
-                <div className="flex items-baseline gap-1 mt-1">
-                  <span className="text-3xl font-black">${prices[key]}</span>
-                  <span className="text-slate-500 text-sm">{periods[key]}</span>
+      <section className="bg-slate-50 py-14 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-black text-slate-900 mb-2">Choose Your Plan</h2>
+            <p className="text-slate-500 text-sm">One-time payment · Instant access · 100% Pass Guarantee</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {COURSE_PLANS.map(plan => {
+              const features = PLAN_FEATURES[plan.key] ?? []
+              const price    = PLAN_PRICES[plan.key]
+              return (
+                <div
+                  key={plan.key}
+                  className={`relative rounded-2xl p-6 border flex flex-col ${
+                    plan.highlight
+                      ? 'border-sky-500 bg-white shadow-lg shadow-sky-100'
+                      : plan.key === 'free'
+                      ? 'border-slate-200 bg-slate-50'
+                      : 'border-slate-200 bg-white'
+                  }`}
+                >
+                  {plan.badge && (
+                    <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap ${
+                      plan.highlight ? 'bg-sky-500 text-white' : 'bg-violet-600 text-white'
+                    }`}>
+                      {plan.badge}
+                    </div>
+                  )}
+                  <div className="mb-4">
+                    <div className="font-black text-slate-900">{plan.label}</div>
+                    <div className="flex items-baseline gap-1 mt-1">
+                      {plan.key === 'free' ? (
+                        <span className="text-3xl font-black text-slate-400">Free</span>
+                      ) : (
+                        <>
+                          <span className="text-3xl font-black">${price / 100}</span>
+                          <span className="text-slate-500 text-sm"> one-time</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <ul className="space-y-2 mb-6 flex-1 text-sm text-slate-600">
+                    {features.map(f => (
+                      <li key={f} className="flex items-start gap-2">
+                        <span className={`font-bold flex-shrink-0 mt-0.5 ${plan.key === 'free' ? 'text-slate-400' : 'text-green-500'}`}>✓</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={plan.href(course.id)}
+                    className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
+                      plan.highlight
+                        ? 'bg-sky-500 hover:bg-sky-600 text-white'
+                        : plan.key === 'free'
+                        ? 'border border-slate-300 hover:bg-slate-100 text-slate-600'
+                        : 'border border-slate-200 hover:bg-slate-50 text-slate-800'
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
                 </div>
-              </div>
-              <ul className="space-y-2 mb-6 flex-1 text-sm text-slate-600">
-                {features.map(f => (
-                  <li key={f} className="flex items-center gap-2">
-                    <span className="text-green-500 font-bold">✓</span>{f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={`/register?plan=${key}&course=${course.id}`}
-                className={`w-full py-2.5 rounded-xl text-sm font-bold text-center transition-colors ${
-                  isPlatinum
-                    ? 'bg-sky-500 hover:bg-sky-600 text-white'
-                    : 'border border-slate-200 hover:bg-slate-50 text-slate-800'
-                }`}
-              >
-                Get {labels[key]}
-              </Link>
-            </div>
-          )
-        })}
-      </div>
+              )
+            })}
+          </div>
+          <p className="text-center text-slate-400 text-sm mt-6">
+            All-Access includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund.
+          </p>
+        </div>
+      </section>
 
-      <p className="text-center text-slate-400 text-sm mt-6">
-        100% Pass Guarantee — pass your exam or get a full refund.
-      </p>
+      {/* Already have access */}
+      <section className="max-w-5xl mx-auto px-6 lg:px-12 py-10">
+        <div className="bg-slate-900 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="font-black text-white text-lg">Already enrolled?</div>
+            <div className="text-slate-400 text-sm mt-0.5">Sign in to access your mock exams and study materials.</div>
+          </div>
+          <Link
+            href="/login"
+            className="bg-sky-500 hover:bg-sky-600 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm flex-shrink-0"
+          >
+            Sign In →
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

@@ -16,14 +16,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Missing courseId or questions' }, { status: 400 })
   }
 
-  const rows = questions.map((q: any) => ({
-    course_id: courseId,
-    body: q.question ?? q.body,
-    options: q.options,
-    correct: q.correct,
-    explanation: q.explanation ?? '',
-    domain: q.domain ?? '',
-  }))
+  const VALID_ANSWERS = new Set(['A', 'B', 'C', 'D'])
+
+  const rows = questions
+    .filter((q: any) =>
+      typeof (q.question ?? q.body) === 'string' &&
+      (q.question ?? q.body).length > 0 &&
+      (q.question ?? q.body).length <= 5000 &&
+      VALID_ANSWERS.has(q.correct) &&
+      q.options && typeof q.options === 'object'
+    )
+    .map((q: any) => ({
+      course_id: courseId,
+      body: (q.question ?? q.body).slice(0, 5000),
+      options: q.options,
+      correct: q.correct,
+      explanation: (q.explanation ?? '').slice(0, 5000),
+      domain: (q.domain ?? '').slice(0, 200),
+    }))
 
   const { error } = await supabase.from('questions').insert(rows)
 

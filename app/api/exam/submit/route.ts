@@ -1,23 +1,38 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
-interface SubmitBody {
-  examSetId: string
-  answers: Record<string, string>
-  questions: Array<{ id: string; correct: string; domain: string }>
-}
-
 export async function POST(req: Request) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const body: SubmitBody = await req.json()
-  const { examSetId, answers, questions } = body
+  const { examSetId, answers } = await req.json()
+
+  if (!examSetId || typeof answers !== 'object') {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+  }
+
+  // Fetch correct answers from DB — never trust client-submitted answers
+  const { data: examSet } = await supabase
+    .from('exam_sets')
+    .select('question_ids')
+    .eq('id', examSetId)
+    .single()
+
+  if (!examSet) return NextResponse.json({ error: 'Exam set not found' }, { status: 404 })
+
+  const { data: questions } = await supabase
+    .from('questions')
+    .select('id, correct, domain')
+    .in('id', examSet.question_ids)
+
+  if (!questions || questions.length === 0) {
+    return NextResponse.json({ error: 'Questions not found' }, { status: 404 })
+  }
 
   const total = questions.length
   const correct = questions.filter(q => answers[q.id] === q.correct).length
-  const scorePct = total > 0 ? Math.round((correct / total) * 100) : 0
+  const scorePct = Math.round((correct / total) * 100)
   const passed = scorePct >= 70
 
   const { data: attempt, error } = await supabase

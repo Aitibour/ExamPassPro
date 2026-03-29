@@ -1,31 +1,36 @@
 import Link from 'next/link'
-import { clsx } from 'clsx'
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg'
-  showText?: boolean
-  textClass?: string
+  inverted?: boolean   // true = white text (for dark backgrounds)
   className?: string
 }
 
-export function Logo({ size = 'md', showText = true, textClass, className }: LogoProps) {
-  const iconSize = size === 'sm' ? 28 : size === 'lg' ? 40 : 34
+export function Logo({ size = 'md', inverted = false, className }: LogoProps) {
+  const titleCls =
+    size === 'sm' ? 'text-[18px]' :
+    size === 'lg' ? 'text-[30px]' : 'text-[22px]'
+
+  const tagCls =
+    size === 'sm' ? 'text-[6.5px] tracking-[0.22em]' :
+    size === 'lg' ? 'text-[10px] tracking-[0.22em]'  : 'text-[8px] tracking-[0.22em]'
+
+  const wordColor  = inverted ? '#ffffff' : '#111111'
+  const proColor   = inverted ? '#60a5fa' : '#1a5faa'
+  const tagColor   = inverted ? 'rgba(255,255,255,0.6)' : '#666666'
 
   return (
-    <Link href="/" className={clsx('flex items-center gap-2.5 no-underline', className)}>
-      <svg width={iconSize} height={iconSize} viewBox="0 0 34 34" fill="none" className="flex-shrink-0">
-        <rect width="34" height="34" rx="8" fill="#0ea5e9" />
-        <polyline points="9,17 14,22 25,11" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      {showText && (
-        <span className={clsx(
-          'font-black',
-          size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-xl' : 'text-base',
-          textClass ?? 'text-slate-900'
-        )}>
-          ExamPassPro
-        </span>
-      )}
+    <Link
+      href="/"
+      className={`flex flex-col items-start no-underline leading-none select-none ${className ?? ''}`}
+    >
+      <div className={`${titleCls} font-black leading-none`} style={{ fontFamily: "'Arial Black', Arial, sans-serif", letterSpacing: '-0.5px' }}>
+        <span style={{ color: wordColor }}>ExamPass</span>
+        <span style={{ color: proColor }}>PRO</span>
+      </div>
+      <div className={`${tagCls} font-semibold mt-0.5`} style={{ color: tagColor, fontFamily: 'Arial, sans-serif' }}>
+        ELEVATE YOUR SCORES
+      </div>
     </Link>
   )
 }

@@ -25,8 +25,7 @@ export function CourseCard({ course, rank }: { course: Course; rank: number }) {
       {/* Footer */}
       <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm px-3.5 py-2.5">
         <div className="text-white font-black text-sm leading-tight">{course.title}</div>
-        <div className="flex justify-between items-center mt-1">
-          <span className="text-sky-300 font-black text-sm">${(course.price_cents / 100).toFixed(0)}/mo</span>
+        <div className="flex justify-end items-center mt-1">
           <span className="text-white/75 text-[10px] font-semibold">
             {course.enrolled_count.toLocaleString()} enrolled
           </span>

@@ -17,6 +17,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   if (!profile) redirect('/login')
 
+  // Admins belong in the admin panel
+  if ((profile as Profile).role === 'admin') redirect('/admin')
+
   return (
     <div className="flex min-h-screen bg-slate-50">
       <DashboardSidebar profile={profile as Profile} />

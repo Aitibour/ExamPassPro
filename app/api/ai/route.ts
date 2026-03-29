@@ -1,9 +1,26 @@
 import { getGemini } from '@/lib/gemini'
+import { createClient } from '@/lib/supabase/server'
 
 export const runtime = 'edge'
 
 export async function POST(req: Request) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return new Response('Unauthorized', { status: 401 })
+
   const { messages, context } = await req.json()
+
+  // Input guards — prevent oversized payloads
+  if (!Array.isArray(messages) || messages.length > 50) {
+    return new Response('Invalid request', { status: 400 })
+  }
+  const lastMsg = messages[messages.length - 1]
+  if (!lastMsg?.content || typeof lastMsg.content !== 'string') {
+    return new Response('Invalid request', { status: 400 })
+  }
+  if (lastMsg.content.length > 4000) {
+    return new Response('Message too long', { status: 400 })
+  }
 
   const model = getGemini()
 
@@ -34,9 +51,7 @@ Be concise, encouraging, and educational.`
     systemInstruction: systemPrompt,
   })
 
-  const lastMessage = messages[messages.length - 1]
-
-  const result = await chat.sendMessageStream(lastMessage.content)
+  const result = await chat.sendMessageStream(lastMsg.content)
 
   const stream = new ReadableStream({
     async start(controller) {

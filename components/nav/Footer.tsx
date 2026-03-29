@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2">
-            <Logo size="sm" textClass="text-white" className="mb-4" />
+            <Logo size="sm" inverted className="mb-4" />
             <p className="text-sm leading-relaxed mb-4">
               The most trusted IT certification prep platform. 100% Pass Guarantee or full refund.
             </p>

@@ -88,6 +88,47 @@ export type Database = {
         Update: Partial<Database['public']['Tables']['exam_attempts']['Insert']>
         Relationships: []
       }
+      coaching_bookings: {
+        Row: {
+          id: string
+          user_email: string
+          user_name: string
+          package_id: string
+          package_name: string
+          slot_date: string
+          slot_time: string
+          stripe_session_id: string | null
+          status: string
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['coaching_bookings']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['coaching_bookings']['Insert']>
+        Relationships: []
+      }
+      links: {
+        Row: {
+          id: string
+          code: string
+          destination: string
+          label: string
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['links']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['links']['Insert']>
+        Relationships: []
+      }
+      link_clicks: {
+        Row: {
+          id: string
+          code: string
+          ip_address: string | null
+          user_agent: string | null
+          clicked_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['link_clicks']['Row'], 'id' | 'clicked_at'>
+        Update: Partial<Database['public']['Tables']['link_clicks']['Insert']>
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -107,3 +148,7 @@ export type PurchaseWithCourse = Purchase & { courses: Course }
 export type ExamAttemptWithSet = ExamAttempt & { exam_sets: Pick<ExamSet, 'title'> | null }
 export type QuestionWithCourse = Question & { courses: Pick<Course, 'title'> | null }
 export type ExamSetWithCourse = ExamSet & { courses: Pick<Course, 'title'> | null }
+export type CoachingBooking = Database['public']['Tables']['coaching_bookings']['Row']
+export type Link            = Database['public']['Tables']['links']['Row']
+export type LinkClick       = Database['public']['Tables']['link_clicks']['Row']
+export type LinkWithClicks  = Link & { click_count: number }

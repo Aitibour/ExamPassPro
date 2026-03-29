@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 68" fill="none">
+  <!-- ExamPass in bold black -->
+  <text
+    x="4" y="46"
+    font-family="'Arial Black', 'Arial Bold', Arial, sans-serif"
+    font-weight="900"
+    font-size="46"
+    fill="#1a1a1a"
+    letter-spacing="-1"
+  >ExamPass</text>
+  <!-- PRO in blue -->
+  <text
+    x="225" y="46"
+    font-family="'Arial Black', 'Arial Bold', Arial, sans-serif"
+    font-weight="900"
+    font-size="46"
+    fill="#1a5faa"
+    letter-spacing="-1"
+  >PRO</text>
+  <!-- ELEVATE YOUR SCORES tagline -->
+  <text
+    x="4" y="63"
+    font-family="Arial, sans-serif"
+    font-weight="400"
+    font-size="11"
+    fill="#3a3a3a"
+    letter-spacing="3.2"
+  >ELEVATE YOUR SCORES</text>
+</svg>
