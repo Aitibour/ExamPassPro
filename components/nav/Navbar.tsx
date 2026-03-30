@@ -34,7 +34,7 @@ export async function Navbar() {
       <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
         <Link href="/"         className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Home</Link>
         <Link href="/courses"  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Dumps</Link>
-        <Link href="/labs"     className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Labs</Link>
+        <Link href="/labs"     className="px-3 py-2 text-sm font-bold text-sky-500 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition-colors">Labs</Link>
         <Link href="/coaching" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Coaching</Link>
         <Link href="/#pricing" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Pricing</Link>
         <Link href="/about"    className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">About</Link>
