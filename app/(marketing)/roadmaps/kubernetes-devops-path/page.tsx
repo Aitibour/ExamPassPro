@@ -24,36 +24,27 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-white">
-      {/* Hero with Image */}
-      <section className="bg-gradient-to-r from-cyan-600 to-blue-700 py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="flex items-center gap-2 text-xs text-cyan-100 mb-4">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span>›</span>
-                <Link href="/roadmaps" className="hover:text-white transition-colors">Roadmaps</Link>
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-black text-white mb-4">
-                Kubernetes & DevOps Path
-              </h1>
-              <p className="text-cyan-100 text-base mb-6">
-                Complete 8-12 month learning path from Docker containerization to Kubernetes orchestration expertise.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/courses" className="inline-flex px-6 py-2 bg-white text-cyan-600 font-semibold rounded-lg hover:bg-cyan-50 transition-colors">
-                  Start DevOps Path
-                </Link>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1920&h=1280&fit=crop"
-                alt="Kubernetes and DevOps development path"
-                className="rounded-lg shadow-lg w-full"
-              />
-            </div>
+      {/* Hero with Background Image */}
+      <section className="relative bg-gradient-to-r from-cyan-600 to-blue-700 min-h-[300px] flex items-center justify-center px-6 py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1920&h=1280&fit=crop"
+            alt="Kubernetes and DevOps development path"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-5xl mx-auto w-full">
+          <div className="flex items-center gap-2 text-xs text-cyan-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>›</span>
+            <Link href="/roadmaps" className="hover:text-white transition-colors">Roadmaps</Link>
           </div>
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">
+            Kubernetes & DevOps Path
+          </h1>
+          <p className="text-cyan-100 text-lg">
+            Complete 8-12 month learning path from Docker containerization to Kubernetes orchestration expertise.
+          </p>
         </div>
       </section>
 
