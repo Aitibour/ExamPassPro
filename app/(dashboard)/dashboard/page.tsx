@@ -466,12 +466,16 @@ export default async function DashboardPage() {
                   </div>
                 </div>
               </div>
-              <Link
-                href={`/coaching/book?package=${plan.coaching === '60-min' ? 'focus-session' : 'deep-dive'}`}
+              <a
+                href={plan.coaching === '60-min'
+                  ? 'https://www.paypal.com/ncp/payment/YX8UR8TC54C4Q'
+                  : 'https://www.paypal.com/ncp/payment/UEZ58VN2Y3RSN'}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800 transition-colors"
               >
                 Book your session →
-              </Link>
+              </a>
             </div>
           )}
 

@@ -54,7 +54,7 @@ const PRICING_PLANS = [
       'Instant corrections',
     ],
     cta: 'Get Core — $39',
-    href: '/checkout?plan=starter',
+    href: 'https://www.paypal.com/ncp/payment/JGTBB6BGVAMC4',
     highlight: false,
   },
   {
@@ -69,7 +69,7 @@ const PRICING_PLANS = [
       'Priority support',
     ],
     cta: 'Get Pro — $99',
-    href: '/checkout?plan=pro',
+    href: 'https://www.paypal.com/ncp/payment/A8CVSX89BYWZS',
     highlight: true,
     badge: 'Most Popular',
   },
@@ -85,7 +85,7 @@ const PRICING_PLANS = [
       '100% Pass Guarantee or full refund',
     ],
     cta: 'Get Elite — $199',
-    href: '/checkout?plan=all_access',
+    href: 'https://www.paypal.com/ncp/payment/RYY4VR2HE4RG6',
     highlight: false,
     badge: 'Best Value',
   },
@@ -249,9 +249,11 @@ export default async function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <Link
+                <a
                   href={plan.href}
-                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
+                  target={plan.key === 'free' ? undefined : '_blank'}
+                  rel={plan.key === 'free' ? undefined : 'noopener noreferrer'}
+                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors block ${
                     plan.highlight
                       ? 'bg-sky-500 hover:bg-sky-600 text-white shadow-md shadow-sky-100'
                       : plan.key === 'all_access'
@@ -262,7 +264,7 @@ export default async function HomePage() {
                   }`}
                 >
                   {plan.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>

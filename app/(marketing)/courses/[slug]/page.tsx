@@ -11,10 +11,10 @@ interface PageProps {
 }
 
 const COURSE_PLANS = [
-  { key: 'free',       label: 'Free',  highlight: false, badge: null,           cta: 'Try Free',    href: (id: string) => '/register' },
-  { key: 'starter',    label: 'Core',  highlight: false, badge: null,           cta: 'Get Core',    href: (id: string) => `/checkout?plan=starter&course=${id}` },
-  { key: 'pro',        label: 'Pro',   highlight: true,  badge: 'Most Popular', cta: 'Get Pro',     href: (id: string) => `/checkout?plan=pro&course=${id}` },
-  { key: 'all_access', label: 'Elite', highlight: false, badge: 'Best Value',   cta: 'Get Elite',   href: (id: string) => `/checkout?plan=all_access&course=${id}` },
+  { key: 'free',       label: 'Free',  highlight: false, badge: null,           cta: 'Try Free',    href: (_id: string) => '/register' },
+  { key: 'starter',    label: 'Core',  highlight: false, badge: null,           cta: 'Get Core',    href: (_id: string) => 'https://www.paypal.com/ncp/payment/JGTBB6BGVAMC4' },
+  { key: 'pro',        label: 'Pro',   highlight: true,  badge: 'Most Popular', cta: 'Get Pro',     href: (_id: string) => 'https://www.paypal.com/ncp/payment/A8CVSX89BYWZS' },
+  { key: 'all_access', label: 'Elite', highlight: false, badge: 'Best Value',   cta: 'Get Elite',   href: (_id: string) => 'https://www.paypal.com/ncp/payment/RYY4VR2HE4RG6' },
 ]
 
 

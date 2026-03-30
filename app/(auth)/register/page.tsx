@@ -4,6 +4,13 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 
+// ── PayPal links per plan ─────────────────────────────────────────────────────
+const PAYPAL_LINKS: Record<string, string> = {
+  starter:    'https://www.paypal.com/ncp/payment/JGTBB6BGVAMC4',
+  pro:        'https://www.paypal.com/ncp/payment/A8CVSX89BYWZS',
+  all_access: 'https://www.paypal.com/ncp/payment/RYY4VR2HE4RG6',
+}
+
 // ── Plan options shown on step 2 ─────────────────────────────────────────────
 
 const PLANS = [
@@ -133,12 +140,27 @@ export default function RegisterPage() {
             <span>{plan.name} Plan selected</span>
           </div>
 
-          <p className="text-slate-400 text-xs leading-relaxed mb-6">
-            After clicking the link you&apos;ll be guided to choose your first course
-            and — if you&apos;re on a paid plan — complete your one-time payment.
-          </p>
+          {PAYPAL_LINKS[selectedPlan] ? (
+            <>
+              <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                Confirm your email, then complete your one-time payment below.
+              </p>
+              <a
+                href={PAYPAL_LINKS[selectedPlan]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full block bg-[#0070ba] hover:bg-[#005ea6] text-white py-3 rounded-xl text-sm font-bold text-center transition-colors mb-4"
+              >
+                Pay with PayPal →
+              </a>
+            </>
+          ) : (
+            <p className="text-slate-400 text-xs leading-relaxed mb-6">
+              After clicking the link you&apos;ll be taken to your dashboard.
+            </p>
+          )}
           <Link href="/login"
-            className="mt-2 inline-block text-sky-500 text-sm font-semibold hover:underline">
+            className="inline-block text-sky-500 text-sm font-semibold hover:underline">
             Back to Sign In
           </Link>
         </div>

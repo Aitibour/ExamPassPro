@@ -17,6 +17,7 @@ const PACKAGES = [
       'Email follow-up for 3 days',
     ],
     cta: 'Book 45-min Session',
+    paypal: 'https://www.paypal.com/ncp/payment/YX8UR8TC54C4Q',
     highlight: false,
   },
   {
@@ -35,6 +36,7 @@ const PACKAGES = [
       'Mock exam strategy review',
     ],
     cta: 'Book 90-min Session',
+    paypal: 'https://www.paypal.com/ncp/payment/UEZ58VN2Y3RSN',
     highlight: true,
     badge: 'Most Popular',
   },
@@ -54,6 +56,7 @@ const PACKAGES = [
       'Priority scheduling',
     ],
     cta: 'Book 120-min Session',
+    paypal: 'https://www.paypal.com/ncp/payment/PLCWCG97Z5AJU',
     highlight: false,
   },
 ]
@@ -173,16 +176,18 @@ export default function CoachingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={`/coaching/book?package=${pkg.id}`}
-                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors ${
+                <a
+                  href={pkg.paypal}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-3 rounded-xl text-sm font-bold text-center transition-colors block ${
                     pkg.highlight
                       ? 'bg-sky-500 hover:bg-sky-600 text-white'
                       : 'border border-slate-200 hover:bg-slate-50 text-slate-800'
                   }`}
                 >
                   {pkg.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
