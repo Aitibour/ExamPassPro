@@ -25,24 +25,24 @@ export async function Navbar() {
   const planLabel = PLAN_LABELS[planRaw] ?? 'Free'
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 h-16 flex items-center justify-between px-6 lg:px-12 relative">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 h-16 flex items-center px-6 lg:px-12 relative">
 
-      {/* Left: logo + desktop links */}
-      <div className="flex items-center gap-8">
-        <Logo size="md" />
-        <div className="hidden md:flex items-center gap-1">
-          <Link href="/"         className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Home</Link>
-          <Link href="/courses"  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Dumps</Link>
-          <Link href="/labs"     className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Labs</Link>
-          <Link href="/coaching" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Coaching</Link>
-          <Link href="/#pricing" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Pricing</Link>
-          <Link href="/about"    className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">About</Link>
-          <Link href="/contact"  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Contact</Link>
-        </div>
+      {/* Left: logo */}
+      <Logo size="md" className="flex-shrink-0" />
+
+      {/* Center: desktop navigation links */}
+      <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+        <Link href="/"         className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Home</Link>
+        <Link href="/courses"  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Dumps</Link>
+        <Link href="/labs"     className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Labs</Link>
+        <Link href="/coaching" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Coaching</Link>
+        <Link href="/#pricing" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Pricing</Link>
+        <Link href="/about"    className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">About</Link>
+        <Link href="/contact"  className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors">Contact</Link>
       </div>
 
       {/* Right: auth area + mobile toggle */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 flex-shrink-0 ml-auto">
         {user ? (
           <NavUserMenu displayName={displayName} initials={initials} planLabel={planLabel} />
         ) : (
