@@ -18,42 +18,33 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Hero with Image */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="flex items-center gap-2 text-xs text-blue-100 mb-4">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span>›</span>
-                <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-black text-white mb-4">
-                Azure AZ-900 4-Week Plan
-              </h1>
-              <p className="text-blue-100 text-base mb-6">
-                Fast-track study plan to pass Azure Fundamentals in just 4 weeks.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/courses" className="inline-flex px-6 py-2 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors">
-                  Start Study Plan
-                </Link>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1280&fit=crop"
-                alt="Azure cloud platform study materials"
-                className="rounded-lg shadow-lg w-full"
-              />
-            </div>
+    <div className="bg-white">
+      {/* Hero with Background Image */}
+      <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 min-h-[300px] flex items-center justify-center px-6 py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1280&fit=crop"
+            alt="Azure cloud platform study materials"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-5xl mx-auto w-full">
+          <div className="flex items-center gap-2 text-xs text-blue-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>›</span>
+            <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
           </div>
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">
+            Azure AZ-900 4-Week Plan
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Fast-track study plan to pass Azure Fundamentals in just 4 weeks.
+          </p>
         </div>
       </section>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto py-12 px-6">
+      <article className="max-w-3xl mx-auto py-16 px-6">
         <h2 className="text-2xl font-bold text-slate-900 mb-4">4-Week Accelerated Plan</h2>
         <p className="text-slate-600 mb-6">
           The Azure AZ-900 is the easiest Azure certification and can be mastered in just 4 weeks with focused study. This fast-track plan covers all essential concepts.

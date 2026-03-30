@@ -18,42 +18,33 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Hero with Image */}
-      <section className="bg-gradient-to-r from-orange-500 to-amber-600 py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="flex items-center gap-2 text-xs text-orange-100 mb-4">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span>›</span>
-                <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-black text-white mb-4">
-                AWS SAA-C03 Study Guide
-              </h1>
-              <p className="text-orange-100 text-base mb-6">
-                Complete guide to passing AWS Solutions Architect Associate exam. Master all 5 domains and exam strategies.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/courses" className="inline-flex px-6 py-2 bg-white text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition-colors">
-                  Practice AWS SAA
-                </Link>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
-                alt="AWS server infrastructure and architecture design"
-                className="rounded-lg shadow-lg w-full"
-              />
-            </div>
+    <div className="bg-white">
+      {/* Hero with Background Image */}
+      <section className="relative bg-gradient-to-r from-orange-500 to-amber-600 min-h-[300px] flex items-center justify-center px-6 py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
+            alt="AWS server infrastructure and architecture design"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-5xl mx-auto w-full">
+          <div className="flex items-center gap-2 text-xs text-orange-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>›</span>
+            <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
           </div>
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">
+            AWS SAA-C03 Study Guide
+          </h1>
+          <p className="text-orange-100 text-lg">
+            Complete guide to passing AWS Solutions Architect Associate exam. Master all 5 domains and exam strategies.
+          </p>
         </div>
       </section>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto py-12 px-6">
+      <article className="max-w-3xl mx-auto py-16 px-6">
         <h2 className="text-2xl font-bold text-slate-900 mb-4">Overview</h2>
         <p className="text-slate-600 mb-6">
           The AWS Solutions Architect Associate (SAA-C03) certification validates your ability to design secure, reliable, and cost-effective solutions on AWS. This comprehensive guide covers all 5 exam domains and proven strategies for success.
