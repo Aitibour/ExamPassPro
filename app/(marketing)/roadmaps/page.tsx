@@ -74,9 +74,9 @@ const roadmaps = [
 
 export default function RoadmapsPage() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-cyan-700 py-16 px-6 overflow-hidden">
+    <div className="bg-white">
+      {/* Hero with Background Image */}
+      <section className="relative bg-gradient-to-r from-blue-600 to-cyan-700 min-h-[300px] flex items-center justify-center px-6 py-16 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
             src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1920&h=1280&fit=crop"
@@ -84,14 +84,14 @@ export default function RoadmapsPage() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-5xl mx-auto w-full">
           <div className="flex items-center gap-2 text-xs text-blue-100 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>›</span>
             <span className="text-white">Roadmaps</span>
           </div>
-          <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">IT Certification Roadmaps</h1>
-          <p className="text-blue-100 text-base max-w-3xl">
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">IT Certification Roadmaps</h1>
+          <p className="text-blue-100 text-lg">
             Clear learning paths for every IT career goal. Choose your specialization and follow a proven roadmap to advance your career through certifications.
           </p>
         </div>
