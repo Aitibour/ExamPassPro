@@ -24,14 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
           />
         )}
-
-        {/* Poptin Pixel */}
-        <Script
-          id="pixel-script-poptin"
-          src="https://cdn.popt.in/pixel.js?id=9c22f6ba3a968"
-          async
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   )
