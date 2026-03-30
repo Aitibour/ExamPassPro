@@ -85,7 +85,7 @@ export default function ComparisonsPage() {
           </div>
           <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">IT Certification Comparisons</h1>
           <p className="text-slate-400 text-base max-w-3xl">
-            Compare IT certifications side-by-side. Understand difficulty levels, job demand, salary expectations, and which certification is right for your career goals.
+            Compare IT certifications side-by-side. Understand difficulty levels, job demand, salary expectations, and which certification path is right for your career.
           </p>
         </div>
       </section>
