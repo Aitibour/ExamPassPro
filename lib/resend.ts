@@ -66,3 +66,58 @@ export async function sendBookingNotification(info: BookingInfo) {
     `,
   })
 }
+
+interface PlanPurchaseInfo {
+  email: string
+  name: string
+  planLabel: string // e.g. "Free", "Core", "Pro", "Elite"
+  planFeatures?: string[] // list of plan features
+  loginUrl: string
+}
+
+export async function sendPlanConfirmationEmail(info: PlanPurchaseInfo) {
+  const featuresList = info.planFeatures
+    ? info.planFeatures
+        .map(f => `<li style="margin:6px 0;color:#475569">${f}</li>`)
+        .join('')
+    : ''
+
+  await getResend().emails.send({
+    from: FROM_EMAIL,
+    to: info.email,
+    subject: `Welcome to ExamPassPro ${info.planLabel} — Your access is ready!`,
+    html: `
+      <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#1e293b">
+        <h2 style="color:#0ea5e9;margin:0 0 20px 0">🎉 Payment Successful!</h2>
+
+        <p>Hi ${info.name},</p>
+
+        <p>Thank you for your purchase! Your <strong>${info.planLabel}</strong> plan is now active and ready to use.</p>
+
+        ${
+          featuresList
+            ? `
+        <div style="background:#f0f9ff;border-radius:8px;padding:16px;margin:20px 0;border-left:4px solid #0ea5e9">
+          <p style="margin:0 0 12px 0;font-weight:bold;color:#0c4a6e">What's Included:</p>
+          <ul style="list-style:none;padding:0;margin:0">
+            ${featuresList}
+          </ul>
+        </div>
+        `
+            : ''
+        }
+
+        <p style="margin:24px 0 16px 0">
+          <a href="${info.loginUrl}" style="display:inline-block;background:#0ea5e9;color:white;padding:12px 32px;border-radius:6px;text-decoration:none;font-weight:bold">
+            Sign In to Get Started →
+          </a>
+        </p>
+
+        <p style="margin-top:32px;padding-top:20px;border-top:1px solid #e2e8f0;font-size:13px;color:#64748b">
+          If you have any questions, feel free to reply to this email or visit our support page.<br>
+          <strong>The ExamPassPro Team</strong>
+        </p>
+      </div>
+    `,
+  })
+}
