@@ -86,10 +86,14 @@ export default async function LabsPage() {
   const { data: coursesRaw } = await supabase
     .from('courses')
     .select('*')
-    .eq('is_published', true)
     .order('enrolled_count', { ascending: false })
     .limit(40)
-  const courses = (coursesRaw as Course[] | null) ?? FALLBACK_COURSES
+
+  // Use DB courses if available + fill with fallback to ensure 40 total
+  const dbCourses = (coursesRaw as Course[] | null) ?? []
+  const courseSlugs = new Set(dbCourses.map(c => c.slug))
+  const fallbackCourses = FALLBACK_COURSES.filter(c => !courseSlugs.has(c.slug))
+  const courses = [...dbCourses, ...fallbackCourses].slice(0, 40)
 
   // Current user + purchases (graceful — no error if not logged in)
   const { data: { user } } = await supabase.auth.getUser()
