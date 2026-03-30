@@ -79,8 +79,8 @@ export default function ComparisonsPage() {
       <section className="relative bg-gradient-to-r from-purple-600 to-indigo-700 py-16 px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1280&fit=crop"
-            alt="IT Certification Comparisons"
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&h=1280&fit=crop"
+            alt="IT Certification Comparisons and tech infrastructure"
             className="w-full h-full object-cover"
           />
         </div>

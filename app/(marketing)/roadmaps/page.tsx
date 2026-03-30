@@ -79,8 +79,8 @@ export default function RoadmapsPage() {
       <section className="relative bg-gradient-to-r from-blue-600 to-cyan-700 py-16 px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&h=1280&fit=crop"
-            alt="IT Certification Roadmaps"
+            src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1920&h=1280&fit=crop"
+            alt="IT Certification Roadmaps and career paths"
             className="w-full h-full object-cover"
           />
         </div>
