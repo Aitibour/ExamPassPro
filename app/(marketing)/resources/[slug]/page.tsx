@@ -569,6 +569,12 @@ const blogPosts: Record<string, BlogPost> = {
   },
 }
 
+export function generateStaticParams() {
+  return Object.keys(blogPosts).map((slug) => ({
+    slug,
+  }))
+}
+
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = blogPosts[params.slug]
   if (!post) return {}

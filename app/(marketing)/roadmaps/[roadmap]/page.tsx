@@ -248,6 +248,12 @@ const roadmapsData: Record<string, RoadmapContent> = {
   },
 }
 
+export function generateStaticParams() {
+  return Object.keys(roadmapsData).map((roadmap) => ({
+    roadmap,
+  }))
+}
+
 export function generateMetadata({ params }: { params: { roadmap: string } }): Metadata {
   const content = roadmapsData[params.roadmap]
   if (!content) return {}

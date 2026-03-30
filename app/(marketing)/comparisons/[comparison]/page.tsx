@@ -218,6 +218,12 @@ const comparisonsData: Record<string, ComparisonContent> = {
   },
 }
 
+export function generateStaticParams() {
+  return Object.keys(comparisonsData).map((comparison) => ({
+    comparison,
+  }))
+}
+
 export function generateMetadata({ params }: { params: { comparison: string } }): Metadata {
   const content = comparisonsData[params.comparison]
   if (!content) return {}
