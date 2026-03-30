@@ -24,6 +24,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
           />
         )}
+
+        {/* Claspo Chat Widget */}
+        <Script
+          id="claspo-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function (t, e, c, n) {
+                var s = e.createElement(c);
+                s.async = 1;
+                s.src = 'https://scripts.claspo.io/scripts/' + n + '.js';
+                var r = e.scripts[0];
+                r.parentNode.insertBefore(s, r);
+                var f = function () { f.c(arguments); };
+                f.q = [];
+                f.c = function () { f.q.push(arguments); };
+                t['claspo'] = t['claspo'] || f;
+              }(window, document, 'script', 'F2FADCC8DF06494299B898BD09E565FB');
+              claspo('init');
+            `,
+          }}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
