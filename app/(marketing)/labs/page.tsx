@@ -82,13 +82,13 @@ const CATEGORIES = [
 export default async function LabsPage() {
   const supabase = await createClient()
 
-  // Courses
+  // Courses (all 40 certifications)
   const { data: coursesRaw } = await supabase
     .from('courses')
     .select('*')
     .eq('is_published', true)
     .order('enrolled_count', { ascending: false })
-    .limit(35)
+    .limit(40)
   const courses = (coursesRaw as Course[] | null) ?? FALLBACK_COURSES
 
   // Current user + purchases (graceful — no error if not logged in)
@@ -176,71 +176,68 @@ export default async function LabsPage() {
       </div>
 
       {/* Labs grid */}
-      <div className="max-w-5xl mx-auto px-6 lg:px-12 py-10">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+        <h2 className="text-2xl font-black text-slate-900 mb-6">Practice Labs for All 40 Certifications</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayCourses.map(course => {
             const hasAccess = ownedCourseIds.has(course.id)
             const plan = ownedPlans[course.id] ?? null
             const planLevel = ['starter','pro','platinum','all_access'].indexOf(plan ?? '')
 
             return (
-              <div key={course.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+              <div key={course.id} className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-sm transition-shadow">
                 {/* Card header */}
-                <div className="relative h-24 flex items-center justify-center" style={{ background: course.brand_color }}>
-                  <div className="w-16 h-16 flex items-center justify-center">
+                <div className="relative h-20 flex items-center justify-center" style={{ background: course.brand_color }}>
+                  <div className="w-14 h-14 flex items-center justify-center">
                     <CourseLogo slug={course.slug} fill />
                   </div>
                   {hasAccess && (
-                    <div className="absolute top-2.5 right-2.5 bg-green-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
-                      Enrolled
+                    <div className="absolute top-1.5 right-1.5 bg-green-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                      ✓
                     </div>
                   )}
                 </div>
 
                 {/* Card body */}
-                <div className="p-4">
-                  <div className="font-black text-slate-900 text-sm leading-tight mb-0.5">{course.title}</div>
-                  <div className="text-xs text-slate-400 mb-4">{course.description}</div>
+                <div className="p-3">
+                  <div className="font-bold text-slate-900 text-xs leading-tight mb-1">{course.title}</div>
 
-                  {/* Labs list */}
-                  <div className="space-y-2 mb-4">
-                    {LAB_TYPES.map(lt => {
+                  {/* Labs quick links */}
+                  <div className="space-y-1.5 mb-3">
+                    {LAB_TYPES.slice(0, 2).map(lt => {
                       const accessible = hasAccess && planLevel >= ['starter','pro','platinum','all_access'].indexOf(lt.plans[0])
                       return (
                         <div key={lt.key} className="flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-xs text-slate-600">
-                            <span>{lt.icon}</span>
-                            <span className="font-medium">{lt.label}</span>
-                          </div>
+                          <span className="text-[10px] text-slate-600 font-medium">{lt.icon} {lt.label}</span>
                           {accessible ? (
                             <Link
-                              href={lt.key === 'mock' ? `/exam/${course.id}` : lt.key === 'study' ? `/study/${course.id}` : `/dashboard`}
-                              className="text-[10px] font-bold text-sky-600 hover:text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full"
+                              href={lt.key === 'mock' ? `/exam/${course.id}` : `/study/${course.id}`}
+                              className="text-[9px] font-bold text-sky-600 hover:text-sky-700"
                             >
-                              Launch →
+                              Start →
                             </Link>
                           ) : (
-                            <span className="text-[10px] text-slate-300 font-medium">🔒 Locked</span>
+                            <span className="text-[8px] text-slate-300">🔒</span>
                           )}
                         </div>
                       )
                     })}
                   </div>
 
-                  {/* CTA */}
+                  {/* CTA Button */}
                   {hasAccess ? (
                     <Link
                       href={`/exam/${course.id}`}
-                      className="w-full block text-center bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 rounded-xl text-xs transition-colors"
+                      className="w-full block text-center bg-sky-500 hover:bg-sky-600 text-white font-bold py-1.5 rounded-lg text-[10px] transition-colors"
                     >
-                      Go to Labs →
+                      Launch Labs
                     </Link>
                   ) : (
                     <Link
                       href={`/courses/${course.slug}`}
-                      className="w-full block text-center border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold py-2 rounded-xl text-xs transition-colors"
+                      className="w-full block text-center border border-sky-200 hover:bg-sky-50 text-sky-600 font-bold py-1.5 rounded-lg text-[10px] transition-colors"
                     >
-                      Get Access →
+                      Unlock
                     </Link>
                   )}
                 </div>
