@@ -1,8 +1,29 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { CourseGrid } from '@/components/courses/CourseGrid'
 import { FALLBACK_COURSES } from '@/lib/courses-data'
 import type { Course } from '@/lib/supabase/database.types'
+
+export const metadata: Metadata = {
+  title: 'IT Certification Exam Dumps & Practice Tests — ExamPassPro',
+  description: 'Browse 40+ IT certification exam prep courses with real exam-style questions, mock exams, and guaranteed results. CompTIA, Cisco, Microsoft, AWS and more.',
+  alternates: {
+    canonical: '/courses',
+  },
+  openGraph: {
+    title: 'IT Certification Exam Dumps & Practice Tests',
+    description: 'Browse 40+ IT certification exam prep courses with real exam-style questions and mock exams.',
+    url: 'https://exampasspro.com/courses',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'IT Certification Courses' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IT Certification Exam Dumps & Practice Tests',
+    description: 'Browse 40+ IT certification exam prep courses with real exam-style questions.',
+  },
+}
 
 export default async function CoursesPage() {
   const supabase = await createClient()

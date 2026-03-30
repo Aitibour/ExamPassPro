@@ -1,3 +1,25 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact ExamPassPro — Support & Coaching Inquiries',
+  description: 'Get in touch with ExamPassPro for support, billing questions, or coaching inquiries. We respond within hours on business days.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contact ExamPassPro',
+    description: 'Get in touch with ExamPassPro for support, billing, and coaching inquiries.',
+    url: 'https://exampasspro.com/contact',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Contact Us' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact ExamPassPro',
+    description: 'Get in touch with ExamPassPro for support and inquiries.',
+  },
+}
+
 export default function ContactPage() {
   return (
     <div className="bg-white">

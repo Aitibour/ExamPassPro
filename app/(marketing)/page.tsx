@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { CourseCard } from '@/components/courses/CourseCard'
 import { PartnerLogo } from '@/components/courses/CourseLogo'
 import { FALLBACK_COURSES } from '@/lib/courses-data'
+import { organizationSchema } from '@/lib/schemas'
 import type { Course } from '@/lib/supabase/database.types'
 
 const TOTAL_COURSES = 40
@@ -105,6 +106,12 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* JSON-LD Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center overflow-hidden">
         {/* Video background */}

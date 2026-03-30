@@ -1,6 +1,27 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { BookingCalendar } from '@/components/coaching/BookingCalendar'
+
+export const metadata: Metadata = {
+  title: 'Book Your Coaching Session — ExamPassPro',
+  description: 'Schedule your expert 1-on-1 coaching session with ExamPassPro. Choose your time and get personalized guidance for certification success.',
+  alternates: {
+    canonical: '/coaching/book',
+  },
+  openGraph: {
+    title: 'Book Your Coaching Session',
+    description: 'Schedule your expert 1-on-1 coaching session with ExamPassPro.',
+    url: 'https://exampasspro.com/coaching/book',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Book Coaching' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Book Your Coaching Session',
+    description: 'Schedule your expert 1-on-1 coaching session with ExamPassPro.',
+  },
+}
 
 const PACKAGES: Record<string, { name: string; price: string; duration: string }> = {
   'focus-session': { name: 'Focus Session', price: '$99', duration: '45 minutes' },

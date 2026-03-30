@@ -1,0 +1,27 @@
+# ExamPassPro robots.txt
+# Allow all major search engines to crawl public pages
+
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /onboarding/
+Disallow: /checkout
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://exampasspro.com/sitemap.xml
+
+# Crawl delay (reasonable for Vercel)
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

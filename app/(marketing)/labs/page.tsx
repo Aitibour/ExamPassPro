@@ -1,8 +1,29 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { CourseLogo } from '@/components/courses/CourseLogo'
 import { FALLBACK_COURSES } from '@/lib/courses-data'
 import type { Course, Purchase } from '@/lib/supabase/database.types'
+
+export const metadata: Metadata = {
+  title: 'Certification Practice Labs — Hands-On Learning — ExamPassPro',
+  description: 'Practice exam labs with mock exams, study mode, and AI tutor assistance. Master IT certifications with hands-on practice tests.',
+  alternates: {
+    canonical: '/labs',
+  },
+  openGraph: {
+    title: 'Certification Practice Labs',
+    description: 'Practice exam labs with mock exams, study mode, and AI tutor assistance for IT certifications.',
+    url: 'https://exampasspro.com/labs',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Practice Labs' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Certification Practice Labs',
+    description: 'Practice with mock exams, study mode, and AI tutor assistance.',
+  },
+}
 
 const LAB_TYPES = [
   { key: 'mock',  label: 'Mock Exam',    icon: '🧪', desc: 'Full timed exam — real format', plans: ['starter','pro','platinum','all_access'] },

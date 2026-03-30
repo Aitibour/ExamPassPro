@@ -1,4 +1,25 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About ExamPassPro — Our Mission & Story',
+  description: 'Learn how ExamPassPro helps IT professionals pass their certification exams on the first attempt with real exam questions and expert coaching.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About ExamPassPro',
+    description: 'Learn how ExamPassPro helps IT professionals pass their certification exams on the first attempt.',
+    url: 'https://exampasspro.com/about',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About ExamPassPro' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About ExamPassPro',
+    description: 'Learn how ExamPassPro helps IT professionals pass their certification exams on the first attempt.',
+  },
+}
 
 export default function AboutPage() {
   return (

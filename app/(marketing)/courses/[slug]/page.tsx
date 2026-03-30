@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { CourseLogo } from '@/components/courses/CourseLogo'
 import { FALLBACK_COURSES } from '@/lib/courses-data'
 import { PLAN_FEATURES, PLAN_PRICES } from '@/lib/stripe'
+import { generateCourseSchema } from '@/lib/schemas'
 import type { Course } from '@/lib/supabase/database.types'
 
 interface PageProps {
@@ -17,6 +19,51 @@ const COURSE_PLANS = [
   { key: 'all_access', label: 'Elite', highlight: false, badge: 'Best Value',   cta: 'Get Elite',   href: (_id: string) => 'https://www.paypal.com/ncp/payment/RYY4VR2HE4RG6' },
 ]
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const supabase = await createClient()
+
+  const { data: courseRaw } = await supabase
+    .from('courses')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .single()
+
+  const course = (courseRaw as Course | null) ?? FALLBACK_COURSES.find(c => c.slug === slug) ?? null
+  if (!course) return { title: 'Course Not Found' }
+
+  const description = course.description || `Master ${course.title} with real exam questions, mock exams, and expert coaching at ExamPassPro.`
+  const title = `${course.title} Exam Dumps & Practice Tests — ExamPassPro`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/courses/${course.slug}`,
+    },
+    openGraph: {
+      title: course.title,
+      description,
+      url: `https://exampasspro.com/courses/${course.slug}`,
+      type: 'website',
+      images: [
+        {
+          url: course.icon_url || '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: course.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: course.title,
+      description,
+      images: [course.icon_url || '/og-image.png'],
+    },
+  }
+}
 
 export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
@@ -34,6 +81,22 @@ export default async function CoursePage({ params }: PageProps) {
 
   return (
     <div className="bg-white">
+      {/* JSON-LD Course Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateCourseSchema({
+              title: course.title,
+              description: course.description || '',
+              slug: course.slug,
+              icon_url: course.icon_url,
+              brand_color: course.brand_color,
+            })
+          ),
+        }}
+      />
+
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ background: course.brand_color }}>
         <div className="absolute inset-0 bg-black/40" />

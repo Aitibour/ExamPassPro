@@ -1,4 +1,26 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import { coachingServiceSchema } from '@/lib/schemas'
+
+export const metadata: Metadata = {
+  title: 'Expert IT Certification Coaching — Personal Guidance — ExamPassPro',
+  description: 'Get expert 1-on-1 coaching from certified IT professionals. Personalized guidance, mock exam reviews, and guaranteed success for your certification.',
+  alternates: {
+    canonical: '/coaching',
+  },
+  openGraph: {
+    title: 'Expert IT Certification Coaching',
+    description: 'Get expert 1-on-1 coaching from certified IT professionals. Personalized guidance and guaranteed certification success.',
+    url: 'https://exampasspro.com/coaching',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Expert Coaching' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Expert IT Certification Coaching',
+    description: 'Get expert 1-on-1 coaching from certified IT professionals.',
+  },
+}
 
 const PACKAGES = [
   {
@@ -94,6 +116,11 @@ const COACHES = [
 export default function CoachingPage() {
   return (
     <div className="bg-white">
+      {/* JSON-LD Service Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(coachingServiceSchema) }}
+      />
 
       {/* Hero */}
       <section className="bg-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16">
