@@ -60,6 +60,12 @@ export async function POST(req: Request) {
         console.error('Stripe webhook: missing client_reference_id on session', session.id)
         return NextResponse.json({ error: 'Missing user reference' }, { status: 400 })
       }
+      // Validate plan is a known value before writing to DB
+      const VALID_PLANS = new Set(['free', 'starter', 'pro', 'all_access'])
+      if (!VALID_PLANS.has(metadata.plan)) {
+        console.error('Stripe webhook: unknown plan in metadata', metadata.plan, session.id)
+        return NextResponse.json({ error: 'Invalid plan' }, { status: 400 })
+      }
       await supabase.from('purchases').insert({
         user_id:  userId,
         course_id: metadata.course_id,

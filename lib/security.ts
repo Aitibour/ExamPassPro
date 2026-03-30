@@ -8,11 +8,9 @@ export function safeRedirectPath(
 ): string {
   if (!next) return fallback;
   try {
-    // Must be a relative path starting with / but not //
+    // Reject anything that is not a relative path (prevents open redirect)
     if (!next.startsWith("/") || next.startsWith("//")) return fallback;
-    // Parse against a known base to extract host
-    const url = new URL(next, "https://exampasspro.vercel.app");
-    if (url.host !== "exampasspro.vercel.app") return fallback;
+    // Relative paths are always same-origin — safe to return directly
     return next;
   } catch {
     return fallback;

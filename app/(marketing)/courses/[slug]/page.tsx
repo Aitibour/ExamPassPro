@@ -17,14 +17,6 @@ const COURSE_PLANS = [
   { key: 'all_access', label: 'Elite', highlight: false, badge: 'Best Value',   cta: 'Get Elite',   href: (id: string) => `/checkout?plan=all_access&course=${id}` },
 ]
 
-const WHAT_YOU_GET = [
-  { icon: '🧪', title: 'Mock Exams', desc: 'Full-length timed exams that mirror the real test format and difficulty.' },
-  { icon: '📖', title: 'Study Mode', desc: 'Practice question-by-question with instant AI-powered explanations.' },
-  { icon: '🤖', title: 'AI Tutor', desc: 'Ask Gemini AI anything about the exam — available 24/7.' },
-  { icon: '📊', title: 'Domain Tracking', desc: 'See exactly which domains you need to focus on with score breakdowns.' },
-  { icon: '🎯', title: 'Pass Guarantee', desc: 'Pass your exam or get a full refund — no questions asked.' },
-  { icon: '📹', title: 'Session Recording', desc: 'All coaching sessions are recorded and sent to you after.' },
-]
 
 export default async function CoursePage({ params }: PageProps) {
   const { slug } = await params
@@ -70,22 +62,6 @@ export default async function CoursePage({ params }: PageProps) {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* What you get */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-12 py-14">
-        <h2 className="text-2xl font-black text-slate-900 mb-8">What&apos;s Included</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {WHAT_YOU_GET.map(item => (
-            <div key={item.title} className="flex items-start gap-4 p-5 rounded-xl border border-slate-100 bg-slate-50">
-              <div className="text-2xl flex-shrink-0">{item.icon}</div>
-              <div>
-                <div className="font-bold text-slate-900 text-sm mb-1">{item.title}</div>
-                <div className="text-slate-500 text-xs leading-relaxed">{item.desc}</div>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 

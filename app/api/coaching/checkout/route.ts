@@ -25,8 +25,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 
-  // Force the booking email to the authenticated user's email
-  const bookingEmail = user.email ?? email
+  // Always use the server-verified user email — never the client-provided one
+  if (!user.email) {
+    return NextResponse.json({ error: 'Authenticated email required' }, { status: 400 })
+  }
+  const bookingEmail = user.email
 
   const stripe = getStripe()
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
