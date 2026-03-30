@@ -28,10 +28,29 @@ export function Navbar({ user, displayName = '', initials = '?', planLabel = 'Fr
     { href: '/contact',  label: 'Contact' },
   ]
 
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    if (href === '/#pricing') return false
-    return pathname.startsWith(href)
+  const isActive = (href: string): boolean => {
+    // Special case for home
+    if (href === '/') {
+      return pathname === '/'
+    }
+
+    // Pricing is a hash link, never "active" in routing
+    if (href === '/#pricing') {
+      return false
+    }
+
+    // For other routes, check if pathname starts with href
+    // but make sure we're not matching a partial path
+    if (pathname === href) {
+      return true
+    }
+
+    // Match /courses, /courses/[slug], etc.
+    if (pathname.startsWith(href + '/')) {
+      return true
+    }
+
+    return false
   }
 
   return (
