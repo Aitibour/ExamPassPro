@@ -364,6 +364,30 @@ export default function RoadmapPage({ params }: { params: { roadmap: string } })
         </div>
       </section>
 
+      {/* Related Content */}
+      <section className="bg-slate-50 border-t border-slate-200 py-12 px-6">
+        <div className="max-w-3xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Related Learning Resources</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/comparisons" className="p-5 bg-white rounded-lg border border-slate-200 hover:border-sky-400 transition-colors text-center">
+              <p className="text-2xl mb-2">⚖️</p>
+              <p className="font-semibold text-slate-900 mb-2">Compare Certs</p>
+              <p className="text-sm text-slate-600">Side-by-side certification comparisons</p>
+            </Link>
+            <Link href="/resources" className="p-5 bg-white rounded-lg border border-slate-200 hover:border-sky-400 transition-colors text-center">
+              <p className="text-2xl mb-2">📚</p>
+              <p className="font-semibold text-slate-900 mb-2">Study Guides</p>
+              <p className="text-sm text-slate-600">In-depth exam preparation guides</p>
+            </Link>
+            <Link href="/coaching" className="p-5 bg-white rounded-lg border border-slate-200 hover:border-sky-400 transition-colors text-center">
+              <p className="text-2xl mb-2">🧑‍🎓</p>
+              <p className="font-semibold text-slate-900 mb-2">Get Coaching</p>
+              <p className="text-sm text-slate-600">AI-powered personalized learning</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Next Steps CTA */}
       <section className="bg-sky-50 border-t border-sky-100 py-12 px-6">
         <div className="max-w-3xl mx-auto text-center">

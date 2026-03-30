@@ -295,8 +295,23 @@ export default function ComparisonPage({ params }: { params: { comparison: strin
           </div>
         ))}
 
+        {/* Related Resources */}
+        <div className="mt-12 p-8 bg-slate-100 rounded-xl border border-slate-200">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">Explore Related Resources</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <Link href="/resources" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-sky-400 transition-colors">
+              <p className="font-semibold text-slate-900 mb-1">📚 Study Guides</p>
+              <p className="text-sm text-slate-600">In-depth tutorials and exam strategies</p>
+            </Link>
+            <Link href="/roadmaps" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-sky-400 transition-colors">
+              <p className="font-semibold text-slate-900 mb-1">🗺️ Certification Paths</p>
+              <p className="text-sm text-slate-600">Career progression and learning roadmaps</p>
+            </Link>
+          </div>
+        </div>
+
         {/* CTA */}
-        <div className="mt-12 p-8 bg-sky-50 rounded-xl border border-sky-200">
+        <div className="mt-6 p-8 bg-sky-50 rounded-xl border border-sky-200">
           <h3 className="text-xl font-bold text-slate-900 mb-3">Ready to Study for Your Certification?</h3>
           <p className="text-slate-600 mb-6">
             ExamPassPro offers comprehensive exam dumps, practice tests, and AI-powered study assistance for all these certifications.
