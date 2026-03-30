@@ -64,15 +64,22 @@ export default async function LabsPage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Hero */}
-      <section className="bg-slate-900 py-14 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-            <Link href="/" className="hover:text-slate-200 transition-colors">Home</Link>
+      <section className="relative bg-gradient-to-r from-indigo-600 to-indigo-800 py-16 px-6 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
+            alt="Certification Practice Labs"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 text-xs text-indigo-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>›</span>
-            <span className="text-slate-200">Labs</span>
+            <span className="text-white">Labs</span>
           </div>
           <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">Certification Practice Labs</h1>
-          <p className="text-slate-400 text-base max-w-2xl">
+          <p className="text-indigo-100 text-base max-w-2xl">
             {displayCourses.length} hands-on practice labs with mock exams, study mode with AI explanations, and domain score tracking.
           </p>
         </div>

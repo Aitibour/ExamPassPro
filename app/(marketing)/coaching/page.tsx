@@ -123,15 +123,22 @@ export default function CoachingPage() {
       />
 
       {/* Hero */}
-      <section className="bg-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16">
-        <div>
+      <section className="relative bg-gradient-to-r from-sky-600 to-cyan-700 min-h-[240px] flex items-center justify-center px-6 text-center py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1280&fit=crop"
+            alt="Expert IT Certification Coaching"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative">
           <div className="inline-flex items-center gap-2 bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-bold px-3 py-1.5 rounded-full mb-5">
             Live 1-to-1 Sessions · Certified Instructors
           </div>
           <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">
-            Pass Faster with <span className="text-sky-400">Personal Coaching</span>
+            Pass Faster with <span className="text-sky-200">Personal Coaching</span>
           </h1>
-          <p className="text-slate-400 text-lg mb-6">
+          <p className="text-sky-100 text-lg mb-6">
             Book a live session with an expert who has already passed the exam you're preparing for.
           </p>
           <Link

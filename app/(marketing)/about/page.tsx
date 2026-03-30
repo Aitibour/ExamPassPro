@@ -26,13 +26,20 @@ export default function AboutPage() {
     <div className="bg-white">
 
       {/* Hero */}
-      <section className="bg-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16">
-        <div>
+      <section className="relative bg-gradient-to-r from-slate-800 to-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&h=1280&fit=crop"
+            alt="About ExamPassPro"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative">
           <div className="inline-flex items-center gap-2 bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-bold px-3 py-1.5 rounded-full mb-5">
             Our Story
           </div>
           <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">About ExamPassPro</h1>
-          <p className="text-slate-400 text-lg">We help IT professionals pass their certification exams on the first attempt — or we refund every penny.</p>
+          <p className="text-slate-300 text-lg">We help IT professionals pass their certification exams on the first attempt — or we refund every penny.</p>
         </div>
       </section>
 

@@ -23,13 +23,20 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="bg-white">
-      <section className="bg-slate-900 min-h-[240px] flex items-center justify-center px-6 text-center py-16">
-        <div>
+      <section className="relative bg-gradient-to-r from-teal-600 to-cyan-700 min-h-[240px] flex items-center justify-center px-6 text-center py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&h=1280&fit=crop"
+            alt="Contact ExamPassPro"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative">
           <div className="inline-flex items-center gap-2 bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-bold px-3 py-1.5 rounded-full mb-5">
             Support · Billing · Coaching
           </div>
           <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">Contact Us</h1>
-          <p className="text-slate-400 text-lg">We usually respond within a few hours on business days.</p>
+          <p className="text-teal-100 text-lg">We usually respond within a few hours on business days.</p>
         </div>
       </section>
 
