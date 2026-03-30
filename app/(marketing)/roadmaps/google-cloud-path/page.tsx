@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Google Cloud Certification Path & Learning Roadmap',
+    description: 'Step-by-step GCP career path from Associate Cloud Engineer to Professional Cloud Architect.',
+  },
 }
 
 export default function Page() {

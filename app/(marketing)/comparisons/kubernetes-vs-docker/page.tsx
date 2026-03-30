@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kubernetes vs Docker: What\'s the Difference?',
+    description: 'Comprehensive guide comparing Kubernetes and Docker container technologies.',
+  },
 }
 
 export default function Page() {

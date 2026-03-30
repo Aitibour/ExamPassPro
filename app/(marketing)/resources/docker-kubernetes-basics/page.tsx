@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Docker vs Kubernetes Guide',
+    description: 'Complete guide to understanding Docker containerization and Kubernetes orchestration.',
+  },
 }
 
 export default function Page() {

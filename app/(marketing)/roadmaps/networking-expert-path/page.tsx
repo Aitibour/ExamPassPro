@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Networking Expert Certification Path',
+    description: 'Step-by-step networking career path from CompTIA Network+ to Cisco CCNP expert certification.',
+  },
 }
 
 export default function Page() {

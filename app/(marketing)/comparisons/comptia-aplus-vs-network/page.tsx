@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CompTIA A+ vs CompTIA Network+',
+    description: 'Compare CompTIA A+ vs Network+ certifications: difficulty, topics, jobs, and salary.',
+  },
 }
 
 export default function Page() {

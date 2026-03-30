@@ -70,6 +70,12 @@ const comparisons = [
     shortDesc: 'Container basics vs orchestration — understand the Docker and Kubernetes relationship.',
     difficulty: 'Technical Comparison',
   },
+  {
+    slug: 'google-cloud-professional-vs-associate',
+    title: 'Google Cloud Professional vs Associate',
+    shortDesc: 'Advanced vs intermediate — compare Google Cloud Professional and Associate certifications.',
+    difficulty: 'Expert Comparison',
+  },
 ]
 
 export default function ComparisonsPage() {
@@ -101,7 +107,7 @@ export default function ComparisonsPage() {
       <section className="max-w-7xl mx-auto py-8 px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="p-6 bg-white rounded-lg border border-slate-200 text-center">
-            <div className="text-3xl font-black text-sky-600 mb-2">8</div>
+            <div className="text-3xl font-black text-sky-600 mb-2">9</div>
             <p className="text-slate-600 text-sm">Popular certification comparisons available</p>
           </div>
           <div className="p-6 bg-white rounded-lg border border-slate-200 text-center">

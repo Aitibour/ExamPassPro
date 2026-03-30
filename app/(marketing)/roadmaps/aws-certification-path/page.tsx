@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AWS Certification Path & Learning Roadmap',
+    description: 'Step-by-step AWS career path from Cloud Practitioner to Solutions Architect Professional.',
+  },
 }
 
 export default function Page() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Google Cloud Professional vs Associate',
+    description: 'Compare Google Cloud Professional vs Associate certifications.',
+  },
 }
 
 export default function Page() {

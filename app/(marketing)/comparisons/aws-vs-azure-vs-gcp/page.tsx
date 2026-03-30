@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AWS vs Microsoft Azure vs Google Cloud',
+    description: 'Compare the 3 major cloud platforms for certifications and career paths.',
+  },
 }
 
 export default function Page() {

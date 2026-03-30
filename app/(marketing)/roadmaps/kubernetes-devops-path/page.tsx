@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kubernetes & DevOps Certification Path',
+    description: 'Step-by-step path from Docker basics to Kubernetes CKA expert certification.',
+  },
 }
 
 export default function Page() {

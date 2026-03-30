@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CompTIA Security+ vs Cisco CCNA',
+    description: 'Cybersecurity vs networking: compare Security+ and CCNA certifications.',
+  },
 }
 
 export default function Page() {

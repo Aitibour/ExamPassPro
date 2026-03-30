@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kubernetes CKA vs Docker Certified Associate',
+    description: 'Container orchestration vs containerization — compare CKA and Docker Certified exams.',
+  },
 }
 
 export default function Page() {

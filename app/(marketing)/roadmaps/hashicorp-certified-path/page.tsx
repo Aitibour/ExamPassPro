@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HashiCorp Certified Practitioner Path',
+    description: 'Master infrastructure automation with HashiCorp certifications.',
+  },
 }
 
 export default function Page() {

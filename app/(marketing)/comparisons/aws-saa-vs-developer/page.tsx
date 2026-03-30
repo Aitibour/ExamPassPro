@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AWS SAA vs Developer Associate',
+    description: 'Compare AWS Solutions Architect Associate vs Developer Associate certifications.',
+  },
 }
 
 export default function Page() {

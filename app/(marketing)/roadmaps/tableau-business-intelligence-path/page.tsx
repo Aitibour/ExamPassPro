@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tableau Business Intelligence Path',
+    description: 'Master data visualization and analytics with the Tableau certification roadmap.',
+  },
 }
 
 export default function Page() {

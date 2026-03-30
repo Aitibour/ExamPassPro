@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pass AWS SAA-C03 on First Try',
+    description: 'Expert 12-week study strategy for AWS Solutions Architect Associate certification.',
+  },
 }
 
 export default function Page() {

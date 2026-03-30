@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'JSON & REST API Basics',
+    description: 'Master JSON and REST API fundamentals for IT certifications.',
+  },
 }
 
 export default function Page() {

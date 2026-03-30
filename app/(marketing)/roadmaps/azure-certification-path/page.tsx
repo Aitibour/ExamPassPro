@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Microsoft Azure Certification Path & Learning Roadmap',
+    description: 'Step-by-step Azure career path from AZ-900 Fundamentals to AZ-305 Solutions Architect.',
+  },
 }
 
 export default function Page() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Science-Based Study Habits for IT Certifications',
+    description: 'Learn proven study techniques: spaced repetition, active recall, interleaving.',
+  },
 }
 
 export default function Page() {

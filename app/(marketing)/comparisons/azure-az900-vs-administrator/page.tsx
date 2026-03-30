@@ -7,6 +7,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/comparisons/azure-az900-vs-administrator',
   },
+  openGraph: {
+    title: 'Azure AZ-900 vs Administrator (AZ-104)',
+    description: 'Compare Azure AZ-900 Fundamentals vs AZ-104 Administrator certifications.',
+    url: 'https://exampasspro.com/comparisons/azure-az900-vs-administrator',
+    type: 'article',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Azure AZ-900 vs Administrator (AZ-104)',
+    description: 'Compare Azure AZ-900 Fundamentals vs AZ-104 Administrator certifications.',
+  },
 }
 
 export default function Page() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CompTIA & Cybersecurity Certification Path',
+    description: 'Step-by-step cybersecurity career path from CompTIA fundamentals to CISSP expert certification.',
+  },
 }
 
 export default function Page() {

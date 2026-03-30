@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CompTIA Security+ Domains Guide',
+    description: 'Detailed explanation of all 6 Security+ exam domains and topics.',
+  },
 }
 
 export default function Page() {

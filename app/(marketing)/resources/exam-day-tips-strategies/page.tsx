@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IT Certification Exam Day Tips',
+    description: 'Proven strategies to excel on IT certification exam day.',
+  },
 }
 
 export default function Page() {

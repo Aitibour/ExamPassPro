@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AWS SAA-C03 vs Google Cloud Associate Cloud Engineer',
+    description: 'Head-to-head comparison of AWS SAA and Google Cloud ACE certifications.',
+  },
 }
 
 export default function Page() {

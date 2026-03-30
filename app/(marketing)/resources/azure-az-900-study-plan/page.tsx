@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Azure AZ-900 4-Week Study Plan',
+    description: 'Fast-track plan to pass Azure Fundamentals certification in just 4 weeks.',
+  },
 }
 
 export default function Page() {
