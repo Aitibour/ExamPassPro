@@ -17,10 +17,10 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient()
 
     // Publish all courses
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('courses')
       .update({ is_published: true })
-      .neq('id', null)
+      .gt('id', 0)
 
     if (error) {
       return NextResponse.json(
