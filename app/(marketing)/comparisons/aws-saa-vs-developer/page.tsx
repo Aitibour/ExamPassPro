@@ -19,20 +19,36 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-slate-50 min-h-screen">
-      {/* Hero */}
-      <section className="bg-slate-900 py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-            <Link href="/" className="hover:text-slate-200 transition-colors">Home</Link>
-            <span>›</span>
-            <Link href="/comparisons" className="hover:text-slate-200 transition-colors">Comparisons</Link>
+      {/* Hero with Image */}
+      <section className="bg-gradient-to-r from-orange-500 to-yellow-600 py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="flex items-center gap-2 text-xs text-orange-100 mb-4">
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                <span>›</span>
+                <Link href="/comparisons" className="hover:text-white transition-colors">Comparisons</Link>
+              </div>
+              <h1 className="text-3xl lg:text-4xl font-black text-white mb-4">
+                AWS SAA vs Developer Associate
+              </h1>
+              <p className="text-orange-100 text-base mb-6">
+                Compare AWS Solutions Architect Associate vs Developer Associate certifications.
+              </p>
+              <div className="flex gap-4">
+                <Link href="/courses" className="inline-flex px-6 py-2 bg-white text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition-colors">
+                  View AWS Courses
+                </Link>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <img
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&h=1280&fit=crop"
+                alt="AWS cloud architecture"
+                className="rounded-lg shadow-lg w-full"
+              />
+            </div>
           </div>
-          <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">
-            AWS SAA vs Developer Associate
-          </h1>
-          <p className="text-slate-400 text-base">
-            Compare AWS Solutions Architect Associate vs Developer Associate certifications.
-          </p>
         </div>
       </section>
 
