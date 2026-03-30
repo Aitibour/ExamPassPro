@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1920&h=1280&fit=crop"
-                alt="Kubernetes mastery"
+                src="https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=1920&h=1280&fit=crop"
+                alt="Kubernetes CKA exam preparation and coding"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>
