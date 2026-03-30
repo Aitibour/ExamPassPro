@@ -16,11 +16,12 @@ export async function POST(request: NextRequest) {
 
     const supabase = await createClient()
 
-    // Publish all courses
+    // Publish all courses using a filter that matches all rows
+    // Using gte with minimum UUID to match all records
     const { error } = await supabase
       .from('courses')
       .update({ is_published: true })
-      .gt('id', 0)
+      .gte('id', '00000000-0000-0000-0000-000000000000')
 
     if (error) {
       return NextResponse.json(
