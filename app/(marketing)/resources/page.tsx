@@ -101,15 +101,22 @@ export default function ResourcesPage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Hero */}
-      <section className="bg-slate-900 py-14 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-            <Link href="/" className="hover:text-slate-200 transition-colors">Home</Link>
+      <section className="relative bg-gradient-to-r from-green-600 to-emerald-700 py-16 px-6 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&h=1280&fit=crop"
+            alt="IT Certification Study Guides"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 text-xs text-green-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>›</span>
-            <span className="text-slate-200">Resources</span>
+            <span className="text-white">Resources</span>
           </div>
           <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">IT Certification Study Guides</h1>
-          <p className="text-slate-400 text-base max-w-3xl">
+          <p className="text-green-100 text-base max-w-3xl">
             Expert-written study guides, tips, and strategies to help you pass your IT certification on the first try. From AWS to Kubernetes, we cover all major certifications.
           </p>
         </div>
