@@ -4,14 +4,14 @@ import { createClient } from '@/lib/supabase/server'
 
 const COACHING_PRICES: Record<string, number> = {
   'focus-session': 9900,   // $99
-  'deep-dive':     14900,  // $149
-  'sprint-pack':   29900,  // $299
+  'deep-dive':     15900,  // $159
+  'sprint-pack':   19900,  // $199
 }
 
 const COACHING_NAMES: Record<string, string> = {
-  'focus-session': 'Focus Session (60 min)',
+  'focus-session': 'Focus Session (45 min)',
   'deep-dive':     'Deep Dive Session (90 min)',
-  'sprint-pack':   'Sprint Pack (3 × 60-min sessions)',
+  'sprint-pack':   'Intensive Session (120 min)',
 }
 
 export async function POST(req: Request) {

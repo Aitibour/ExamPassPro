@@ -63,7 +63,7 @@ const PRICING_PLANS = [
     features: [
       '4 mock exams — 60Q each · timed',
       '4 practice exams with explanations',
-      '1× 60-min coaching session (worth $99)',
+      '1× 45-min coaching session (worth $99)',
       'Unlimited Gemini AI assistant',
       'Performance analytics',
       'Priority support',
@@ -79,7 +79,7 @@ const PRICING_PLANS = [
     features: [
       '10 mock exams — full question bank',
       '10 practice exams with explanations',
-      '1× 90-min coaching session (worth $149)',
+      '1× 90-min coaching session (worth $159)',
       'Unlimited Gemini AI assistant',
       'Full performance analytics',
       '100% Pass Guarantee or full refund',
@@ -267,7 +267,7 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="text-center text-slate-400 text-sm mt-8">
-            Elite includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund. Coaching sessions worth up to <strong className="text-slate-600">$149</strong> included in Pro & Elite.
+            Elite includes a <strong className="text-slate-600">100% Pass Guarantee</strong> — pass your exam or get a full refund. Coaching sessions worth up to <strong className="text-slate-600">$159</strong> included in Pro & Elite.
           </p>
         </div>
       </section>

@@ -236,7 +236,7 @@ export default async function DashboardPage() {
           <div className={`rounded-xl p-3 ${plan.coaching ? 'bg-violet-50' : 'bg-slate-50 opacity-60'}`}>
             <div className="text-xl mb-1">{plan.coaching ? '🎓' : '🔒'}</div>
             <div className={`font-black text-sm ${plan.coaching ? 'text-violet-700' : 'text-slate-400'}`}>
-              {plan.coaching === '60-min' ? '60-Min Coaching'
+              {plan.coaching === '60-min' ? '45-Min Coaching'
                : plan.coaching === '90-min' ? '90-Min Coaching'
                : '1-to-1 Coaching'}
             </div>
@@ -457,12 +457,12 @@ export default async function DashboardPage() {
                 <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center text-xl">🎓</div>
                 <div>
                   <div className="font-black text-slate-900 text-sm">
-                    1-to-1 Coaching — {plan.coaching === '60-min' ? '60 minutes' : '90 minutes'}
+                    1-to-1 Coaching — {plan.coaching === '60-min' ? '45 minutes' : '90 minutes'}
                   </div>
                   <div className="text-xs text-slate-500">
                     {plan.coaching === '60-min'
-                      ? 'Focus session included with Pro plan'
-                      : 'Deep dive session included with Elite plan'}
+                      ? '45-min focus session included with Pro'
+                      : '90-min deep dive included with Elite'}
                   </div>
                 </div>
               </div>
