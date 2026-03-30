@@ -32,13 +32,51 @@ const LAB_TYPES = [
 ]
 
 const CATEGORIES = [
-  { label: 'All',          filter: () => true },
-  { label: 'Cloud',        filter: (s: string) => ['aws-','azure-','google-'].some(p => s.startsWith(p)) },
-  { label: 'DevOps',       filter: (s: string) => ['kubernetes-','hashicorp-'].some(p => s.startsWith(p)) },
-  { label: 'Networking',   filter: (s: string) => ['cisco-'].some(p => s.startsWith(p)) },
-  { label: 'Security',     filter: (s: string) => ['comptia-security','fortinet-'].some(p => s.startsWith(p)) },
-  { label: 'ITSM',         filter: (s: string) => ['servicenow-','itil-'].some(p => s.startsWith(p)) },
-  { label: 'Project Mgmt', filter: (s: string) => ['pmp-','scrum-','kanban-','jira-'].some(p => s.startsWith(p)) },
+  { label: 'All',                  filter: () => true },
+  // AWS Certifications
+  { label: 'AWS Solutions Architect',    filter: (s: string) => s.startsWith('aws-saa') },
+  { label: 'AWS Developer Associate',    filter: (s: string) => s.startsWith('aws-dva') },
+  { label: 'AWS SysOps Admin',          filter: (s: string) => s.startsWith('aws-soa') },
+  // Azure Certifications
+  { label: 'Azure Fundamentals',        filter: (s: string) => s.startsWith('azure-az-900') },
+  { label: 'Azure Administrator',       filter: (s: string) => s.startsWith('azure-az-104') },
+  { label: 'Azure Security Engineer',   filter: (s: string) => s.startsWith('azure-az-500') },
+  // Google Cloud
+  { label: 'Google Cloud Associate',    filter: (s: string) => s.startsWith('google-') },
+  // Cisco
+  { label: 'Cisco CCNA',               filter: (s: string) => s.startsWith('cisco-ccna') },
+  { label: 'Cisco CCNP',               filter: (s: string) => s.startsWith('cisco-ccnp') },
+  // CompTIA
+  { label: 'CompTIA A+',               filter: (s: string) => s.startsWith('comptia-aplus') },
+  { label: 'CompTIA Network+',         filter: (s: string) => s.startsWith('comptia-network') },
+  { label: 'CompTIA Security+',        filter: (s: string) => s.startsWith('comptia-security') },
+  // Kubernetes & Container
+  { label: 'Kubernetes CKA',           filter: (s: string) => s.startsWith('kubernetes-cka') },
+  { label: 'Docker Certified',         filter: (s: string) => s.startsWith('docker-') },
+  // DevOps & Infrastructure
+  { label: 'Terraform Associate',      filter: (s: string) => s.startsWith('hashicorp-terraform') },
+  { label: 'Jenkins',                  filter: (s: string) => s.startsWith('jenkins-') },
+  // Project Management
+  { label: 'PMP (PMBOK)',             filter: (s: string) => s.startsWith('pmp-') },
+  { label: 'Scrum Master (CSPO)',     filter: (s: string) => s.startsWith('scrum-') },
+  { label: 'Agile Certified',          filter: (s: string) => s.startsWith('agile-') },
+  // IT Service Management
+  { label: 'ITIL 4 Foundation',        filter: (s: string) => s.startsWith('itil-') },
+  { label: 'ServiceNow Certified',     filter: (s: string) => s.startsWith('servicenow-') },
+  // Virtualization
+  { label: 'VMware VCP-DCV',          filter: (s: string) => s.startsWith('vmware-vcp') },
+  { label: 'Hyper-V',                 filter: (s: string) => s.startsWith('hyperv-') },
+  // Database
+  { label: 'Oracle Database',          filter: (s: string) => s.startsWith('oracle-') },
+  { label: 'SQL Server DBA',          filter: (s: string) => s.startsWith('sqlserver-') },
+  { label: 'MongoDB Associate',        filter: (s: string) => s.startsWith('mongodb-') },
+  // Security & Compliance
+  { label: 'CEH (Certified Ethical)',  filter: (s: string) => s.startsWith('ceh-') },
+  { label: 'CISSP',                   filter: (s: string) => s.startsWith('cissp-') },
+  // Other Popular Certs
+  { label: 'Linux+',                  filter: (s: string) => s.startsWith('linux-') },
+  { label: 'Red Hat Certified',       filter: (s: string) => s.startsWith('redhat-') },
+  { label: 'HashiCorp Vault',         filter: (s: string) => s.startsWith('vault-') },
 ]
 
 export default async function LabsPage() {
