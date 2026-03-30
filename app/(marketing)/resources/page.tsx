@@ -115,6 +115,24 @@ export default function ResourcesPage() {
         </div>
       </section>
 
+      {/* Key Metrics */}
+      <section className="max-w-7xl mx-auto py-8 px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="p-6 bg-white rounded-lg border border-slate-200 text-center">
+            <div className="text-3xl font-black text-sky-600 mb-2">8+</div>
+            <p className="text-slate-600 text-sm">In-depth study guides and tutorials</p>
+          </div>
+          <div className="p-6 bg-white rounded-lg border border-slate-200 text-center">
+            <div className="text-3xl font-black text-sky-600 mb-2">40+</div>
+            <p className="text-slate-600 text-sm">IT certifications with guides</p>
+          </div>
+          <div className="p-6 bg-white rounded-lg border border-slate-200 text-center">
+            <div className="text-3xl font-black text-sky-600 mb-2">2000+ words</div>
+            <p className="text-slate-600 text-sm">Per guide for comprehensive coverage</p>
+          </div>
+        </div>
+      </section>
+
       {/* Guides Grid */}
       <section className="max-w-7xl mx-auto py-12 px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
