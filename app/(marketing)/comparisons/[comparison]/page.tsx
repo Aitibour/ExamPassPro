@@ -2,6 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
+
 interface ComparisonContent {
   title: string
   description: string
