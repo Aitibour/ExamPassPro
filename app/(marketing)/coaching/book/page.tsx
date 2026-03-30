@@ -5,7 +5,7 @@ import { BookingCalendar } from '@/components/coaching/BookingCalendar'
 const PACKAGES: Record<string, { name: string; price: string; duration: string }> = {
   'focus-session': { name: 'Focus Session', price: '$99', duration: '60 minutes' },
   'deep-dive':     { name: 'Deep Dive Session', price: '$149', duration: '90 minutes' },
-  'sprint-pack':   { name: 'Exam Sprint Pack (3 sessions)', price: '$399', duration: '3 × 90 min' },
+  'sprint-pack':   { name: 'Sprint Pack (3 × 60-min sessions)', price: '$299', duration: '3 × 60 min' },
 }
 
 interface PageProps {

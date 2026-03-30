@@ -15,7 +15,7 @@ const PLANS = [
     highlight: 'border-slate-200 bg-white',
     badge: 'bg-slate-100 text-slate-600',
     ring: 'ring-2 ring-slate-400',
-    icon: '🎯',
+    icon: '◎',
     features: [
       '1 mock exam (30 questions)',
       '1 practice exam (30 questions)',
@@ -30,7 +30,7 @@ const PLANS = [
     highlight: 'border-sky-200 bg-sky-50/40',
     badge: 'bg-sky-100 text-sky-700',
     ring: 'ring-2 ring-sky-500',
-    icon: '🚀',
+    icon: '▲',
     features: [
       '2 mock exams (60Q each · timed)',
       '2 practice exams',
@@ -46,7 +46,7 @@ const PLANS = [
     highlight: 'border-violet-200 bg-violet-50/40',
     badge: 'bg-violet-100 text-violet-700',
     ring: 'ring-2 ring-violet-500',
-    icon: '⚡',
+    icon: '◆',
     features: [
       '4 mock exams + 4 practice exams',
       '1× 60-min coaching session',
@@ -61,7 +61,7 @@ const PLANS = [
     highlight: 'border-amber-200 bg-amber-50/40',
     badge: 'bg-amber-100 text-amber-700',
     ring: 'ring-2 ring-amber-500',
-    icon: '👑',
+    icon: '★',
     features: [
       '10 mock exams + 10 practice exams',
       '1× 90-min coaching session',

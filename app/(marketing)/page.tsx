@@ -36,9 +36,9 @@ const PRICING_PLANS = [
     key: 'free', name: 'Free', price: 0, period: ' forever',
     subline: 'Try before you buy',
     features: [
-      '🎯  1 mock exam — 30 questions',
-      '📖  1 practice exam — 30 questions',
-      '💡  Instant answer explanations',
+      '1 mock exam — 30 questions',
+      '1 practice exam — 30 questions',
+      'Instant answer explanations',
     ],
     cta: 'Start Free — No Card',
     href: '/register',
@@ -48,11 +48,11 @@ const PRICING_PLANS = [
     key: 'starter', name: 'Core', price: 39, period: ' one-time',
     subline: 'Pass your first cert',
     features: [
-      '🧪  2 mock exams — 60Q each · timed',
-      '📖  2 practice exams with explanations',
-      '🤖  Gemini AI study assistant',
-      '📊  Score report & domain breakdown',
-      '✅  Instant corrections',
+      '2 mock exams — 60Q each · timed',
+      '2 practice exams with explanations',
+      'Gemini AI study assistant',
+      'Score report & domain breakdown',
+      'Instant corrections',
     ],
     cta: 'Get Core — $39',
     href: '/checkout?plan=starter',
@@ -62,12 +62,12 @@ const PRICING_PLANS = [
     key: 'pro', name: 'Pro', price: 99, period: ' one-time',
     subline: 'Exam-ready in weeks',
     features: [
-      '🧪  4 mock exams — 60Q each · timed',
-      '📖  4 practice exams with explanations',
-      '🎓  1× 60-min 1:1 coaching (worth $99)',
-      '🤖  Unlimited Gemini AI assistant',
-      '📊  Performance analytics',
-      '🏆  Priority support',
+      '4 mock exams — 60Q each · timed',
+      '4 practice exams with explanations',
+      '1× 60-min coaching session (worth $99)',
+      'Unlimited Gemini AI assistant',
+      'Performance analytics',
+      'Priority support',
     ],
     cta: 'Get Pro — $99',
     href: '/checkout?plan=pro',
@@ -78,12 +78,12 @@ const PRICING_PLANS = [
     key: 'all_access', name: 'Elite', price: 199, period: ' one-time',
     subline: '100% Pass Guarantee',
     features: [
-      '🧪  10 mock exams — full question bank',
-      '📖  10 practice exams with explanations',
-      '🎓  1× 90-min 1:1 coaching (worth $149)',
-      '🤖  Unlimited Gemini AI assistant',
-      '📊  Full performance analytics',
-      '🛡️  100% Pass Guarantee or full refund',
+      '10 mock exams — full question bank',
+      '10 practice exams with explanations',
+      '1× 90-min coaching session (worth $149)',
+      'Unlimited Gemini AI assistant',
+      'Full performance analytics',
+      '100% Pass Guarantee or full refund',
     ],
     cta: 'Get Elite — $199',
     href: '/checkout?plan=all_access',
@@ -238,9 +238,16 @@ export default async function HomePage() {
                     )}
                   </div>
                 </div>
-                <ul className="space-y-2.5 mb-7 flex-1">
+                <ul className="space-y-2 mb-7 flex-1">
                   {plan.features.map(f => (
-                    <li key={f} className="text-sm text-slate-600 leading-snug">{f}</li>
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 leading-snug">
+                      <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${plan.key === 'free' ? 'bg-slate-300' : 'bg-green-500'}`}>
+                        <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
+                          <polyline points="1,5 4,8 9,2" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                      {f}
+                    </li>
                   ))}
                 </ul>
                 <Link

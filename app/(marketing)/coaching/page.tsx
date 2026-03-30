@@ -41,8 +41,8 @@ const PACKAGES = [
   {
     id: 'sprint-pack',
     name: 'Sprint Pack',
-    duration: '3 × 90-min sessions',
-    price: '$399',
+    duration: '3 × 60-min sessions',
+    price: '$299',
     badge: null,
     subline: 'Best for multi-cert candidates',
     features: [
@@ -61,30 +61,30 @@ const PACKAGES = [
 const COACHES = [
   {
     name: 'Alex Morgan',
+    initials: 'AM',
     title: 'Cloud & ITSM Expert',
     certs: 'ServiceNow CSA/CSP · AWS SAA · CKA',
     exp: '12 years in cloud infrastructure & IT service management',
-    img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80',
-    linkedin: 'https://linkedin.com/in/alex-morgan-itpro',
     sessions: '340+ sessions',
+    color: 'from-sky-500 to-sky-700',
   },
   {
     name: 'Priya Nair',
+    initials: 'PN',
     title: 'Azure & Google Cloud Specialist',
     certs: 'Azure 900/104 · Google ACE · ITIL 4 MP',
     exp: '9 years in enterprise cloud architecture & DevOps',
-    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80',
-    linkedin: 'https://linkedin.com/in/priya-nair-cloud',
     sessions: '280+ sessions',
+    color: 'from-violet-500 to-violet-700',
   },
   {
     name: 'James Okonkwo',
+    initials: 'JO',
     title: 'Network & Security Coach',
     certs: 'CompTIA Sec+ · CCNA · Terraform Associate',
     exp: '14 years in network engineering, cybersecurity & IaC',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80',
-    linkedin: 'https://linkedin.com/in/james-okonkwo-ccna',
     sessions: '410+ sessions',
+    color: 'from-emerald-500 to-emerald-700',
   },
 ]
 
@@ -198,35 +198,27 @@ export default function CoachingPage() {
         <p className="text-slate-500 text-center text-sm mb-12">
           Every coach has personally passed the exams they teach — multiple times.
         </p>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {COACHES.map(coach => (
-            <div key={coach.name} className="group">
-              <div className="relative rounded-2xl overflow-hidden aspect-square mb-5 shadow-md">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={coach.img}
-                  alt={coach.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="text-white font-black text-lg leading-tight">{coach.name}</div>
-                  <div className="text-sky-300 text-xs font-semibold mt-0.5">{coach.title}</div>
+            <div key={coach.name} className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col gap-4">
+              {/* Avatar + name */}
+              <div className="flex items-center gap-4">
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${coach.color} flex items-center justify-center text-white font-black text-lg flex-shrink-0 select-none`}>
+                  {coach.initials}
                 </div>
-                <a
-                  href={coach.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-3 right-3 w-8 h-8 bg-[#0A66C2] rounded-lg flex items-center justify-center hover:bg-[#004182] transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </a>
+                <div>
+                  <div className="font-black text-slate-900 text-base">{coach.name}</div>
+                  <div className="text-xs text-slate-500 font-medium mt-0.5">{coach.title}</div>
+                </div>
               </div>
-              <p className="text-xs text-sky-600 font-semibold mb-1 leading-relaxed">{coach.certs}</p>
-              <p className="text-xs text-slate-500 leading-relaxed mb-2">{coach.exp}</p>
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-green-50 text-green-700 px-2 py-1 rounded-full">
+              {/* Certs */}
+              <div className="text-xs font-semibold text-sky-600 leading-relaxed">
+                {coach.certs}
+              </div>
+              {/* Experience */}
+              <p className="text-xs text-slate-500 leading-relaxed flex-1">{coach.exp}</p>
+              {/* Sessions badge */}
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold bg-green-50 text-green-700 border border-green-100 px-3 py-1.5 rounded-full w-fit">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
                 {coach.sessions} completed
               </span>
