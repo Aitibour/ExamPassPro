@@ -34,7 +34,7 @@ const PLANS = [
     features: [
       '2 mock exams (60Q each · timed)',
       '2 practice exams',
-      'Gemini AI · Full explanations',
+      'Score report & full explanations',
     ],
   },
   {

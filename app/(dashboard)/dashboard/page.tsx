@@ -97,16 +97,31 @@ export default async function DashboardPage() {
     supabase.from('purchases').select('*, courses(*)').eq('user_id', user.id),
     supabase
       .from('exam_attempts')
-      .select('*, exam_sets(title)')
+      .select('*, exam_sets(title, course_id)')
       .eq('user_id', user.id)
       .not('completed_at', 'is', null)
-      .order('started_at', { ascending: false })
-      .limit(5),
+      .order('started_at', { ascending: false }),
   ])
 
   const profile = profileRes.data as Profile | null
   const purchases = purchasesRes.data as PurchaseWithCourse[] | null
-  const attempts = attemptsRes.data as ExamAttemptWithSet[] | null
+  const attempts = attemptsRes.data as (ExamAttemptWithSet & { exam_sets: { title: string; course_id: string } | null })[] | null
+
+  // Per-course progress: best score + whether passed
+  const courseProgress: Record<string, { bestScore: number; passed: boolean; attempts: number }> = {}
+  for (const a of attempts ?? []) {
+    const cid = a.exam_sets?.course_id
+    if (!cid) continue
+    const prev = courseProgress[cid]
+    courseProgress[cid] = {
+      attempts: (prev?.attempts ?? 0) + 1,
+      passed: prev?.passed || !!a.passed,
+      bestScore: Math.max(prev?.bestScore ?? 0, a.score_pct ?? 0),
+    }
+  }
+
+  // Recent 5 for the results table
+  const recentAttempts = (attempts ?? []).slice(0, 5)
 
   const avgScore = attempts?.length
     ? Math.round(attempts.reduce((s, a) => s + (a.score_pct ?? 0), 0) / attempts.length)
@@ -264,39 +279,40 @@ export default async function DashboardPage() {
             </div>
 
             {hasCourses ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {purchases!.slice(0, 4).map(p => {
-                  const pPlan = PLANS[p.plan] ?? PLANS.starter
+              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+                {purchases!.slice(0, 6).map((p, idx) => {
+                  const prog = courseProgress[p.course_id]
+                  const status = !prog
+                    ? { label: 'Not started', cls: 'bg-slate-100 text-slate-500' }
+                    : prog.passed
+                    ? { label: 'Passed', cls: 'bg-green-100 text-green-700' }
+                    : { label: `${Math.round(prog.bestScore)}% best`, cls: 'bg-amber-100 text-amber-700' }
                   return (
-                    <div key={p.id} className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                      <div className="h-1.5" style={{ background: p.courses?.brand_color ?? '#0ea5e9' }} />
-                      <div className="p-4">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div
-                            className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-black flex-shrink-0"
-                            style={{ background: p.courses?.brand_color ?? '#0ea5e9' }}
-                          >
-                            {(p.courses?.title ?? '??').slice(0, 2)}
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <div className="font-black text-sm text-slate-900 truncate">{p.courses?.title ?? 'Unknown'}</div>
-                            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${pPlan.badgeCls}`}>
-                              {pPlan.label} · {pPlan.mockExams} exam{pPlan.mockExams > 1 ? 's' : ''}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2">
-                          <Link href={`/study/${p.course_id}`}
-                            className="flex items-center justify-center gap-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            <span>📖</span> Take Dump
-                          </Link>
-                          <Link href={`/exam/${p.course_id}`}
-                            className="flex items-center justify-center gap-1.5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            <span>📝</span> Mock Exam
-                          </Link>
-                        </div>
+                    <Link
+                      key={p.id}
+                      href={`/study/${p.course_id}`}
+                      className={`flex items-center gap-3 px-4 py-3.5 hover:bg-slate-50 transition-colors ${idx > 0 ? 'border-t border-slate-100' : ''}`}
+                    >
+                      {/* Logo */}
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-black flex-shrink-0"
+                        style={{ background: p.courses?.brand_color ?? '#0ea5e9' }}
+                      >
+                        {(p.courses?.title ?? '??').slice(0, 2).toUpperCase()}
                       </div>
-                    </div>
+                      {/* Name */}
+                      <div className="flex-1 min-w-0">
+                        <div className="font-bold text-sm text-slate-900 truncate">{p.courses?.title ?? 'Unknown'}</div>
+                      </div>
+                      {/* Progress status */}
+                      <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${status.cls}`}>
+                        {status.label}
+                      </span>
+                      {/* Chevron */}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-slate-300 flex-shrink-0">
+                        <polyline points="9 18 15 12 9 6" />
+                      </svg>
+                    </Link>
                   )
                 })}
               </div>
@@ -319,8 +335,8 @@ export default async function DashboardPage() {
               </Link>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-              {attempts && attempts.length > 0 ? (
-                attempts.map(a => (
+              {recentAttempts && recentAttempts.length > 0 ? (
+                recentAttempts.map(a => (
                   <div key={a.id} className="flex items-center gap-4 px-5 py-3.5 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors">
                     <span className={`text-sm font-black px-2.5 py-1 rounded-lg min-w-[52px] text-center flex-shrink-0 ${
                       a.passed ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'
@@ -340,7 +356,7 @@ export default async function DashboardPage() {
                 <div className="px-5 py-8 text-center">
                   <p className="text-slate-400 text-sm mb-3">No exam results yet.</p>
                   {hasCourses && (
-                    <Link href="/exam" className="text-sky-500 text-sm font-semibold hover:text-sky-700">
+                    <Link href="/dashboard/courses" className="text-sky-500 text-sm font-semibold hover:text-sky-700">
                       Take your first mock exam →
                     </Link>
                   )}

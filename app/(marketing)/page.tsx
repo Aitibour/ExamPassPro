@@ -50,7 +50,6 @@ const PRICING_PLANS = [
     features: [
       '2 mock exams — 60Q each · timed',
       '2 practice exams with explanations',
-      'Gemini AI study assistant',
       'Score report & domain breakdown',
       'Instant corrections',
     ],

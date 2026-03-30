@@ -90,7 +90,6 @@ export const PLAN_FEATURES: Record<string, string[]> = {
     '2 mock exams — 60 questions each',
     '2 practice exams',
     'Timed exam simulation',
-    'Gemini AI study assistant',
     'Score report & corrections',
   ],
   pro: [
