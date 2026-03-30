@@ -19,14 +19,15 @@ export function Navbar({ user, displayName = '', initials = '?', planLabel = 'Fr
   const pathname = usePathname()
 
   const navLinks = [
-    { href: '/',           label: 'Home' },
-    { href: '/courses',    label: 'Dumps' },
-    { href: '/labs',       label: 'Labs' },
-    { href: '/comparisons', label: 'Compare' },
-    { href: '/coaching',   label: 'Coaching' },
-    { href: '/#pricing',   label: 'Pricing' },
-    { href: '/about',      label: 'About' },
-    { href: '/contact',    label: 'Contact' },
+    { href: '/',            label: 'Home' },
+    { href: '/courses',     label: 'Dumps' },
+    { href: '/labs',        label: 'Labs' },
+    { href: '/comparisons',  label: 'Compare' },
+    { href: '/resources',    label: 'Guide' },
+    { href: '/coaching',    label: 'Coaching' },
+    { href: '/#pricing',    label: 'Pricing' },
+    { href: '/about',       label: 'About' },
+    { href: '/contact',     label: 'Contact' },
   ]
 
   const isActive = (href: string): boolean => {
