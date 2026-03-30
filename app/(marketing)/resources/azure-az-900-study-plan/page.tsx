@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1920&h=1280&fit=crop"
-                alt="Azure fundamentals"
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1280&fit=crop"
+                alt="Azure cloud platform study materials"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

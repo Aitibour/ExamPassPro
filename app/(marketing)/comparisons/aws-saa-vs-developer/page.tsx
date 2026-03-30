@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&h=1280&fit=crop"
-                alt="AWS cloud architecture"
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
+                alt="AWS server infrastructure and data center"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

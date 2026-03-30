@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=1920&h=1280&fit=crop"
-                alt="Container technology architecture"
+                src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1920&h=1280&fit=crop"
+                alt="Docker and Kubernetes development workspace"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1280&fit=crop"
-                alt="Cloud platforms comparison"
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
+                alt="Cloud data center and server infrastructure"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

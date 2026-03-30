@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1280&fit=crop"
-                alt="Cybersecurity"
+                src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&h=1280&fit=crop"
+                alt="Cybersecurity monitoring and threat detection"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

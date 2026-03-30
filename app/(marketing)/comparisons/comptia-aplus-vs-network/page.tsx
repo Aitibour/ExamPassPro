@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1557821552-17105176677c?w=1920&h=1280&fit=crop"
-                alt="CompTIA IT certification"
+                src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1920&h=1280&fit=crop"
+                alt="Network infrastructure and IT equipment setup"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>

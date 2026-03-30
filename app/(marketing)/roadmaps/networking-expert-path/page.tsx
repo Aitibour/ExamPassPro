@@ -43,8 +43,8 @@ export default function Page() {
             </div>
             <div className="hidden md:block">
               <img
-                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&h=1280&fit=crop"
-                alt="Network infrastructure"
+                src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1920&h=1280&fit=crop"
+                alt="Network infrastructure and Cisco equipment"
                 className="rounded-lg shadow-lg w-full"
               />
             </div>
