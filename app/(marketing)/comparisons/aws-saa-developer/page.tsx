@@ -18,26 +18,33 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Hero */}
-      <section className="bg-slate-900 py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-            <Link href="/" className="hover:text-slate-200 transition-colors">Home</Link>
+    <div className="bg-white">
+      {/* Hero with Background Image */}
+      <section className="relative bg-gradient-to-r from-orange-500 to-yellow-600 min-h-[300px] flex items-center justify-center px-6 py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=1280&fit=crop"
+            alt="AWS server infrastructure"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative max-w-5xl mx-auto w-full">
+          <div className="flex items-center gap-2 text-xs text-orange-100 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>›</span>
-            <Link href="/comparisons" className="hover:text-slate-200 transition-colors">Comparisons</Link>
+            <Link href="/comparisons" className="hover:text-white transition-colors">Comparisons</Link>
           </div>
-          <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-4">
             AWS SAA vs Developer Associate
           </h1>
-          <p className="text-slate-400 text-base">
+          <p className="text-orange-100 text-lg">
             Compare AWS Solutions Architect Associate vs Developer Associate certifications.
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <article className="max-w-3xl mx-auto py-12 px-6">
+      <article className="max-w-3xl mx-auto py-16 px-6">
         <h2 className="text-2xl font-bold text-slate-900 mb-4">Quick Overview</h2>
         <p className="text-slate-600 mb-6">
           AWS SAA focuses on infrastructure design, while AWS Developer Associate focuses on application development. Both are intermediate-level certifications.

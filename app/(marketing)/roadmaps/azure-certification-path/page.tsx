@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-white">
       {/* Hero with Image */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-16 px-6">
         <div className="max-w-5xl mx-auto">
