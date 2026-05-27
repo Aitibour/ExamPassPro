@@ -1,7 +1,7 @@
 import { getGemini } from '@/lib/gemini'
 import { createClient } from '@/lib/supabase/server'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export async function POST(req: Request) {
   const supabase = await createClient()
