@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Linux LPIC Certification Path',
     description: 'Master Linux system administration with the LPIC certification roadmap.',
-    url: 'https://exampasspro.com/roadmaps/linux-lpic-path',
+    url: 'https://exampasspro.co/roadmaps/linux-lpic-path',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

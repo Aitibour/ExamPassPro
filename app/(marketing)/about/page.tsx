@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About ExamPassPro',
     description: 'Learn how ExamPassPro helps IT professionals pass their certification exams on the first attempt.',
-    url: 'https://exampasspro.com/about',
+    url: 'https://exampasspro.co/about',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About ExamPassPro' }],
   },

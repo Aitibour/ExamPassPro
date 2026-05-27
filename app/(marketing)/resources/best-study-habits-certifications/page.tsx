@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Science-Based Study Habits for IT Certifications',
     description: 'Learn proven study techniques: spaced repetition, active recall, interleaving.',
-    url: 'https://exampasspro.com/resources/best-study-habits-certifications',
+    url: 'https://exampasspro.co/resources/best-study-habits-certifications',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

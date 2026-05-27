@@ -1,18 +1,18 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: 'ExamPassPro — Pass Your IT Certification First Try',
   description: 'Real exam-style questions, timed mock exams, Gemini AI study assistant, and a 100% Pass Guarantee for 10 top IT certifications.',
-  metadataBase: new URL('https://exampasspro.com'),
+  metadataBase: new URL('https://exampasspro.co'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://exampasspro.com',
+    url: 'https://exampasspro.co',
     siteName: 'ExamPassPro',
     title: 'ExamPassPro — Pass Your IT Certification First Try',
     description: 'Real exam-style questions, timed mock exams, and a 100% Pass Guarantee.',

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'IT Certification Comparisons & Guide',
     description: 'Compare IT certifications and find the perfect certification path for your IT career goals.',
-    url: 'https://exampasspro.com/comparisons',
+    url: 'https://exampasspro.co/comparisons',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'IT Certification Comparisons' }],
   },

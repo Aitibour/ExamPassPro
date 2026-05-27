@@ -1,4 +1,4 @@
-export const metadata = { title: 'Terms of Service — ExamPassPro' }
+﻿export const metadata = { title: 'Terms of Service — ExamPassPro' }
 
 const LAST_UPDATED = 'March 26, 2026'
 
@@ -32,8 +32,8 @@ export default function TermsPage() {
           <p>
             You are responsible for maintaining the confidentiality of your login credentials and for
             all activity under your account. Notify us immediately at{' '}
-            <a href="mailto:support@exampasspro.com" className="text-sky-600 hover:text-sky-800">
-              support@exampasspro.com
+            <a href="mailto:support@exampasspro.co" className="text-sky-600 hover:text-sky-800">
+              support@exampasspro.co
             </a>{' '}
             if you suspect unauthorized access. We are not liable for losses resulting from unauthorized
             use of your account.
@@ -157,8 +157,8 @@ export default function TermsPage() {
           <p>
             We may suspend or terminate your account at any time, with or without cause, including for
             violation of these Terms. You may delete your account at any time by contacting us at{' '}
-            <a href="mailto:support@exampasspro.com" className="text-sky-600 hover:text-sky-800">
-              support@exampasspro.com
+            <a href="mailto:support@exampasspro.co" className="text-sky-600 hover:text-sky-800">
+              support@exampasspro.co
             </a>. Upon termination, your right to use the Service ceases immediately.
           </p>
         </Section>
@@ -182,8 +182,8 @@ export default function TermsPage() {
         <Section title="15. Contact">
           <p>
             Questions about these Terms? Contact us at:{' '}
-            <a href="mailto:support@exampasspro.com" className="text-sky-600 hover:text-sky-800">
-              support@exampasspro.com
+            <a href="mailto:support@exampasspro.co" className="text-sky-600 hover:text-sky-800">
+              support@exampasspro.co
             </a>
           </p>
         </Section>

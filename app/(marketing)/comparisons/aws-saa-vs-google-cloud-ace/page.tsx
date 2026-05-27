@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AWS SAA-C03 vs Google Cloud Associate Cloud Engineer',
     description: 'Head-to-head comparison of AWS SAA and Google Cloud ACE certifications.',
-    url: 'https://exampasspro.com/comparisons/aws-saa-vs-google-cloud-ace',
+    url: 'https://exampasspro.co/comparisons/aws-saa-vs-google-cloud-ace',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

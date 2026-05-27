@@ -1,4 +1,4 @@
-'use server'
+﻿'use server'
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@supabase/supabase-js'
 import type { Database, Link, LinkWithClicks } from '@/lib/supabase/database.types'
@@ -79,7 +79,7 @@ export default async function AdminLinksPage() {
 
   // No lookup needed — code is stored directly on each click
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://exampasspro.com'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://exampasspro.co'
 
   return (
     <div className="space-y-8">

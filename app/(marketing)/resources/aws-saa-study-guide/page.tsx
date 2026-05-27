@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AWS SAA-C03 Study Guide',
     description: 'Comprehensive guide to passing AWS Solutions Architect Associate exam.',
-    url: 'https://exampasspro.com/resources/aws-saa-study-guide',
+    url: 'https://exampasspro.co/resources/aws-saa-study-guide',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next'
+﻿import { MetadataRoute } from 'next'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://exampasspro.com'
+  const baseUrl = 'https://exampasspro.co'
 
   const supabase = await createClient()
   const { data: courses } = await supabase

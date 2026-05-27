@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'JSON & REST API Basics',
     description: 'Master JSON and REST API fundamentals for IT certifications.',
-    url: 'https://exampasspro.com/resources/json-rest-api-basics',
+    url: 'https://exampasspro.co/resources/json-rest-api-basics',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contact ExamPassPro — Support & Coaching Inquiries',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact ExamPassPro',
     description: 'Get in touch with ExamPassPro for support, billing, and coaching inquiries.',
-    url: 'https://exampasspro.com/contact',
+    url: 'https://exampasspro.co/contact',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Contact Us' }],
   },
@@ -47,9 +47,9 @@ export default function ContactPage() {
             <h2 className="text-xl font-black text-slate-900 mb-6">Get in Touch</h2>
             <div className="space-y-5">
               {[
-                { label: 'General Support', value: 'support@exampasspro.com' },
-                { label: 'Billing & Refunds', value: 'billing@exampasspro.com' },
-                { label: 'Coaching Bookings', value: 'coaching@exampasspro.com' },
+                { label: 'General Support', value: 'support@exampasspro.co' },
+                { label: 'Billing & Refunds', value: 'billing@exampasspro.co' },
+                { label: 'Coaching Bookings', value: 'coaching@exampasspro.co' },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-1">{label}</div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
           {/* Contact form */}
           <div>
             <h2 className="text-xl font-black text-slate-900 mb-6">Send a Message</h2>
-            <form className="space-y-4" action="mailto:support@exampasspro.com" method="post">
+            <form className="space-y-4" action="mailto:support@exampasspro.co" method="post">
               <div>
                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">Name</label>
                 <input

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+﻿import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: course.title,
       description,
-      url: `https://exampasspro.com/courses/${course.slug}`,
+      url: `https://exampasspro.co/courses/${course.slug}`,
       type: 'website',
       images: [
         {

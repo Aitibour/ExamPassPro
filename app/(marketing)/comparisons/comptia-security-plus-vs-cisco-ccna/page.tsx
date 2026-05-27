@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CompTIA Security+ vs Cisco CCNA',
     description: 'Cybersecurity vs networking: compare Security+ and CCNA certifications.',
-    url: 'https://exampasspro.com/comparisons/comptia-security-plus-vs-cisco-ccna',
+    url: 'https://exampasspro.co/comparisons/comptia-security-plus-vs-cisco-ccna',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

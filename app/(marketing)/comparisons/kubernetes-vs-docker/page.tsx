@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kubernetes vs Docker: What\'s the Difference?',
     description: 'Comprehensive guide comparing Kubernetes and Docker container technologies.',
-    url: 'https://exampasspro.com/comparisons/kubernetes-vs-docker',
+    url: 'https://exampasspro.co/comparisons/kubernetes-vs-docker',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

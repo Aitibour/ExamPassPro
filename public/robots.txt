@@ -12,7 +12,7 @@ Disallow: /_next/
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://exampasspro.com/sitemap.xml
+Sitemap: https://exampasspro.co/sitemap.xml
 
 # Crawl delay (reasonable for Vercel)
 Crawl-delay: 1

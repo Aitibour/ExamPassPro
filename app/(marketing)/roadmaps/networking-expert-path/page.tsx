@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Networking Expert Certification Path',
     description: 'Step-by-step networking career path from CompTIA Network+ to Cisco CCNP expert certification.',
-    url: 'https://exampasspro.com/roadmaps/networking-expert-path',
+    url: 'https://exampasspro.co/roadmaps/networking-expert-path',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

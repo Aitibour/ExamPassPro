@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Azure AZ-900 vs Administrator (AZ-104)',
     description: 'Compare Azure AZ-900 Fundamentals vs AZ-104 Administrator certifications.',
-    url: 'https://exampasspro.com/comparisons/azure-az900-vs-administrator',
+    url: 'https://exampasspro.co/comparisons/azure-az900-vs-administrator',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

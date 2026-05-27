@@ -1,11 +1,11 @@
-import { Resend } from 'resend'
+﻿import { Resend } from 'resend'
 
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
 }
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@exampasspro.com'
-const FROM_EMAIL  = process.env.FROM_EMAIL  ?? 'bookings@exampasspro.com'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@exampasspro.co'
+const FROM_EMAIL  = process.env.FROM_EMAIL  ?? 'bookings@exampasspro.co'
 
 interface BookingInfo {
   clientName: string

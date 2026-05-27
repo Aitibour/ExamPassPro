@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { CourseGrid } from '@/components/courses/CourseGrid'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'IT Certification Exam Dumps & Practice Tests',
     description: 'Browse 40+ IT certification exam prep courses with real exam-style questions and mock exams.',
-    url: 'https://exampasspro.com/courses',
+    url: 'https://exampasspro.co/courses',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'IT Certification Courses' }],
   },

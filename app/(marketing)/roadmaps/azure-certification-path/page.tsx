@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Microsoft Azure Certification Path & Learning Roadmap',
     description: 'Step-by-step Azure career path from AZ-900 Fundamentals to AZ-305 Solutions Architect.',
-    url: 'https://exampasspro.com/roadmaps/azure-certification-path',
+    url: 'https://exampasspro.co/roadmaps/azure-certification-path',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * JSON-LD Schema utilities for SEO
  */
 
@@ -6,8 +6,8 @@ export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'ExamPassPro',
-  url: 'https://exampasspro.com',
-  logo: 'https://exampasspro.com/logo.png',
+  url: 'https://exampasspro.co',
+  logo: 'https://exampasspro.co/logo.png',
   description: 'IT certification exam preparation platform with real exam-style questions, timed mock exams, and 100% Pass Guarantee.',
   sameAs: [
     'https://www.linkedin.com/company/exampasspro',
@@ -17,7 +17,7 @@ export const organizationSchema = {
     '@type': 'ContactPoint',
     telephone: '+1-support-phone',
     contactType: 'Customer Support',
-    email: 'support@exampasspro.com',
+    email: 'support@exampasspro.co',
   },
 }
 
@@ -33,13 +33,13 @@ export function generateCourseSchema(courseData: {
     '@type': 'Course',
     name: courseData.title,
     description: courseData.description,
-    url: `https://exampasspro.com/courses/${courseData.slug}`,
+    url: `https://exampasspro.co/courses/${courseData.slug}`,
     provider: {
       '@type': 'Organization',
       name: 'ExamPassPro',
-      url: 'https://exampasspro.com',
+      url: 'https://exampasspro.co',
     },
-    image: courseData.icon_url || 'https://exampasspro.com/default-course-icon.png',
+    image: courseData.icon_url || 'https://exampasspro.co/default-course-icon.png',
     offers: [
       {
         '@type': 'Offer',
@@ -70,7 +70,7 @@ export const coachingServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'ExamPassPro Coaching',
-  url: 'https://exampasspro.com/coaching',
+  url: 'https://exampasspro.co/coaching',
   description: 'Expert live coaching sessions for IT certification exam prep.',
   address: {
     '@type': 'PostalAddress',

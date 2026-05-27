@@ -1,4 +1,4 @@
-export const metadata = { title: 'Refund Policy — ExamPassPro' }
+﻿export const metadata = { title: 'Refund Policy — ExamPassPro' }
 
 const LAST_UPDATED = 'March 26, 2026'
 
@@ -32,7 +32,7 @@ export default function RefundPage() {
 
         <p className="text-slate-500 text-sm leading-relaxed mb-8">
           This Refund Policy describes when and how ExamPassPro ("we", "us", "our") will issue refunds
-          for purchases made on exampasspro.com. By purchasing a plan, you agree to the terms below.
+          for purchases made on exampasspro.co. By purchasing a plan, you agree to the terms below.
         </p>
 
         <Section title="1. Pass Guarantee Refund">
@@ -105,7 +105,7 @@ export default function RefundPage() {
         <Section title="5. How to Request a Refund">
           <p>To submit a refund request:</p>
           <ol>
-            <li>Email <a href="mailto:billing@exampasspro.com" className="text-sky-600 hover:text-sky-800">billing@exampasspro.com</a> with subject: <strong>"Refund Request — [Your Name]"</strong></li>
+            <li>Email <a href="mailto:billing@exampasspro.co" className="text-sky-600 hover:text-sky-800">billing@exampasspro.co</a> with subject: <strong>"Refund Request — [Your Name]"</strong></li>
             <li>Include your registered email address and purchase date.</li>
             <li>For Pass Guarantee refunds, attach your official exam score report.</li>
             <li>Describe the reason for your request.</li>
@@ -135,13 +135,13 @@ export default function RefundPage() {
         <Section title="8. Contact">
           <p>
             Refund inquiries:{' '}
-            <a href="mailto:billing@exampasspro.com" className="text-sky-600 hover:text-sky-800">
-              billing@exampasspro.com
+            <a href="mailto:billing@exampasspro.co" className="text-sky-600 hover:text-sky-800">
+              billing@exampasspro.co
             </a>
             <br />
             General support:{' '}
-            <a href="mailto:support@exampasspro.com" className="text-sky-600 hover:text-sky-800">
-              support@exampasspro.com
+            <a href="mailto:support@exampasspro.co" className="text-sky-600 hover:text-sky-800">
+              support@exampasspro.co
             </a>
           </p>
         </Section>

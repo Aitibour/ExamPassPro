@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { LabsGrid } from '@/components/labs/LabsGrid'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Certification Practice Labs',
     description: 'Practice exam labs with mock exams, study mode, and AI tutor assistance for IT certifications.',
-    url: 'https://exampasspro.com/labs',
+    url: 'https://exampasspro.co/labs',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Practice Labs' }],
   },

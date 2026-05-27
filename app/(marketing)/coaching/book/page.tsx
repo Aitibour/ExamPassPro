@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+﻿import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { BookingCalendar } from '@/components/coaching/BookingCalendar'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Book Your Coaching Session',
     description: 'Schedule your expert 1-on-1 coaching session with ExamPassPro.',
-    url: 'https://exampasspro.com/coaching/book',
+    url: 'https://exampasspro.co/coaching/book',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Book Coaching' }],
   },

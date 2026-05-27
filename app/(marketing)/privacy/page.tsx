@@ -1,4 +1,4 @@
-export const metadata = { title: 'Privacy Policy — ExamPassPro' }
+﻿export const metadata = { title: 'Privacy Policy — ExamPassPro' }
 
 const LAST_UPDATED = 'March 26, 2026'
 
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       <div className="max-w-3xl mx-auto px-6 py-16 prose prose-slate prose-headings:font-black prose-a:text-sky-600 max-w-none">
 
         <p className="text-slate-500 text-sm leading-relaxed">
-          ExamPassPro ("we", "us", or "our") operates the website exampasspro.com and the ExamPassPro
+          ExamPassPro ("we", "us", or "our") operates the website exampasspro.co and the ExamPassPro
           platform (the "Service"). This Privacy Policy explains how we collect, use, disclose, and
           safeguard your information when you use our Service. Please read it carefully.
         </p>
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
           <p>
             We retain your personal data for as long as your account is active or as needed to provide the
             Service. You may request deletion of your account and associated data at any time by emailing
-            <a href="mailto:support@exampasspro.com"> support@exampasspro.com</a>. We will delete or
+            <a href="mailto:support@exampasspro.co"> support@exampasspro.co</a>. We will delete or
             anonymize your data within 30 days, unless we are required to retain it for legal or
             compliance reasons.
           </p>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
             <li>Data portability — receive your data in a machine-readable format.</li>
             <li>Withdraw consent at any time where processing is based on consent.</li>
           </ul>
-          <p>To exercise these rights, contact us at <a href="mailto:support@exampasspro.com">support@exampasspro.com</a>.</p>
+          <p>To exercise these rights, contact us at <a href="mailto:support@exampasspro.co">support@exampasspro.co</a>.</p>
         </Section>
 
         <Section title="7. Cookies">
@@ -134,8 +134,8 @@ export default function PrivacyPage() {
         <Section title="11. Contact Us">
           <p>
             Questions about this Privacy Policy? Contact us at:<br />
-            <a href="mailto:support@exampasspro.com">support@exampasspro.com</a><br />
-            ExamPassPro — exampasspro.com
+            <a href="mailto:support@exampasspro.co">support@exampasspro.co</a><br />
+            ExamPassPro — exampasspro.co
           </p>
         </Section>
 

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kubernetes & DevOps Certification Path',
     description: 'Step-by-step path from Docker basics to Kubernetes CKA expert certification.',
-    url: 'https://exampasspro.com/roadmaps/kubernetes-devops-path',
+    url: 'https://exampasspro.co/roadmaps/kubernetes-devops-path',
     type: 'article',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

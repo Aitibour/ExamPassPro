@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import type { Metadata } from 'next'
 import { coachingServiceSchema } from '@/lib/schemas'
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Expert IT Certification Coaching',
     description: 'Get expert 1-on-1 coaching from certified IT professionals. Personalized guidance and guaranteed certification success.',
-    url: 'https://exampasspro.com/coaching',
+    url: 'https://exampasspro.co/coaching',
     type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Expert Coaching' }],
   },
